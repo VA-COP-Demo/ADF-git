@@ -1,0 +1,9 @@
+{
+	"name": "adf-copdemo-comm-01",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d47df12b-51aa-42af-8cce-cc15220148a7",
+		"tenantId": "35b69a76-5314-4454-aa0a-35fb0ebd48dc"
+	}
+}

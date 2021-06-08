@@ -1,0 +1,562 @@
+{
+	"name": "HeathDataAPI-ingest",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET"
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".csv"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['state']"
+								},
+								"sink": {
+									"name": "state"
+								}
+							},
+							{
+								"source": {
+									"path": "$['critical_staffing_shortage_today_yes']"
+								},
+								"sink": {
+									"name": "critical_staffing_shortage_today_yes"
+								}
+							},
+							{
+								"source": {
+									"path": "$['critical_staffing_shortage_today_no']"
+								},
+								"sink": {
+									"name": "critical_staffing_shortage_today_no"
+								}
+							},
+							{
+								"source": {
+									"path": "$['critical_staffing_shortage_today_not_reported']"
+								},
+								"sink": {
+									"name": "critical_staffing_shortage_today_not_reported"
+								}
+							},
+							{
+								"source": {
+									"path": "$['critical_staffing_shortage_anticipated_within_week_yes']"
+								},
+								"sink": {
+									"name": "critical_staffing_shortage_anticipated_within_week_yes"
+								}
+							},
+							{
+								"source": {
+									"path": "$['critical_staffing_shortage_anticipated_within_week_no']"
+								},
+								"sink": {
+									"name": "critical_staffing_shortage_anticipated_within_week_no"
+								}
+							},
+							{
+								"source": {
+									"path": "$['critical_staffing_shortage_anticipated_within_week_not_reported']"
+								},
+								"sink": {
+									"name": "critical_staffing_shortage_anticipated_within_week_not_reported"
+								}
+							},
+							{
+								"source": {
+									"path": "$['hospital_onset_covid']"
+								},
+								"sink": {
+									"name": "hospital_onset_covid"
+								}
+							},
+							{
+								"source": {
+									"path": "$['hospital_onset_covid_coverage']"
+								},
+								"sink": {
+									"name": "hospital_onset_covid_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['inpatient_beds']"
+								},
+								"sink": {
+									"name": "inpatient_beds"
+								}
+							},
+							{
+								"source": {
+									"path": "$['inpatient_beds_coverage']"
+								},
+								"sink": {
+									"name": "inpatient_beds_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['inpatient_beds_used']"
+								},
+								"sink": {
+									"name": "inpatient_beds_used"
+								}
+							},
+							{
+								"source": {
+									"path": "$['inpatient_beds_used_coverage']"
+								},
+								"sink": {
+									"name": "inpatient_beds_used_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['inpatient_beds_used_covid']"
+								},
+								"sink": {
+									"name": "inpatient_beds_used_covid"
+								}
+							},
+							{
+								"source": {
+									"path": "$['inpatient_beds_used_covid_coverage']"
+								},
+								"sink": {
+									"name": "inpatient_beds_used_covid_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_pediatric_covid_confirmed']"
+								},
+								"sink": {
+									"name": "previous_day_admission_pediatric_covid_confirmed"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_pediatric_covid_confirmed_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_pediatric_covid_confirmed_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_pediatric_covid_suspected']"
+								},
+								"sink": {
+									"name": "previous_day_admission_pediatric_covid_suspected"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_pediatric_covid_suspected_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_pediatric_covid_suspected_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['staffed_adult_icu_bed_occupancy']"
+								},
+								"sink": {
+									"name": "staffed_adult_icu_bed_occupancy"
+								}
+							},
+							{
+								"source": {
+									"path": "$['staffed_adult_icu_bed_occupancy_coverage']"
+								},
+								"sink": {
+									"name": "staffed_adult_icu_bed_occupancy_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['staffed_icu_adult_patients_confirmed_and_suspected_covid']"
+								},
+								"sink": {
+									"name": "staffed_icu_adult_patients_confirmed_and_suspected_covid"
+								}
+							},
+							{
+								"source": {
+									"path": "$['staffed_icu_adult_patients_confirmed_and_suspected_covid_coverage']"
+								},
+								"sink": {
+									"name": "staffed_icu_adult_patients_confirmed_and_suspected_covid_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['staffed_icu_adult_patients_confirmed_covid']"
+								},
+								"sink": {
+									"name": "staffed_icu_adult_patients_confirmed_covid"
+								}
+							},
+							{
+								"source": {
+									"path": "$['staffed_icu_adult_patients_confirmed_covid_coverage']"
+								},
+								"sink": {
+									"name": "staffed_icu_adult_patients_confirmed_covid_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['total_adult_patients_hospitalized_confirmed_and_suspected_covid']"
+								},
+								"sink": {
+									"name": "total_adult_patients_hospitalized_confirmed_and_suspected_covid"
+								}
+							},
+							{
+								"source": {
+									"path": "$['total_adult_patients_hospitalized_confirmed_and_suspected_covid_coverage']"
+								},
+								"sink": {
+									"name": "total_adult_patients_hospitalized_confirmed_and_suspected_covid_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['total_adult_patients_hospitalized_confirmed_covid']"
+								},
+								"sink": {
+									"name": "total_adult_patients_hospitalized_confirmed_covid"
+								}
+							},
+							{
+								"source": {
+									"path": "$['total_adult_patients_hospitalized_confirmed_covid_coverage']"
+								},
+								"sink": {
+									"name": "total_adult_patients_hospitalized_confirmed_covid_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['total_pediatric_patients_hospitalized_confirmed_and_suspected_covid']"
+								},
+								"sink": {
+									"name": "total_pediatric_patients_hospitalized_confirmed_and_suspected_covid"
+								}
+							},
+							{
+								"source": {
+									"path": "$['total_pediatric_patients_hospitalized_confirmed_and_suspected_covid_coverage']"
+								},
+								"sink": {
+									"name": "total_pediatric_patients_hospitalized_confirmed_and_suspected_covid_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['total_pediatric_patients_hospitalized_confirmed_covid']"
+								},
+								"sink": {
+									"name": "total_pediatric_patients_hospitalized_confirmed_covid"
+								}
+							},
+							{
+								"source": {
+									"path": "$['total_pediatric_patients_hospitalized_confirmed_covid_coverage']"
+								},
+								"sink": {
+									"name": "total_pediatric_patients_hospitalized_confirmed_covid_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['total_staffed_adult_icu_beds']"
+								},
+								"sink": {
+									"name": "total_staffed_adult_icu_beds"
+								}
+							},
+							{
+								"source": {
+									"path": "$['total_staffed_adult_icu_beds_coverage']"
+								},
+								"sink": {
+									"name": "total_staffed_adult_icu_beds_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['inpatient_beds_utilization']"
+								},
+								"sink": {
+									"name": "inpatient_beds_utilization"
+								}
+							},
+							{
+								"source": {
+									"path": "$['inpatient_beds_utilization_coverage']"
+								},
+								"sink": {
+									"name": "inpatient_beds_utilization_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['inpatient_beds_utilization_numerator']"
+								},
+								"sink": {
+									"name": "inpatient_beds_utilization_numerator"
+								}
+							},
+							{
+								"source": {
+									"path": "$['inpatient_beds_utilization_denominator']"
+								},
+								"sink": {
+									"name": "inpatient_beds_utilization_denominator"
+								}
+							},
+							{
+								"source": {
+									"path": "$['percent_of_inpatients_with_covid']"
+								},
+								"sink": {
+									"name": "percent_of_inpatients_with_covid"
+								}
+							},
+							{
+								"source": {
+									"path": "$['percent_of_inpatients_with_covid_coverage']"
+								},
+								"sink": {
+									"name": "percent_of_inpatients_with_covid_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['percent_of_inpatients_with_covid_numerator']"
+								},
+								"sink": {
+									"name": "percent_of_inpatients_with_covid_numerator"
+								}
+							},
+							{
+								"source": {
+									"path": "$['percent_of_inpatients_with_covid_denominator']"
+								},
+								"sink": {
+									"name": "percent_of_inpatients_with_covid_denominator"
+								}
+							},
+							{
+								"source": {
+									"path": "$['inpatient_bed_covid_utilization']"
+								},
+								"sink": {
+									"name": "inpatient_bed_covid_utilization"
+								}
+							},
+							{
+								"source": {
+									"path": "$['inpatient_bed_covid_utilization_coverage']"
+								},
+								"sink": {
+									"name": "inpatient_bed_covid_utilization_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['inpatient_bed_covid_utilization_numerator']"
+								},
+								"sink": {
+									"name": "inpatient_bed_covid_utilization_numerator"
+								}
+							},
+							{
+								"source": {
+									"path": "$['inpatient_bed_covid_utilization_denominator']"
+								},
+								"sink": {
+									"name": "inpatient_bed_covid_utilization_denominator"
+								}
+							},
+							{
+								"source": {
+									"path": "$['adult_icu_bed_covid_utilization']"
+								},
+								"sink": {
+									"name": "adult_icu_bed_covid_utilization"
+								}
+							},
+							{
+								"source": {
+									"path": "$['adult_icu_bed_covid_utilization_coverage']"
+								},
+								"sink": {
+									"name": "adult_icu_bed_covid_utilization_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['adult_icu_bed_covid_utilization_numerator']"
+								},
+								"sink": {
+									"name": "adult_icu_bed_covid_utilization_numerator"
+								}
+							},
+							{
+								"source": {
+									"path": "$['adult_icu_bed_covid_utilization_denominator']"
+								},
+								"sink": {
+									"name": "adult_icu_bed_covid_utilization_denominator"
+								}
+							},
+							{
+								"source": {
+									"path": "$['adult_icu_bed_utilization']"
+								},
+								"sink": {
+									"name": "adult_icu_bed_utilization"
+								}
+							},
+							{
+								"source": {
+									"path": "$['adult_icu_bed_utilization_coverage']"
+								},
+								"sink": {
+									"name": "adult_icu_bed_utilization_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['adult_icu_bed_utilization_numerator']"
+								},
+								"sink": {
+									"name": "adult_icu_bed_utilization_numerator"
+								}
+							},
+							{
+								"source": {
+									"path": "$['adult_icu_bed_utilization_denominator']"
+								},
+								"sink": {
+									"name": "adult_icu_bed_utilization_denominator"
+								}
+							},
+							{
+								"source": {
+									"path": "$['reporting_cutoff_start']"
+								},
+								"sink": {
+									"name": "reporting_cutoff_start"
+								}
+							},
+							{
+								"source": {
+									"path": "$['geocoded_state']['type']"
+								},
+								"sink": {
+									"name": "type"
+								}
+							},
+							{
+								"source": {
+									"path": "$['geocoded_state']['coordinates'][0]"
+								},
+								"sink": {
+									"name": "items"
+								}
+							}
+						],
+						"collectionReference": ""
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "heathdataApiCovid19JSON",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "csvformatehhs",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2021-04-29T21:49:35Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

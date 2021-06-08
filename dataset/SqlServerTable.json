@@ -1,0 +1,38 @@
+{
+	"name": "SqlServerTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "Id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Key",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Value",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "ExpireAt",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "HangFire",
+			"table": "AggregatedCounter"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

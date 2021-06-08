@@ -1,0 +1,21 @@
+{
+	"name": "ADLSHealthDataCovid19JSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "HealthDataCovid19API.json",
+				"folderPath": "raw-files",
+				"fileSystem": "health-data-api-covid19"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
