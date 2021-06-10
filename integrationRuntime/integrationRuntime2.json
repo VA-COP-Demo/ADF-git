@@ -1,6 +1,7 @@
 {
 	"name": "integrationRuntime2",
 	"properties": {
-		"type": "SelfHosted"
+		"type": "SelfHosted",
+		"description": "installed on the vm-datast-copdemo-01"
 	}
 }
