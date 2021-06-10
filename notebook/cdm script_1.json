@@ -1,0 +1,197 @@
+{
+	"name": "cdm script_1",
+	"properties": {
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "f2306db0-e884-45d4-aa60-eea80e2bfc62"
+					}
+				},
+				"source": [
+					"#Specifying appid, appkey and tenanid is optional in spark-cdm-connector-assembly-0.16.jar with Premium Databricks Cluster and Synapse \n",
+					"appid = \"0256c781-35ff-4669-94dd-bb33a60b1731\" # Appid- 0256c781-35ff-4669-94dd-bb33a60b1731, \n",
+					"appkey = \"p7pujO-8E22tr83J6_o4bgN.mJG8c-cq8V\" # Secret- p7pujO-8E22tr83J6_o4bgN.mJG8c-cq8V\n",
+					"tenantid = \"35b69a76-5314-4454-aa0a-35fb0ebd48dc\" #Tenant- 35b69a76-5314-4454-aa0a-35fb0ebd48dc\n",
+					"storageAccountName = \"dlacopdemocomm02.dfs.core.windows.net\"\n",
+					"container = \"power-bi-cdm\"\n",
+					""
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "dff471ab-2de4-4e63-8dfb-55410029d912"
+					}
+				},
+				"source": [
+					"configs = {\"fs.azure.account.auth.type\": \"OAuth\",\n",
+					"           \"fs.azure.account.oauth.provider.type\": \"org.apache.hadoop.fs.azurebfs.oauth2.ClientCredsTokenProvider\",\n",
+					"           \"fs.azure.account.oauth2.client.id\": appid,\n",
+					"           \"fs.azure.account.oauth2.client.secret\": appkey,\n",
+					"           \"fs.azure.account.oauth2.client.endpoint\": \"https://login.microsoftonline.com/\"+tenantid+\"/oauth2/token\"}\n",
+					""
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "d419d09f-4616-4147-ad4a-a2f142ed36c0"
+					}
+				},
+				"source": [
+					"# Optionally, you can add <directory-name> to the source URI of your mount point.\n",
+					"#dbutils.fs.mount(\n",
+					"#  source = \"abfss://power-bi-cdm@dlacopdemocomm02.dfs.core.windows.net/\",\n",
+					"#  mount_point = \"/mnt/power-bi-cdm\",\n",
+					"#  extra_configs = configs)\n",
+					"\n",
+					""
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "d4fd452d-7127-42d0-98f2-2807544eab07"
+					}
+				},
+				"source": [
+					"#dbutils.fs.unmount(\"/mnt/power-bi-cdm\")"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "cbd9a50d-bd97-4975-8e5b-0c9be49ab776"
+					}
+				},
+				"source": [
+					"# Implicit write case\n",
+					"from pyspark.sql.types import *\n",
+					"from pyspark.sql import functions, Row\n",
+					"from decimal import Decimal\n",
+					"from datetime import datetime\n",
+					"\n",
+					"# Write a CDM entity with Parquet data files, entity definition is derived from the dataframe schema\n",
+					"d = datetime.strptime(\"2015-03-31\", '%Y-%m-%d')\n",
+					"ts = datetime.now()\n",
+					"data = [\n",
+					"  [\"a\", 1, True, 12.34, 6, d, ts, Decimal(1.4337879), Decimal(999.00), Decimal(18.8)],\n",
+					"  [\"b\", 1, True, 12.34, 6, d, ts, Decimal(1.4337879), Decimal(999.00), Decimal(18.8)]\n",
+					"]\n",
+					"\n",
+					"schema = (StructType()\n",
+					"  .add(StructField(\"name\", StringType(), True))\n",
+					"  .add(StructField(\"id\", IntegerType(), True))\n",
+					"  .add(StructField(\"flag\", BooleanType(), True))\n",
+					"  .add(StructField(\"salary\", DoubleType(), True))\n",
+					"  .add(StructField(\"phone\", LongType(), True))\n",
+					"  .add(StructField(\"dob\", DateType(), True))\n",
+					"  .add(StructField(\"time\", TimestampType(), True))\n",
+					"  .add(StructField(\"decimal1\", DecimalType(15, 3), True))\n",
+					"  .add(StructField(\"decimal2\", DecimalType(38, 7), True))\n",
+					"  .add(StructField(\"decimal3\", DecimalType(5, 2), True))\n",
+					")"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "a9665d0a-f66d-445f-9f92-03d7c44a3c26"
+					}
+				},
+				"source": [
+					"df = spark.createDataFrame(spark.sparkContext.parallelize(data), schema)\n",
+					""
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "634d178c-4a6e-47b7-820e-ce2793c8d216"
+					}
+				},
+				"source": [
+					"# Creates the CDM manifest and adds the entity to it with gzip'd parquet partitions\n",
+					"# with both physical and logical entity definitions \n",
+					"(df.write.format(\"com.microsoft.cdm\")\n",
+					"  .option(\"storage\", storageAccountName)\n",
+					"  .option(\"manifestPath\", container + \"/powerbidataflow/test.manifest.cdm.json\")\n",
+					"  .option(\"entity\", \"TestEntity\")\n",
+					"  .option(\"format\", \"parquet\")\n",
+					"  .option(\"compression\", \"gzip\")\n",
+					"  .save())\n",
+					""
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "aa02432b-086b-44df-8779-c4d0eccb57d2"
+					}
+				},
+				"source": [
+					"readDf = (spark.read.format(\"com.microsoft.cdm\")\n",
+					"  .option(\"storage\", storageAccountName)\n",
+					"  .option(\"manifestPath\", container + \"/powerbi-dataflow/model.json\")\n",
+					"  .option(\"entity\", \"Sales Customers\")\n",
+					"  .load())\n",
+					"\n",
+					"display(readDf)\n",
+					""
+				],
+				"execution_count": 0
+			}
+		]
+	}
+}
