@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"value": "syna-wrk-copdemo-comm-01"
+		},
+		"SqlServer1_connectionString": {
+			"value": ""
+		},
+		"SqlServer1_password": {
+			"value": ""
+		},
+		"SqlServer1_onprem_connectionString": {
+			"value": ""
+		},
+		"syna-wrk-copdemo-comm-01-WorkspaceDefaultSqlServer_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://dlacopdemocomm02.dfs.core.windows.net"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://kv-copdemo-comm-01.vault.azure.net/"
+		},
+		"SqlServer1_properties_typeProperties_userName": {
+			"value": "azureadmin"
+		},
+		"SqlServer1_onprem_properties_typeProperties_userName": {
+			"value": "azureadmin"
+		},
+		"healthdatacovid19_properties_typeProperties_url": {
+			"value": "https://healthdata.gov/resource/6xf2-c3ie.json"
+		},
+		"syna-wrk-copdemo-comm-01-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://dlacopdemocomm02.dfs.core.windows.net"
+		}
+	}
+}
