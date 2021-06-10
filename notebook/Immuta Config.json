@@ -1,6 +1,8 @@
 {
 	"name": "Immuta Config",
 	"properties": {
+		"nbformat": 0,
+		"nbformat_minor": 0,
 		"sessionProperties": {
 			"driverMemory": "28g",
 			"driverCores": 4,
@@ -17,8 +19,7 @@
 			"saveOutput": true,
 			"synapse_widget": {
 				"version": "0.1"
-			},
-			"sessionKeepAliveTimeout": 30
+			}
 		},
 		"cells": [
 			{
@@ -33,6 +34,7 @@
 				"source": [
 					"dbutils.fs.ls(\"dbfs:/FileStore/tables\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -47,6 +49,7 @@
 				"source": [
 					"dbutils.fs.ls(\"dbfs:/cluster-logs/0422-194939-mink977/init_scripts/0422-194939-mink977_10_0_192_6/\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -61,6 +64,7 @@
 				"source": [
 					"dbutils.fs.head(\"dbfs:/cluster-logs/0422-194939-mink977/init_scripts/0422-194939-mink977_10_0_192_6/20210504_184336_00_immuta_cluster_init_script.sh.stdout.log\", 1000000)"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -75,6 +79,7 @@
 				"source": [
 					"dbutils.fs.head(\"dbfs:/cluster-logs/0422-194939-mink977/driver/log4j-active.log\", 10000000)"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -89,6 +94,7 @@
 				"source": [
 					"%sh curl -k -H \"x-system-token: f30aff84-1475-4350-a133-883943e62390\" https://immuta.vacopdemo.com/hdfs/systemDetails"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -103,6 +109,7 @@
 				"source": [
 					"%sh curl -k https://13.90.32.189"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -117,6 +124,7 @@
 				"source": [
 					"%sh curl -k -H \"x-system-token: f30aff84-1475-4350-a133-883943e62390\" https://13.90.32.189/hdfs/systemDetails"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -131,6 +139,7 @@
 				"source": [
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -145,6 +154,7 @@
 				"source": [
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -159,6 +169,7 @@
 				"source": [
 					"%sql show tables in cms_de_synth_claims"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -173,6 +184,7 @@
 				"source": [
 					"%sql use cms_de_synth_claims; show create table beneficiary_summary"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -187,6 +199,7 @@
 				"source": [
 					"dbutils.fs.mounts()"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -202,6 +215,7 @@
 					"%sql select * from default.customer_1 limit 100\n",
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -216,6 +230,7 @@
 				"source": [
 					"%sql show table"
 				],
+				"attachments": null,
 				"execution_count": 0
 			}
 		]

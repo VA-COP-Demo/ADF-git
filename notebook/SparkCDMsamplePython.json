@@ -1,6 +1,8 @@
 {
 	"name": "SparkCDMsamplePython",
 	"properties": {
+		"nbformat": 0,
+		"nbformat_minor": 0,
 		"sessionProperties": {
 			"driverMemory": "28g",
 			"driverCores": 4,
@@ -17,8 +19,7 @@
 			"saveOutput": true,
 			"synapse_widget": {
 				"version": "0.1"
-			},
-			"sessionKeepAliveTimeout": 30
+			}
 		},
 		"cells": [
 			{
@@ -38,6 +39,7 @@
 					"storageAccountName = \"dlacopdemocomm02.dfs.core.windows.net\"\n",
 					"container = \"powerbicdm\""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -105,6 +107,7 @@
 					"\n",
 					"readDf.select(\"*\").show()"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -156,6 +159,7 @@
 					"          \n",
 					"readDf.select(\"*\").show()"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -211,6 +215,7 @@
 					"\n",
 					"readDf2.select(\"*\").show()"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -268,6 +273,7 @@
 					"readDf2.select(\"*\").show()\n",
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -358,6 +364,7 @@
 					"readExplicit.select(\"*\").show(truncate = False)\n",
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			}
 		]

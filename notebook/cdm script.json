@@ -1,6 +1,8 @@
 {
 	"name": "cdm script",
 	"properties": {
+		"nbformat": 0,
+		"nbformat_minor": 0,
 		"sessionProperties": {
 			"driverMemory": "28g",
 			"driverCores": 4,
@@ -17,8 +19,7 @@
 			"saveOutput": true,
 			"synapse_widget": {
 				"version": "0.1"
-			},
-			"sessionKeepAliveTimeout": 30
+			}
 		},
 		"cells": [
 			{
@@ -39,6 +40,7 @@
 					"container = \"pmn-data\"\n",
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -58,6 +60,7 @@
 					"           \"fs.azure.account.oauth2.client.endpoint\": \"https://login.microsoftonline.com/\"+tenantid+\"/oauth2/token\"}\n",
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -75,6 +78,7 @@
 					"   mount_point = \"/mnt/pmn-data\",\n",
 					"   extra_configs = configs)"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -89,6 +93,7 @@
 				"source": [
 					"DFSCollection = dbutils.fs.ls(\"/mnt/pmn-data/raw-files/\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -103,6 +108,7 @@
 				"source": [
 					"df=spark.createDataFrame(DFSCollection)"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -117,6 +123,7 @@
 				"source": [
 					"print(df.name)"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -138,6 +145,7 @@
 					"  .option(\"entity\", row.name)\n",
 					"  .save())"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -153,6 +161,7 @@
 					"%fs\n",
 					"head dbfs:/mnt/pmd-data/raw-files/*.csv"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -169,6 +178,7 @@
 					"#spark.read.format(\"csv\").option(\"header\", \"true\").load(\"/path/to_csv.csv\") \n",
 					"#spark.read.option(\"header\", \"true\").csv(\"/path/to_csv.csv\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -189,6 +199,7 @@
 					"\n",
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -203,6 +214,7 @@
 				"source": [
 					"#dbutils.fs.unmount(\"/mnt/power-bi-cdm\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -242,6 +254,7 @@
 					"  .add(StructField(\"decimal3\", DecimalType(5, 2), True))\n",
 					")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -257,6 +270,7 @@
 					"df = spark.createDataFrame(spark.sparkContext.parallelize(data), schema)\n",
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -280,6 +294,7 @@
 					"  .save())\n",
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -300,6 +315,7 @@
 					"\n",
 					"readDf.select(\"*\").show()"
 				],
+				"attachments": null,
 				"execution_count": 0
 			}
 		]

@@ -1,6 +1,8 @@
 {
 	"name": "test_cdm_single",
 	"properties": {
+		"nbformat": 0,
+		"nbformat_minor": 0,
 		"sessionProperties": {
 			"driverMemory": "28g",
 			"driverCores": 4,
@@ -17,8 +19,7 @@
 			"saveOutput": true,
 			"synapse_widget": {
 				"version": "0.1"
-			},
-			"sessionKeepAliveTimeout": 30
+			}
 		},
 		"cells": [
 			{
@@ -37,6 +38,7 @@
 					"tenantid = \"35b69a76-5314-4454-aa0a-35fb0ebd48dc\" #Tenant- 35b69a76-5314-4454-aa0a-35fb0ebd48dc\n",
 					"storageAccountName = \"dlacopdemocomm02.dfs.core.windows.net\""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -55,6 +57,7 @@
 					"           \"fs.azure.account.oauth2.client.secret\": appkey,\n",
 					"           \"fs.azure.account.oauth2.client.endpoint\": \"https://login.microsoftonline.com/\"+tenantid+\"/oauth2/token\"}"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -97,6 +100,7 @@
 					"\n",
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -111,6 +115,7 @@
 				"source": [
 					"test_df = spark.createDataFrame(data, schema)"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -125,6 +130,7 @@
 				"source": [
 					"display(test_df)"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -139,6 +145,7 @@
 				"source": [
 					"test_df.createTempView(\"my_view\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -154,6 +161,7 @@
 					"%scala\n",
 					"val test_df_sc = spark.sql(\"select * from my_view\") "
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -168,6 +176,7 @@
 				"source": [
 					"Entity = \"testDf\""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -186,6 +195,7 @@
 					".option(\"entity\", Entity)\\\n",
 					".save()"
 				],
+				"attachments": null,
 				"execution_count": 0
 			}
 		]

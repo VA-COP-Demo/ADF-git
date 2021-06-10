@@ -1,6 +1,8 @@
 {
 	"name": "Utilities",
 	"properties": {
+		"nbformat": 0,
+		"nbformat_minor": 0,
 		"sessionProperties": {
 			"driverMemory": "28g",
 			"driverCores": 4,
@@ -17,8 +19,7 @@
 			"saveOutput": true,
 			"synapse_widget": {
 				"version": "0.1"
-			},
-			"sessionKeepAliveTimeout": 30
+			}
 		},
 		"cells": [
 			{
@@ -33,6 +34,7 @@
 				"source": [
 					"dbutils.fs.mnt(\"\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			}
 		]

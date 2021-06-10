@@ -1,6 +1,8 @@
 {
 	"name": "01 Data Preparation",
 	"properties": {
+		"nbformat": 0,
+		"nbformat_minor": 0,
 		"bigDataPool": {
 			"referenceName": "vacopsparkpool",
 			"type": "BigDataPoolReference"
@@ -38,9 +40,8 @@
 				"nodeCount": 10,
 				"cores": 4,
 				"memory": 28,
-				"automaticScaleJobs": false
-			},
-			"sessionKeepAliveTimeout": 30
+				"extraHeader": null
+			}
 		},
 		"cells": [
 			{
@@ -56,7 +57,8 @@
 					"##1. Get the data:\n",
 					"\n",
 					"Source: https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/DE_Syn_PUF"
-				]
+				],
+				"attachments": null
 			},
 			{
 				"cell_type": "code",
@@ -70,6 +72,7 @@
 				"source": [
 					"dbutils.fs.mkdirs(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -120,6 +123,7 @@
 					"    print(\"DE1_0_2010_Beneficiary_Summary_File_Sample_\" + str(x) + \".zip\")\n",
 					"  print(\"stop:\" + str(x))"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -134,6 +138,7 @@
 				"source": [
 					"dbutils.fs.ls(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -150,6 +155,7 @@
 					"urllib.request.urlretrieve(\"https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/Downloads/DE1_0_2010_Beneficiary_Summary_File_Sample_8.zip\", \"/dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_8.zip\")\n",
 					"urllib.request.urlretrieve(\"https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/Downloads/DE1_0_2010_Beneficiary_Summary_File_Sample_9.zip\", \"/dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_9.zip\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -165,6 +171,7 @@
 					"file_df = dbutils.fs.ls(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/\")\n",
 					"display(file_df)"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -178,7 +185,8 @@
 				},
 				"source": [
 					"##2. Unzip the data:"
-				]
+				],
+				"attachments": null
 			},
 			{
 				"cell_type": "code",
@@ -193,6 +201,7 @@
 					"for x in file_df:\n",
 					"  print(\"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/\" + x[1])"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -226,6 +235,7 @@
 					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_8.zip\n",
 					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_9.zip"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -241,6 +251,7 @@
 					"unzip_df = dbutils.fs.ls(\"file:/databricks/driver/\")\n",
 					"display(unzip_df)"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -260,6 +271,7 @@
 					"    except:\n",
 					"      print(x[1])"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -275,6 +287,7 @@
 					"csvs_df = dbutils.fs.ls('dbfs:/home/cary.moore@databricks.com/syn_claim_puf/')\n",
 					"display(csvs_df)"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -296,6 +309,7 @@
 					"  elif '_2B.csv' in x[0]:\n",
 					"    first_csvs.append(x[0])"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -311,6 +325,7 @@
 					"for x in first_csvs:\n",
 					"  print(x + \"_df = spark.read.csv('\" + x + \"', header=True, inferSchema=True)\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -324,7 +339,8 @@
 				},
 				"source": [
 					"##3: Create the Delta Tables"
-				]
+				],
+				"attachments": null
 			},
 			{
 				"cell_type": "code",
@@ -343,6 +359,7 @@
 					"Prescription_Drug_Events_df = spark.read.csv('dbfs:/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2008_to_2010_Prescription_Drug_Events_Sample_2.csv', header=True, inferSchema=True)\n",
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -358,6 +375,7 @@
 					"%sql\n",
 					"CREATE DATABASE IF NOT EXISTS CMS_DE_SYNTH_CLAIMS"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -373,6 +391,7 @@
 					"%sql\n",
 					"USE CMS_DE_SYNTH_CLAIMS"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -391,6 +410,7 @@
 					"Outpatient_Claims_df.createTempView(\"Outpatient_Claims_VW\") \n",
 					"Prescription_Drug_Events_df.createTempView(\"Prescription_Drug_Events_VW\") "
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -406,6 +426,7 @@
 					"%sql\n",
 					"select count(*) from k2g_metadata.profile_data"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -425,6 +446,7 @@
 					"CREATE TABLE OUTPATIENT_CLAIMS USING DELTA LOCATION 'dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/outpatient_claims' AS SELECT * FROM OUTPATIENT_CLAIMS_VW;\n",
 					"CREATE TABLE PRESCRIPTION_DRUG_EVENTS USING DELTA LOCATION 'dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/prescription_drug_events' AS SELECT * FROM PRESCRIPTION_DRUG_EVENTS_VW;"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -441,6 +463,7 @@
 					"Beneficiary_Summary_09_df = spark.read.csv('dbfs:/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2009_Beneficiary_Summary_File_Sample_2.csv', header=True, inferSchema=True)\n",
 					"Beneficiary_Summary_10_df = spark.read.csv('dbfs:/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_2.csv', header=True, inferSchema=True)"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -456,6 +479,7 @@
 					"Beneficiary_Summary_09_df.createTempView(\"Beneficiary_Summary_09\");\n",
 					"Beneficiary_Summary_10_df.createTempView(\"Beneficiary_Summary_10\");"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -472,6 +496,7 @@
 					"INSERT INTO BENEFICIARY_SUMMARY SELECT *, 2009 YEAR FROM Beneficiary_Summary_09;\n",
 					"INSERT INTO BENEFICIARY_SUMMARY SELECT *, 2010 YEAR FROM Beneficiary_Summary_10;"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -486,6 +511,7 @@
 				"source": [
 					"Carrier_ClaimsB_df.write.format(\"delta\").mode(\"append\").save(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/carrier_claims\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -501,6 +527,7 @@
 					"%sql \n",
 					"select year, count(*) from beneficiary_summary group by year"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -514,7 +541,8 @@
 				},
 				"source": [
 					"##4. Insert all the other 19 samples of data into the tables."
-				]
+				],
+				"attachments": null
 			},
 			{
 				"cell_type": "code",
@@ -535,6 +563,7 @@
 					"        print(x[0])\n",
 					"  "
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -556,6 +585,7 @@
 					"        print(x[0])\n",
 					"  "
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -576,6 +606,7 @@
 					"      except:\n",
 					"        print(x[0])"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -596,6 +627,7 @@
 					"      except:\n",
 					"        print(x[0])"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -616,6 +648,7 @@
 					"      except:\n",
 					"        print(x[0])"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -630,6 +663,7 @@
 				"source": [
 					"from pyspark.sql.functions import *"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -650,6 +684,7 @@
 					"      except:\n",
 					"        print(x[0])"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -670,6 +705,7 @@
 					"      except:\n",
 					"        print(x[0])"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -690,6 +726,7 @@
 					"      except:\n",
 					"        print(x[0])"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -705,6 +742,7 @@
 					"%sql\n",
 					"select year, count(*) from CMS_DE_SYNTH_CLAIMS.beneficiary_summary group by year"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -720,6 +758,7 @@
 					"%sql\n",
 					"use CMS_DE_SYNTH_CLAIMS"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -735,6 +774,7 @@
 					"%sql\n",
 					"alter table cms28_desc_long_dx_1_csv rename to cms_icd9_diag_codes"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -748,7 +788,8 @@
 				},
 				"source": [
 					"##5. Add the ICD9 Diagnostic Code data to a table to join."
-				]
+				],
+				"attachments": null
 			},
 			{
 				"cell_type": "code",
@@ -766,6 +807,7 @@
 					"join cms_icd9_diag_codes b\n",
 					"on a.ICD9_DGNS_CD_1 = b.code"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -780,6 +822,7 @@
 				"source": [
 					"# 1266049 to 1259882"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -798,6 +841,7 @@
 					"minus\n",
 					"select distinct code from cms_icd9_diag_codes"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -813,6 +857,7 @@
 					"df = spark.sql(\"select * from CMS_DE_SYNTH_CLAIMS.inpatient_claims\")\n",
 					"df_columns = df.columns"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -829,6 +874,7 @@
 					"  if \"ICD9\" in col:\n",
 					"    print(\"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, \" + col + \" as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where \" + col + \" is not null union\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -861,6 +907,7 @@
 					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_PRCDR_CD_5 as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where ICD9_PRCDR_CD_5 is not null union\n",
 					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_PRCDR_CD_6 as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where ICD9_PRCDR_CD_6 is not null"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -879,6 +926,7 @@
 					"  if \"ICD9\" in col:\n",
 					"    print(\"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, \" + col + \" as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where \" + col + \" is not null union\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -911,6 +959,7 @@
 					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_PRCDR_CD_6 as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where ICD9_PRCDR_CD_6 is not null union\n",
 					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ADMTNG_ICD9_DGNS_CD as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where ADMTNG_ICD9_DGNS_CD is not null"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -929,6 +978,7 @@
 					"  if \"ICD9\" in col:\n",
 					"    print(\"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, \" + col + \" as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where \" + col + \" is not null union\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -965,6 +1015,7 @@
 					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, LINE_ICD9_DGNS_CD_12 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where LINE_ICD9_DGNS_CD_12 is not null union\n",
 					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, LINE_ICD9_DGNS_CD_13 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where LINE_ICD9_DGNS_CD_13 is not null"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -980,6 +1031,7 @@
 					"%sql\n",
 					"create or replace view claims_diagnosis_vw as select * from inpatient_claims_diagnosis union select * from outpatient_claims_diagnosis"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -998,6 +1050,7 @@
 					"join CMS_DE_SYNTH_CLAIMS.cms_icd9_diag_codes b\n",
 					"on a.icd9_cd = b.code"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -1015,6 +1068,7 @@
 					"join CMS_DE_SYNTH_CLAIMS.cms_icd9_diag_codes b \\\n",
 					"on a.icd9_cd = b.code\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -1030,6 +1084,7 @@
 					"%sql\n",
 					"drop table CMS_DE_SYNTH_CLAIMS.cliams_encounters;"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -1044,6 +1099,7 @@
 				"source": [
 					"dbutils.fs.rm(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/claims_encounters\", True)"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -1058,6 +1114,7 @@
 				"source": [
 					"df_encounters.write.format(\"delta\").save(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/claims_encounters\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -1075,6 +1132,7 @@
 					"using delta\n",
 					"location \"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/claims_encounters\""
 				],
+				"attachments": null,
 				"execution_count": 0
 			}
 		]

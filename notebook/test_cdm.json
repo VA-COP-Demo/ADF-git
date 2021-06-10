@@ -1,6 +1,8 @@
 {
 	"name": "test_cdm",
 	"properties": {
+		"nbformat": 0,
+		"nbformat_minor": 0,
 		"sessionProperties": {
 			"driverMemory": "28g",
 			"driverCores": 4,
@@ -17,8 +19,7 @@
 			"saveOutput": true,
 			"synapse_widget": {
 				"version": "0.1"
-			},
-			"sessionKeepAliveTimeout": 30
+			}
 		},
 		"cells": [
 			{
@@ -37,6 +38,7 @@
 					"tenantid = \"35b69a76-5314-4454-aa0a-35fb0ebd48dc\" #Tenant- 35b69a76-5314-4454-aa0a-35fb0ebd48dc\n",
 					"storageAccountName = \"dlacopdemocomm02.dfs.core.windows.net\""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -55,6 +57,7 @@
 					"           \"fs.azure.account.oauth2.client.secret\": appkey,\n",
 					"           \"fs.azure.account.oauth2.client.endpoint\": \"https://login.microsoftonline.com/\"+tenantid+\"/oauth2/token\"}"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -73,6 +76,7 @@
 					"  mount_point = \"/mnt/powerbicdm\",\n",
 					"  extra_configs = configs)"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -87,6 +91,7 @@
 				"source": [
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -128,6 +133,7 @@
 					"\n",
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -142,6 +148,7 @@
 				"source": [
 					"test_df = spark.createDataFrame(data, schema)"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -156,6 +163,7 @@
 				"source": [
 					"display(test_df)"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -170,6 +178,7 @@
 				"source": [
 					"test_df.write.parquet(\"/mnt/powerbicdm/test_pqt\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -188,6 +197,7 @@
 					"tenantid = \"35b69a76-5314-4454-aa0a-35fb0ebd48dc\" #Tenant- 35b69a76-5314-4454-aa0a-35fb0ebd48dc\n",
 					"storageAccountName = \"dlacopdemocomm02.dfs.core.windows.net\""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -202,6 +212,7 @@
 				"source": [
 					"dbutils.fs.ls(\"/mnt/powerbicdm/powerbidataflow\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -226,6 +237,7 @@
 					"#.option(\"mode\", \"failfast\")\n",
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -244,6 +256,7 @@
 					".option(\"entity\", \"TestSparkDF\")\\\n",
 					".save()"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -258,6 +271,7 @@
 				"source": [
 					"dbutils.fs.ls(\"abfss://powerbicdm@dlacopdemocomm02.dfs.core.windows.net/powerbidataflow/\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			}
 		]

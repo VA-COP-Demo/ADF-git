@@ -1,1 +1,1 @@
-# ADF-git
+Initialized by Azure Synapse Workspace!

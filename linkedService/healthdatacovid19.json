@@ -1,6 +1,6 @@
 {
 	"name": "healthdatacovid19",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "HttpServer",
