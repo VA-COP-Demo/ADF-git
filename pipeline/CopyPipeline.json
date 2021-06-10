@@ -36,8 +36,15 @@
 							],
 							"typeProperties": {
 								"source": {
-									"type": "SqlServerSource",
-									"partitionOption": "None"
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
 								},
 								"sink": {
 									"type": "DelimitedTextSink",
@@ -70,12 +77,8 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "SourceDatasetSQL",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_schema": "@item().source.schema",
-										"cw_table": "@item().source.table"
-									}
+									"referenceName": "csvformatehhs",
+									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
