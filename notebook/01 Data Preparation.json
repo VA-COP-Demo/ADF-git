@@ -1,0 +1,1060 @@
+{
+	"name": "01 Data Preparation",
+	"properties": {
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "df542f24-4fe9-4b99-a2bc-4d2e314c1b59"
+					}
+				},
+				"source": [
+					"##1. Get the data:\n",
+					"\n",
+					"Source: https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/DE_Syn_PUF"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "2f659071-5db5-4de9-800e-87bb7a25757b"
+					}
+				},
+				"source": [
+					"dbutils.fs.mkdirs(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/\")"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "e0e41927-4912-40ba-9341-bec94501d227"
+					}
+				},
+				"source": [
+					"import urllib.request\n",
+					"\n",
+					"for x in range(1, 21):\n",
+					"  print(\"start:\" + str(x))\n",
+					"  try:\n",
+					"    urllib.request.urlretrieve(\"https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/Downloads/DE1_0_2008_Beneficiary_Summary_File_Sample_\" + str(x) + \".zip\", \"/dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2008_Beneficiary_Summary_File_Sample_\" + str(x) + \".zip\")\n",
+					"  except:\n",
+					"    print(\"DE1_0_2008_Beneficiary_Summary_File_Sample_\" + str(x) + \".zip\")\n",
+					"  try:\n",
+					"    urllib.request.urlretrieve(\"http://downloads.cms.gov/files/DE1_0_2008_to_2010_Carrier_Claims_Sample_\" + str(x) + \"A.zip\", \"/dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2008_to_2010_Carrier_Claims_Sample_\" + str(x) + \"A.zip\")\n",
+					"  except:\n",
+					"    print(\"DE1_0_2008_to_2010_Carrier_Claims_Sample_\" + str(x) + \"A.zip\")\n",
+					"  try:\n",
+					"    urllib.request.urlretrieve(\"http://downloads.cms.gov/files/DE1_0_2008_to_2010_Carrier_Claims_Sample_\" + str(x) + \"B.zip\", \"/dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2008_to_2010_Carrier_Claims_Sample_\" + str(x) + \"B.zip\")\n",
+					"  except:\n",
+					"    print(\"DE1_0_2008_to_2010_Carrier_Claims_Sample_\" + str(x) + \"B.zip\")  \n",
+					"  try:\n",
+					"    urllib.request.urlretrieve(\"https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/Downloads/DE1_0_2008_to_2010_Inpatient_Claims_Sample_\" + str(x) + \".zip\", \"/dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2008_to_2010_Inpatient_Claims_Sample_\" + str(x) + \".zip\")\n",
+					"  except:\n",
+					"    print(\"DE1_0_2008_to_2010_Inpatient_Claims_Sample_\" + str(x) + \".zip\")\n",
+					"  try:\n",
+					"    urllib.request.urlretrieve(\"https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/Downloads/DE1_0_2008_to_2010_Outpatient_Claims_Sample_\" + str(x) + \".zip\", \"/dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2008_to_2010_Outpatient_Claims_Sample_\" + str(x) + \".zip\")\n",
+					"  except:\n",
+					"    print(\"DE1_0_2008_to_2010_Outpatient_Claims_Sample_\" + str(x) + \".zip\")\n",
+					"  try:\n",
+					"    urllib.request.urlretrieve(\"http://downloads.cms.gov/files/DE1_0_2008_to_2010_Prescription_Drug_Events_Sample_\" + str(x) + \".zip\", \"/dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2008_to_2010_Prescription_Drug_Events_Sample_\" + str(x) + \".zip\")\n",
+					"  except:\n",
+					"    print(\"DE1_0_2008_to_2010_Prescription_Drug_Events_Sample_\" + str(x) + \".zip\")\n",
+					"  try:\n",
+					"    urllib.request.urlretrieve(\"https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/Downloads/DE1_0_2009_Beneficiary_Summary_File_Sample_\" + str(x) + \".zip\", \"/dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2009_Beneficiary_Summary_File_Sample_\" + str(x) + \".zip\")\n",
+					"  except:\n",
+					"    print(\"DE1_0_2009_Beneficiary_Summary_File_Sample_\" + str(x) + \".zip\")\n",
+					"  try:\n",
+					"    urllib.request.urlretrieve(\"https://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/SynPUFs/Downloads/DE1_0_2010_Beneficiary_Summary_File_Sample_\" + str(x) + \".zip\", \"/dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_\" + str(x) + \".zip\")\n",
+					"  except:\n",
+					"    print(\"DE1_0_2010_Beneficiary_Summary_File_Sample_\" + str(x) + \".zip\")\n",
+					"  print(\"stop:\" + str(x))"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "e83a020a-23f5-45e2-9cff-dbc95a3d597a"
+					}
+				},
+				"source": [
+					"dbutils.fs.ls(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf\")"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "e5914599-2c74-49b5-a578-46dc6559b867"
+					}
+				},
+				"source": [
+					"urllib.request.urlretrieve(\"https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/Downloads/DE1_0_2010_Beneficiary_Summary_File_Sample_7.zip\", \"/dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_7.zip\")\n",
+					"urllib.request.urlretrieve(\"https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/Downloads/DE1_0_2010_Beneficiary_Summary_File_Sample_8.zip\", \"/dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_8.zip\")\n",
+					"urllib.request.urlretrieve(\"https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/Downloads/DE1_0_2010_Beneficiary_Summary_File_Sample_9.zip\", \"/dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_9.zip\")"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "d6788b71-efbd-459e-991a-32f082581efe"
+					}
+				},
+				"source": [
+					"file_df = dbutils.fs.ls(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/\")\n",
+					"display(file_df)"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "c90598bc-d496-4806-86f2-56658e4148e5"
+					}
+				},
+				"source": [
+					"##2. Unzip the data:"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "844694fc-3c45-422a-8e4d-adf9201d34b2"
+					}
+				},
+				"source": [
+					"for x in file_df:\n",
+					"  print(\"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/\" + x[1])"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "828a255a-73e6-4f14-9b90-5f78aa410c7c"
+					}
+				},
+				"source": [
+					"%sh\n",
+					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_10.zip\n",
+					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_11.zip\n",
+					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_12.zip\n",
+					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_13.zip\n",
+					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_14.zip\n",
+					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_15.zip\n",
+					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_16.zip\n",
+					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_17.zip\n",
+					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_18.zip\n",
+					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_19.zip\n",
+					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_2.zip\n",
+					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_20.zip\n",
+					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_3.zip\n",
+					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_4.zip\n",
+					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_5.zip\n",
+					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_6.zip\n",
+					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_7.zip\n",
+					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_8.zip\n",
+					"unzip /dbfs/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_9.zip"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "0ab2a80d-cf98-40ce-97a7-407d6e17707b"
+					}
+				},
+				"source": [
+					"unzip_df = dbutils.fs.ls(\"file:/databricks/driver/\")\n",
+					"display(unzip_df)"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "08eab803-49f5-4687-964a-73e915d2590e"
+					}
+				},
+				"source": [
+					"for x in unzip_df:\n",
+					"  if '.csv' in x[1]:\n",
+					"    try:\n",
+					"         exec('dbutils.fs.mv(\"file:/databricks/driver/' + x[1] + '\", \"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/' + x[1] + '\")')\n",
+					"    except:\n",
+					"      print(x[1])"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "2879c786-c303-4a8b-9230-463eef717752"
+					}
+				},
+				"source": [
+					"csvs_df = dbutils.fs.ls('dbfs:/home/cary.moore@databricks.com/syn_claim_puf/')\n",
+					"display(csvs_df)"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "cc41ed31-ebc8-4bb7-aaf5-e003bfb612ac"
+					}
+				},
+				"source": [
+					"first_csvs = []\n",
+					"for x in csvs_df:\n",
+					"  if '_2.csv' in x[0]:\n",
+					"    first_csvs.append(x[0])\n",
+					"  elif '_2A.csv' in x[0]:\n",
+					"    first_csvs.append(x[0])\n",
+					"  elif '_2B.csv' in x[0]:\n",
+					"    first_csvs.append(x[0])"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "42caa2ca-4b28-4861-a29b-f9c467260786"
+					}
+				},
+				"source": [
+					"for x in first_csvs:\n",
+					"  print(x + \"_df = spark.read.csv('\" + x + \"', header=True, inferSchema=True)\")"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "83252b8a-cf44-4f32-9fb7-cfd941af9b5d"
+					}
+				},
+				"source": [
+					"##3: Create the Delta Tables"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "4836ec20-1f8d-4a79-a2a8-b5f8c25ed2ee"
+					}
+				},
+				"source": [
+					"Beneficiary_Summary_df = spark.read.csv(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2008_Beneficiary_Summary_File_Sample_2.csv\", header=True, inferSchema=True)\n",
+					"Carrier_ClaimsA_df = spark.read.csv('dbfs:/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2008_to_2010_Carrier_Claims_Sample_2A.csv', header=True, inferSchema=True)\n",
+					"Inpatient_Claims_df = spark.read.csv('dbfs:/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2008_to_2010_Inpatient_Claims_Sample_2.csv', header=True, inferSchema=True)\n",
+					"Outpatient_Claims_df = spark.read.csv('dbfs:/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2008_to_2010_Outpatient_Claims_Sample_2.csv', header=True, inferSchema=True)\n",
+					"Prescription_Drug_Events_df = spark.read.csv('dbfs:/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2008_to_2010_Prescription_Drug_Events_Sample_2.csv', header=True, inferSchema=True)\n",
+					""
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "96040072-1f55-4589-91ae-1e5664f69aac"
+					}
+				},
+				"source": [
+					"%sql\n",
+					"CREATE DATABASE IF NOT EXISTS CMS_DE_SYNTH_CLAIMS"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "4207f4ba-6b5d-4fd3-8c98-42a4ff48c748"
+					}
+				},
+				"source": [
+					"%sql\n",
+					"USE CMS_DE_SYNTH_CLAIMS"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "dc64e0d6-fee9-464e-84eb-b256f7e8b508"
+					}
+				},
+				"source": [
+					"Beneficiary_Summary_df.createTempView(\"Beneficiary_Summary_VW\")\n",
+					"Carrier_ClaimsA_df.createTempView(\"Carrier_Claims_VW\")\n",
+					"Inpatient_Claims_df.createTempView(\"Inpatient_Claims_VW\") \n",
+					"Outpatient_Claims_df.createTempView(\"Outpatient_Claims_VW\") \n",
+					"Prescription_Drug_Events_df.createTempView(\"Prescription_Drug_Events_VW\") "
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "8bb200e4-192b-4175-9b5a-18c32ad19648"
+					}
+				},
+				"source": [
+					"%sql\n",
+					"select count(*) from k2g_metadata.profile_data"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "2c6cbcb1-061a-4b7a-b530-d68c3584bd00"
+					}
+				},
+				"source": [
+					"%sql\n",
+					"CREATE TABLE BENEFICIARY_SUMMARY USING DELTA LOCATION 'dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/beneficiary_summary' AS SELECT *, 2008 YEAR FROM Beneficiary_Summary_VW;\n",
+					"CREATE TABLE CARRIER_CLAIMS USING DELTA LOCATION 'dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/carrier_claims' AS SELECT * FROM CARRIER_CLAIMS_VW;\n",
+					"CREATE TABLE INPATIENT_CLAIMS USING DELTA LOCATION 'dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/inpatient_claims' AS SELECT * FROM INPATIENT_CLAIMS_VW;\n",
+					"CREATE TABLE OUTPATIENT_CLAIMS USING DELTA LOCATION 'dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/outpatient_claims' AS SELECT * FROM OUTPATIENT_CLAIMS_VW;\n",
+					"CREATE TABLE PRESCRIPTION_DRUG_EVENTS USING DELTA LOCATION 'dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/prescription_drug_events' AS SELECT * FROM PRESCRIPTION_DRUG_EVENTS_VW;"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "b7462d9e-e1e0-4ac8-890c-304a088faf25"
+					}
+				},
+				"source": [
+					"Carrier_ClaimsB_df = spark.read.csv('dbfs:/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2008_to_2010_Carrier_Claims_Sample_2B.csv', header=True, inferSchema=True)\n",
+					"Beneficiary_Summary_09_df = spark.read.csv('dbfs:/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2009_Beneficiary_Summary_File_Sample_2.csv', header=True, inferSchema=True)\n",
+					"Beneficiary_Summary_10_df = spark.read.csv('dbfs:/home/cary.moore@databricks.com/syn_claim_puf/DE1_0_2010_Beneficiary_Summary_File_Sample_2.csv', header=True, inferSchema=True)"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "5b18b5c3-d1db-490d-98ca-c0ee6b438a62"
+					}
+				},
+				"source": [
+					"Beneficiary_Summary_09_df.createTempView(\"Beneficiary_Summary_09\");\n",
+					"Beneficiary_Summary_10_df.createTempView(\"Beneficiary_Summary_10\");"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "990be23a-ae7f-4cd8-b701-9e09a7848c3e"
+					}
+				},
+				"source": [
+					"%sql\n",
+					"INSERT INTO BENEFICIARY_SUMMARY SELECT *, 2009 YEAR FROM Beneficiary_Summary_09;\n",
+					"INSERT INTO BENEFICIARY_SUMMARY SELECT *, 2010 YEAR FROM Beneficiary_Summary_10;"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "601dbe59-6e6c-4398-a8d9-98e0a2dac7c6"
+					}
+				},
+				"source": [
+					"Carrier_ClaimsB_df.write.format(\"delta\").mode(\"append\").save(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/carrier_claims\")"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "7138ad28-b046-4758-91b7-1a277558033e"
+					}
+				},
+				"source": [
+					"%sql \n",
+					"select year, count(*) from beneficiary_summary group by year"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "8fc12bca-c68d-4b03-bae3-1975f90db157"
+					}
+				},
+				"source": [
+					"##4. Insert all the other 19 samples of data into the tables."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "bbbfe18d-7b8a-49ba-97e5-0d8ae3999ae9"
+					}
+				},
+				"source": [
+					"for i in range(3,21):\n",
+					"  for x in csvs_df:\n",
+					"    if 'Carrier_Claims_Sample_' + str(i) + 'A.csv' in x[1]:\n",
+					"      try:\n",
+					"        exec('(spark.read.csv(\"' + x[0] + '\", header=True, inferSchema=True)).write.format(\"delta\").mode(\"append\").save(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/carrier_claims\")')\n",
+					"      except:\n",
+					"        print(x[0])\n",
+					"  "
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "9cb0025a-fadc-46bc-b4fd-cff230289756"
+					}
+				},
+				"source": [
+					"for i in range(3,21):\n",
+					"  for x in csvs_df:\n",
+					"    if 'Carrier_Claims_Sample_' + str(i) + 'B.csv' in x[1]:\n",
+					"      try:\n",
+					"        exec('(spark.read.csv(\"' + x[0] + '\", header=True, inferSchema=True)).write.format(\"delta\").mode(\"append\").save(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/carrier_claims\")')\n",
+					"      except:\n",
+					"        print(x[0])\n",
+					"  "
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "4a612b0b-b9c1-4a9d-8329-50ff16205a65"
+					}
+				},
+				"source": [
+					"for i in range(3,21):\n",
+					"  for x in csvs_df:\n",
+					"    if 'Inpatient_Claims_Sample_' + str(i) + '.csv' in x[1]:\n",
+					"      try:\n",
+					"        exec('(spark.read.csv(\"' + x[0] + '\", header=True, inferSchema=True)).write.format(\"delta\").mode(\"append\").save(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/inpatient_claims\")')\n",
+					"      except:\n",
+					"        print(x[0])"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "c21c4acb-b902-4169-bf80-ae828d2939f2"
+					}
+				},
+				"source": [
+					"for i in range(3,21):\n",
+					"  for x in csvs_df:\n",
+					"    if 'Outpatient_Claims_Sample_' + str(i) + '.csv' in x[1]:\n",
+					"      try:\n",
+					"        exec('(spark.read.csv(\"' + x[0] + '\", header=True, inferSchema=True)).write.format(\"delta\").mode(\"append\").save(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/outpatient_claims\")')\n",
+					"      except:\n",
+					"        print(x[0])"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "59ba77c5-dc8e-4574-872b-174475580d21"
+					}
+				},
+				"source": [
+					"for i in range(3,21):\n",
+					"  for x in csvs_df:\n",
+					"    if 'Prescription_Drug_Events_Sample_' + str(i) + '.csv' in x[1]:\n",
+					"      try:\n",
+					"        exec('(spark.read.csv(\"' + x[0] + '\", header=True, inferSchema=True)).write.format(\"delta\").mode(\"append\").save(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/prescription_drug_events\")')\n",
+					"      except:\n",
+					"        print(x[0])"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "d8697873-3ebf-45f6-8791-195e21dc4521"
+					}
+				},
+				"source": [
+					"from pyspark.sql.functions import *"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "41ad0a3f-4038-4b7e-86d0-75449f496707"
+					}
+				},
+				"source": [
+					"for i in range(3,21):\n",
+					"  for x in csvs_df:\n",
+					"    if '2008_Beneficiary_Summary_File_Sample_' + str(i) + '.csv' in x[1]:\n",
+					"      try:\n",
+					"        exec('(spark.read.csv(\"' + x[0] + '\", header=True, inferSchema=True).withColumn(\"YEAR\", lit(2008)).write.format(\"delta\").mode(\"append\").save(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/beneficiary_summary\"))')\n",
+					"      except:\n",
+					"        print(x[0])"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "310945ff-c1d4-4187-ae29-158f7c4e4adc"
+					}
+				},
+				"source": [
+					"for i in range(3,21):\n",
+					"  for x in csvs_df:\n",
+					"    if '2009_Beneficiary_Summary_File_Sample_' + str(i) + '.csv' in x[1]:\n",
+					"      try:\n",
+					"        exec('(spark.read.csv(\"' + x[0] + '\", header=True, inferSchema=True).withColumn(\"YEAR\", lit(2009)).write.format(\"delta\").mode(\"append\").save(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/beneficiary_summary\"))')\n",
+					"      except:\n",
+					"        print(x[0])"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "fac8a7c6-a07c-49a2-aefa-7643a07b3771"
+					}
+				},
+				"source": [
+					"for i in range(3,21):\n",
+					"  for x in csvs_df:\n",
+					"    if '2010_Beneficiary_Summary_File_Sample_' + str(i) + '.csv' in x[1]:\n",
+					"      try:\n",
+					"        exec('(spark.read.csv(\"' + x[0] + '\", header=True, inferSchema=True).withColumn(\"YEAR\", lit(2010)).write.format(\"delta\").mode(\"append\").save(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/beneficiary_summary\"))')\n",
+					"      except:\n",
+					"        print(x[0])"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "0930054a-9d0f-41ca-8db7-fd8c8851fff2"
+					}
+				},
+				"source": [
+					"%sql\n",
+					"select year, count(*) from CMS_DE_SYNTH_CLAIMS.beneficiary_summary group by year"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "5fa3fc61-9ebe-40c9-b3e2-f3257ac608dd"
+					}
+				},
+				"source": [
+					"%sql\n",
+					"use CMS_DE_SYNTH_CLAIMS"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "8dc5cde8-76d1-4373-87ce-2e6423f5c9af"
+					}
+				},
+				"source": [
+					"%sql\n",
+					"alter table cms28_desc_long_dx_1_csv rename to cms_icd9_diag_codes"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "feebd293-78db-4ef5-a90f-78b126f9d601"
+					}
+				},
+				"source": [
+					"##5. Add the ICD9 Diagnostic Code data to a table to join."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "6e2ee312-80c2-4229-b9c1-e3ff9f94a938"
+					}
+				},
+				"source": [
+					"%sql\n",
+					"select count(*) from \n",
+					"inpatient_claims a\n",
+					"join cms_icd9_diag_codes b\n",
+					"on a.ICD9_DGNS_CD_1 = b.code"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "d99f817a-9f38-4fc5-a49a-e53536d09792"
+					}
+				},
+				"source": [
+					"# 1266049 to 1259882"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "0266db4a-f8dd-4a75-9b7d-30567774831f"
+					}
+				},
+				"source": [
+					"%sql\n",
+					"\n",
+					"select distinct ICD9_DGNS_CD_1 from inpatient_claims\n",
+					"minus\n",
+					"select distinct code from cms_icd9_diag_codes"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "1a150b19-c2e4-4fdb-a19e-9c87660eb394"
+					}
+				},
+				"source": [
+					"df = spark.sql(\"select * from CMS_DE_SYNTH_CLAIMS.inpatient_claims\")\n",
+					"df_columns = df.columns"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "81f06e9d-e40a-4f27-9cf0-c54c564cd6a0"
+					}
+				},
+				"source": [
+					"for col in df_columns:\n",
+					"  if \"ICD9\" in col:\n",
+					"    print(\"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, \" + col + \" as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where \" + col + \" is not null union\")"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "383f4a43-3350-42c1-9e98-7c4c0f0bb382"
+					}
+				},
+				"source": [
+					"%sql \n",
+					"create or replace view inpatient_claims_diagnosis as\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ADMTNG_ICD9_DGNS_CD as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where ADMTNG_ICD9_DGNS_CD is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_DGNS_CD_1 as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where ICD9_DGNS_CD_1 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_DGNS_CD_2 as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where ICD9_DGNS_CD_2 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_DGNS_CD_3 as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where ICD9_DGNS_CD_3 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_DGNS_CD_4 as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where ICD9_DGNS_CD_4 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_DGNS_CD_5 as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where ICD9_DGNS_CD_5 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_DGNS_CD_6 as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where ICD9_DGNS_CD_6 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_DGNS_CD_7 as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where ICD9_DGNS_CD_7 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_DGNS_CD_8 as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where ICD9_DGNS_CD_8 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_DGNS_CD_9 as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where ICD9_DGNS_CD_9 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_DGNS_CD_10 as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where ICD9_DGNS_CD_10 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_PRCDR_CD_1 as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where ICD9_PRCDR_CD_1 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_PRCDR_CD_2 as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where ICD9_PRCDR_CD_2 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_PRCDR_CD_3 as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where ICD9_PRCDR_CD_3 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_PRCDR_CD_4 as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where ICD9_PRCDR_CD_4 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_PRCDR_CD_5 as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where ICD9_PRCDR_CD_5 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_PRCDR_CD_6 as ICD9_CD, 'Inpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.inpatient_claims where ICD9_PRCDR_CD_6 is not null"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "bdb079d9-b0a9-4da5-840b-49e54f932efe"
+					}
+				},
+				"source": [
+					"df = spark.sql(\"select * from CMS_DE_SYNTH_CLAIMS.outpatient_claims\")\n",
+					"df_columns = df.columns\n",
+					"for col in df_columns:\n",
+					"  if \"ICD9\" in col:\n",
+					"    print(\"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, \" + col + \" as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where \" + col + \" is not null union\")"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "25b684a9-a9f3-4fe1-8253-86afbc0f35a9"
+					}
+				},
+				"source": [
+					"%sql\n",
+					"create or replace view outpatient_claims_diagnosis as\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_DGNS_CD_1 as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where ICD9_DGNS_CD_1 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_DGNS_CD_2 as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where ICD9_DGNS_CD_2 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_DGNS_CD_3 as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where ICD9_DGNS_CD_3 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_DGNS_CD_4 as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where ICD9_DGNS_CD_4 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_DGNS_CD_5 as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where ICD9_DGNS_CD_5 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_DGNS_CD_6 as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where ICD9_DGNS_CD_6 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_DGNS_CD_7 as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where ICD9_DGNS_CD_7 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_DGNS_CD_8 as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where ICD9_DGNS_CD_8 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_DGNS_CD_9 as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where ICD9_DGNS_CD_9 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_DGNS_CD_10 as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where ICD9_DGNS_CD_10 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_PRCDR_CD_1 as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where ICD9_PRCDR_CD_1 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_PRCDR_CD_2 as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where ICD9_PRCDR_CD_2 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_PRCDR_CD_3 as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where ICD9_PRCDR_CD_3 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_PRCDR_CD_4 as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where ICD9_PRCDR_CD_4 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_PRCDR_CD_5 as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where ICD9_PRCDR_CD_5 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ICD9_PRCDR_CD_6 as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where ICD9_PRCDR_CD_6 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, CLM_PMT_AMT AS COST, ADMTNG_ICD9_DGNS_CD as ICD9_CD, 'Outpatient' AS ENCOUNTERCLASS from CMS_DE_SYNTH_CLAIMS.outpatient_claims where ADMTNG_ICD9_DGNS_CD is not null"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "aa824da3-d1a7-4d0b-9533-3d965db45d25"
+					}
+				},
+				"source": [
+					"df = spark.sql(\"select * from CMS_DE_SYNTH_CLAIMS.carrier_claims\")\n",
+					"df_columns = df.columns\n",
+					"for col in df_columns:\n",
+					"  if \"ICD9\" in col:\n",
+					"    print(\"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, \" + col + \" as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where \" + col + \" is not null union\")"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "26fa8264-f97b-4c76-9562-ad2c82fe61fd"
+					}
+				},
+				"source": [
+					"%sql\n",
+					"create or replace view carrier_claims_diagnosis as\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, ICD9_DGNS_CD_1 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where ICD9_DGNS_CD_1 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, ICD9_DGNS_CD_2 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where ICD9_DGNS_CD_2 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, ICD9_DGNS_CD_3 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where ICD9_DGNS_CD_3 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, ICD9_DGNS_CD_4 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where ICD9_DGNS_CD_4 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, ICD9_DGNS_CD_5 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where ICD9_DGNS_CD_5 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, ICD9_DGNS_CD_6 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where ICD9_DGNS_CD_6 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, ICD9_DGNS_CD_7 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where ICD9_DGNS_CD_7 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, ICD9_DGNS_CD_8 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where ICD9_DGNS_CD_8 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, LINE_ICD9_DGNS_CD_1 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where LINE_ICD9_DGNS_CD_1 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, LINE_ICD9_DGNS_CD_2 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where LINE_ICD9_DGNS_CD_2 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, LINE_ICD9_DGNS_CD_3 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where LINE_ICD9_DGNS_CD_3 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, LINE_ICD9_DGNS_CD_4 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where LINE_ICD9_DGNS_CD_4 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, LINE_ICD9_DGNS_CD_5 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where LINE_ICD9_DGNS_CD_5 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, LINE_ICD9_DGNS_CD_6 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where LINE_ICD9_DGNS_CD_6 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, LINE_ICD9_DGNS_CD_7 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where LINE_ICD9_DGNS_CD_7 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, LINE_ICD9_DGNS_CD_8 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where LINE_ICD9_DGNS_CD_8 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, LINE_ICD9_DGNS_CD_9 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where LINE_ICD9_DGNS_CD_9 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, LINE_ICD9_DGNS_CD_10 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where LINE_ICD9_DGNS_CD_10 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, LINE_ICD9_DGNS_CD_11 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where LINE_ICD9_DGNS_CD_11 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, LINE_ICD9_DGNS_CD_12 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where LINE_ICD9_DGNS_CD_12 is not null union\n",
+					"select distinct DESYNPUF_ID, CLM_FROM_DT, CLM_THRU_DT, LINE_ICD9_DGNS_CD_13 as ICD9_CD from CMS_DE_SYNTH_CLAIMS.carrier_claims where LINE_ICD9_DGNS_CD_13 is not null"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "5aa25b8b-05da-41ba-956d-563023c11432"
+					}
+				},
+				"source": [
+					"%sql\n",
+					"create or replace view claims_diagnosis_vw as select * from inpatient_claims_diagnosis union select * from outpatient_claims_diagnosis"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "31c90638-2181-439e-80e5-58dff79d0811"
+					}
+				},
+				"source": [
+					"%sql\n",
+					"select a.*, b.description \n",
+					"from claims_diagnosis_vw a\n",
+					"join CMS_DE_SYNTH_CLAIMS.cms_icd9_diag_codes b\n",
+					"on a.icd9_cd = b.code"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "ec2edf08-d281-4beb-b683-7f355dcf5c73"
+					}
+				},
+				"source": [
+					"df_encounters = spark.sql(\"select a.*, b.description \\\n",
+					"from claims_diagnosis_vw a \\\n",
+					"join CMS_DE_SYNTH_CLAIMS.cms_icd9_diag_codes b \\\n",
+					"on a.icd9_cd = b.code\")"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "9a13233a-3138-4069-acf9-ca97621d9b18"
+					}
+				},
+				"source": [
+					"%sql\n",
+					"drop table CMS_DE_SYNTH_CLAIMS.cliams_encounters;"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "81eca9a6-abca-4fd5-a724-d8f448158738"
+					}
+				},
+				"source": [
+					"dbutils.fs.rm(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/claims_encounters\", True)"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "d938816a-bef7-4574-bd97-947aeff0620a"
+					}
+				},
+				"source": [
+					"df_encounters.write.format(\"delta\").save(\"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/claims_encounters\")"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "cb6f158b-ffd4-4890-8da4-0e156bbcbe89"
+					}
+				},
+				"source": [
+					"%sql\n",
+					"create table CMS_DE_SYNTH_CLAIMS.cliams_encounters\n",
+					"using delta\n",
+					"location \"dbfs:/home/cary.moore@databricks.com/syn_claim_puf/tables/claims_encounters\""
+				],
+				"execution_count": 0
+			}
+		]
+	}
+}

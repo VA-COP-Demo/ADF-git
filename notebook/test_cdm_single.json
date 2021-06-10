@@ -1,0 +1,193 @@
+{
+	"name": "test_cdm_single",
+	"properties": {
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "122cc86e-3460-4c40-a711-f7b0a919c743"
+					}
+				},
+				"source": [
+					"#Specifying appid, appkey and tenanid is optional in spark-cdm-connector-assembly-0.16.jar with Premium Databricks Cluster and Synapse \n",
+					"appid = \"0256c781-35ff-4669-94dd-bb33a60b1731\" # Appid- 0256c781-35ff-4669-94dd-bb33a60b1731\n",
+					"appkey = \"p7pujO-8E22tr83J6_o4bgN.mJG8c-cq8V\" # Secret- p7pujO-8E22tr83J6_o4bgN.mJG8c-cq8V\n",
+					"tenantid = \"35b69a76-5314-4454-aa0a-35fb0ebd48dc\" #Tenant- 35b69a76-5314-4454-aa0a-35fb0ebd48dc\n",
+					"storageAccountName = \"dlacopdemocomm02.dfs.core.windows.net\""
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "706b3798-0541-483e-ab25-ff245c76f069"
+					}
+				},
+				"source": [
+					"configs = {\"fs.azure.account.auth.type\": \"OAuth\",\n",
+					"           \"fs.azure.account.oauth.provider.type\": \"org.apache.hadoop.fs.azurebfs.oauth2.ClientCredsTokenProvider\",\n",
+					"           \"fs.azure.account.oauth2.client.id\": appid,\n",
+					"           \"fs.azure.account.oauth2.client.secret\": appkey,\n",
+					"           \"fs.azure.account.oauth2.client.endpoint\": \"https://login.microsoftonline.com/\"+tenantid+\"/oauth2/token\"}"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "7da325a3-8ef3-48cd-a141-a4ee80f62ed1"
+					}
+				},
+				"source": [
+					"\n",
+					"# Implicit write case\n",
+					"from pyspark.sql.types import *\n",
+					"from pyspark.sql import functions, Row\n",
+					"from decimal import Decimal\n",
+					"from datetime import datetime\n",
+					"\n",
+					"# Write a CDM entity with Parquet data files, entity definition is derived from the dataframe schema\n",
+					"d = datetime.strptime(\"2015-03-31\", '%Y-%m-%d')\n",
+					"ts = datetime.now()\n",
+					"data = [\n",
+					"  [\"a\", 1, True, 12.34, 6, d, ts, Decimal(1.4337879), Decimal(999.00), Decimal(18.8)],\n",
+					"  [\"b\", 1, True, 12.34, 6, d, ts, Decimal(1.4337879), Decimal(999.00), Decimal(18.8)]\n",
+					"]\n",
+					"\n",
+					"schema = (StructType()\n",
+					"  .add(StructField(\"name\", StringType(), True))\n",
+					"  .add(StructField(\"id\", IntegerType(), True))\n",
+					"  .add(StructField(\"flag\", BooleanType(), True))\n",
+					"  .add(StructField(\"salary\", DoubleType(), True))\n",
+					"  .add(StructField(\"phone\", LongType(), True))\n",
+					"  .add(StructField(\"dob\", DateType(), True))\n",
+					"  .add(StructField(\"time\", TimestampType(), True))\n",
+					"  .add(StructField(\"decimal1\", DecimalType(15, 3), True))\n",
+					"  .add(StructField(\"decimal2\", DecimalType(38, 7), True))\n",
+					"  .add(StructField(\"decimal3\", DecimalType(5, 2), True))\n",
+					")\n",
+					"\n",
+					""
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "28221998-65a8-4a4b-a3f0-a95ea7bdbe55"
+					}
+				},
+				"source": [
+					"test_df = spark.createDataFrame(data, schema)"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "c5add7e0-2815-42ed-908d-5158b66e0179"
+					}
+				},
+				"source": [
+					"display(test_df)"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "6ca46c41-c2e3-45aa-bcd7-7db48f26f6d0"
+					}
+				},
+				"source": [
+					"test_df.createTempView(\"my_view\")"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "c024e0b0-13f2-4947-9a51-611c4fca9abf"
+					}
+				},
+				"source": [
+					"%scala\n",
+					"val test_df_sc = spark.sql(\"select * from my_view\") "
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "8cbd7d90-eeab-4aaa-a0c2-497ed8f96880"
+					}
+				},
+				"source": [
+					"Entity = \"testDf\""
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "aa498fa6-baf8-4d47-9ee7-1bfdad6e3b8c"
+					}
+				},
+				"source": [
+					"test_df.write.format(\"com.microsoft.cdm\")\\\n",
+					".option(\"storage\", storageAccountName)\\\n",
+					".option(\"manifestPath\", \"/dbfs/powerbicdm/powerbidataflow/default.manifest.cdm.json\")\\\n",
+					".option(\"entity\", Entity)\\\n",
+					".save()"
+				],
+				"execution_count": 0
+			}
+		]
+	}
+}

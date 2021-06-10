@@ -1,0 +1,177 @@
+{
+	"name": "COVID-19_HHS_Import",
+	"properties": {
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "79169ab1-a1d5-4c4b-b26f-17180c220c6f"
+					}
+				},
+				"source": [
+					"from pyspark.sql.types import *\n",
+					"\n",
+					"data_schema_a = [StructField('state', StringType(), True), \\\n",
+					"StructField('critical_staffing_shortage_today_yes', IntegerType(), True), \\\n",
+					"StructField('critical_staffing_shortage_today_no', IntegerType(), True), \\\n",
+					"StructField('critical_staffing_shortage_today_not_reported', IntegerType(), True), \\\n",
+					"StructField('critical_staffing_shortage_anticipated_within_week_yes', IntegerType(), True), \\\n",
+					"StructField('critical_staffing_shortage_anticipated_within_week_no', IntegerType(), True), \\\n",
+					"StructField('critical_staffing_shortage_anticipated_within_week_not_reported', IntegerType(), True), \\\n",
+					"StructField('hospital_onset_covid', IntegerType(), True), \\\n",
+					"StructField('hospital_onset_covid_coverage', IntegerType(), True), \\\n",
+					"StructField('inpatient_beds', IntegerType(), True), \\\n",
+					"StructField('inpatient_beds_coverage', IntegerType(), True), \\\n",
+					"StructField('inpatient_beds_used', IntegerType(), True), \\\n",
+					"StructField('inpatient_beds_used_coverage', IntegerType(), True), \\\n",
+					"StructField('inpatient_beds_used_covid', IntegerType(), True), \\\n",
+					"StructField('inpatient_beds_used_covid_coverage', IntegerType(), True), \\\n",
+					"StructField('previous_day_admission_adult_covid_confirmed', IntegerType(), True), \\\n",
+					"StructField('previous_day_admission_adult_covid_confirmed_coverage', IntegerType(), True), \\\n",
+					"StructField('previous_day_admission_adult_covid_suspected', IntegerType(), True), \\\n",
+					"StructField('previous_day_admission_adult_covid_suspected_coverage', IntegerType(), True), \\\n",
+					"StructField('previous_day_admission_pediatric_covid_confirmed', IntegerType(), True), \\\n",
+					"StructField('previous_day_admission_pediatric_covid_confirmed_coverage', IntegerType(), True), \\\n",
+					"StructField('previous_day_admission_pediatric_covid_suspected', IntegerType(), True), \\\n",
+					"StructField('previous_day_admission_pediatric_covid_suspected_coverage', IntegerType(), True), \\\n",
+					"StructField('staffed_adult_icu_bed_occupancy', IntegerType(), True), \\\n",
+					"StructField('staffed_adult_icu_bed_occupancy_coverage', IntegerType(), True), \\\n",
+					"StructField('staffed_icu_adult_patients_confirmed_and_suspected_covid', IntegerType(), True), \\\n",
+					"StructField('staffed_icu_adult_patients_confirmed_and_suspected_covid_coverage', IntegerType(), True), \\\n",
+					"StructField('staffed_icu_adult_patients_confirmed_covid', IntegerType(), True), \\\n",
+					"StructField('staffed_icu_adult_patients_confirmed_covid_coverage', IntegerType(), True), \\\n",
+					"StructField('total_adult_patients_hospitalized_confirmed_and_suspected_covid', IntegerType(), True), \\\n",
+					"StructField('total_adult_patients_hospitalized_confirmed_and_suspected_covid_coverage', IntegerType(), True), \\\n",
+					"StructField('total_adult_patients_hospitalized_confirmed_covid', IntegerType(), True), \\\n",
+					"StructField('total_adult_patients_hospitalized_confirmed_covid_coverage', IntegerType(), True), \\\n",
+					"StructField('total_pediatric_patients_hospitalized_confirmed_and_suspected_covid', IntegerType(), True), \\\n",
+					"StructField('total_pediatric_patients_hospitalized_confirmed_and_suspected_covid_coverage', IntegerType(), True), \\\n",
+					"StructField('total_pediatric_patients_hospitalized_confirmed_covid', IntegerType(), True), \\\n",
+					"StructField('total_pediatric_patients_hospitalized_confirmed_covid_coverage', IntegerType(), True), \\\n",
+					"StructField('total_staffed_adult_icu_beds', IntegerType(), True), \\\n",
+					"StructField('total_staffed_adult_icu_beds_coverage', IntegerType(), True), \\\n",
+					"StructField('inpatient_beds_utilization', FloatType(), True), \\\n",
+					"StructField('inpatient_beds_utilization_coverage', IntegerType(), True), \\\n",
+					"StructField('inpatient_beds_utilization_numerator', IntegerType(), True), \\\n",
+					"StructField('inpatient_beds_utilization_denominator', IntegerType(), True), \\\n",
+					"StructField('percent_of_inpatients_with_covid', FloatType(), True), \\\n",
+					"StructField('percent_of_inpatients_with_covid_coverage', IntegerType(), True), \\\n",
+					"StructField('percent_of_inpatients_with_covid_numerator', IntegerType(), True), \\\n",
+					"StructField('percent_of_inpatients_with_covid_denominator', IntegerType(), True), \\\n",
+					"StructField('inpatient_bed_covid_utilization', FloatType(), True), \\\n",
+					"StructField('inpatient_bed_covid_utilization_coverage', IntegerType(), True), \\\n",
+					"StructField('inpatient_bed_covid_utilization_numerator', IntegerType(), True), \\\n",
+					"StructField('inpatient_bed_covid_utilization_denominator', IntegerType(), True), \\\n",
+					"StructField('adult_icu_bed_covid_utilization', FloatType(), True), \\\n",
+					"StructField('adult_icu_bed_covid_utilization_coverage', IntegerType(), True), \\\n",
+					"StructField('adult_icu_bed_covid_utilization_numerator', IntegerType(), True), \\\n",
+					"StructField('adult_icu_bed_covid_utilization_denominator', IntegerType(), True), \\\n",
+					"StructField('adult_icu_bed_utilization', FloatType(), True), \\\n",
+					"StructField('adult_icu_bed_utilization_coverage', IntegerType(), True), \\\n",
+					"StructField('adult_icu_bed_utilization_numerator', IntegerType(), True), \\\n",
+					"StructField('adult_icu_bed_utilization_denominator', IntegerType(), True), \\\n",
+					"StructField('reporting_cutoff_start', StringType(), True), \\\n",
+					"StructField('geocoded_state', StringType(), True)]\n",
+					"final_struc_a = StructType(fields=data_schema_a)\n",
+					"\n",
+					"summary_df = spark.createDataFrame([], final_struc_a)"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "d54ca905-5868-405a-9699-a36670ab949e"
+					}
+				},
+				"source": [
+					"df = spark.read.option('multiline','true').json(\"dbfs:/mnt/health-data-api-covid19/raw-files/HealthDataCovid19API.json\").schema(data_schema_a)"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "88bb39ae-b696-4a64-b91f-7a7a3f6b2658"
+					}
+				},
+				"source": [
+					"display(df)"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "648e9d65-6016-4872-bf81-7f072e86a5dd"
+					}
+				},
+				"source": [
+					"%sql\n",
+					"create database covid_19_hhs_data"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "c45b9af7-f920-45d8-a75f-2fb5ae84f2f6"
+					}
+				},
+				"source": [
+					"df.write.format('delta').save('dbfs:/mnt/health-data-api-covid19/raw-data/')"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "933f503d-ac6f-4fab-aaeb-8f33e973c315"
+					}
+				},
+				"source": [
+					"%sql\n",
+					"create table covid_19_hhs_data.HealthDataCovid19API using delta location 'dbfs:/mnt/health-data-api-covid19/raw-data/'"
+				],
+				"execution_count": 0
+			}
+		]
+	}
+}

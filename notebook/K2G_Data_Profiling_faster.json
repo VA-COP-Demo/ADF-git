@@ -1,0 +1,191 @@
+{
+	"name": "K2G_Data_Profiling_faster",
+	"properties": {
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "735ffabe-e257-40ff-920f-6895a4e80ecc"
+					}
+				},
+				"source": [
+					"Perform some very basic profiling."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "369993f5-2ea1-4137-aa56-bb1734e8f39d"
+					}
+				},
+				"source": [
+					"from pyspark.sql import *\n",
+					"from pyspark.sql.functions import *\n",
+					"from pyspark import SparkContext\n",
+					"\n",
+					"def get_databases():\n",
+					"  database_df = spark.sql(\"show databases\")\n",
+					"  database_df = database_df.filter(database_df.databaseName!='k2g_metadata')\n",
+					"  database_list = database_df.select('databaseName').collect()\n",
+					"  return database_list\n",
+					"\n",
+					"def get_tables(database_name):\n",
+					"  table_df = spark.sql(\"show tables from \" + database_name)\n",
+					"  table_list = table_df.select('database','tableName').collect()\n",
+					"  return table_list\n",
+					"\n",
+					"def get_columns(database_name, table_name):\n",
+					"  column_df = spark.sql(\"show columns from \" + database_name + \".\" + table_name)\n",
+					"  column_list = column_df.select('col_name').collect()\n",
+					"  return column_list\n",
+					"\n",
+					"def profile_columns(database_name, table_name, column_name):\n",
+					"  \n",
+					"  sql = 'select ' + \\\n",
+					"  \"'\" + database_name + \"'\" + ' as database_name, ' + \\\n",
+					"  \"'\" + table_name + \"'\" + ' as table_name, ' + \\\n",
+					"  \"'\" + column_name + \"'\" + ' as column_name, ' + \\\n",
+					"  column_name + ' as value, ' + \\\n",
+					"  'count(*) as num_records, length(' + column_name + ') as len from ' + \\\n",
+					"  database_name + '.' + table_name + ' group by ' + column_name\n",
+					"  \n",
+					"  df = spark.sql(sql)\n",
+					"  \n",
+					"  df2 = (df.select('database_name', 'table_name', 'column_name', 'num_records', 'value').withColumn('length', length('value')).withColumn('not_null_records', when((col('value').isNull()), \\\n",
+					"       lit(0)).otherwise(col('num_records')))) \\\n",
+					"      .groupBy('database_name', 'table_name', 'column_name') \\\n",
+					"      .agg(sum('num_records').alias(\"total_records\"), \\\n",
+					"           countDistinct('value').alias('distinct_values'), \\\n",
+					"           min('value').cast(StringType()).alias('min_value'), \\\n",
+					"           max('value').cast(StringType()).alias('max_value'), \\\n",
+					"           max('length').alias('max_length'), \\\n",
+					"           sum('not_null_records').alias('not_null_records'))\n",
+					"  #df2.write.format(\"delta\").mode(\"append\").save(\"dbfs:/home/cary.moore@databricks.com/k2g_metadata/tables/profile_data\")\n",
+					"  \n",
+					"  return df2"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "138c1bbc-031d-403b-b634-a19d331de88b"
+					}
+				},
+				"source": [
+					"Create empty schema"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "fd66e7cc-02fc-463b-862e-616939c2f057"
+					}
+				},
+				"source": [
+					"from pyspark.sql.types import *\n",
+					"\n",
+					"data_schema_a = [StructField('database_name', StringType(), True), \\\n",
+					"StructField('table_name', StringType(), True), \\\n",
+					"StructField('column_name', StringType(), True), \\\n",
+					"StructField('total_records', LongType(), True), \\\n",
+					"StructField('distinct_values', LongType(), True), \\\n",
+					"StructField('min_value', StringType(), True), \\\n",
+					"StructField('max_value', StringType(), True), \\\n",
+					"StructField('max_length', IntegerType(), True), \\\n",
+					"StructField('not_null_records', LongType(), True)]\n",
+					"final_struc_a = StructType(fields=data_schema_a)\n",
+					"\n",
+					"summary_df = spark.createDataFrame([], final_struc_a)"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "726362c1-2bc9-472a-b756-41cef7dd5bb5"
+					}
+				},
+				"source": [
+					"spark.conf.set(\"spark.sql.shuffle.partitions\", 1000)\n",
+					"spark.conf.set(\"spark.sql.adaptive.enabled\", \"true\")\n",
+					"spark.conf.set(\"spark.sql.adaptive.coalescePartitions.enabled\",\"true\")"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "bbb0e56e-0159-41ca-86e5-0d2b2a625357"
+					}
+				},
+				"source": [
+					"for x in get_databases():\n",
+					"  for y in get_tables(x[0]):\n",
+					"    cache_sql = 'select * from ' + x[0] + '.' + y[1]\n",
+					"    df_cache = spark.sql(cache_sql).cache()\n",
+					"    df_cache.count()\n",
+					"    for z in get_columns(y[0], y[1]):\n",
+					"      try:\n",
+					"        return_df = profile_columns(y[0], y[1], z[0])\n",
+					"        summary_df = summary_df.union(return_df)\n",
+					"        summary_df.count()\n",
+					"      except:\n",
+					"        print(y[0], y[1], z[0])"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "5fd61f34-a94f-401b-881a-d909732229a2"
+					}
+				},
+				"source": [
+					"display(summary_df)"
+				],
+				"execution_count": 0
+			}
+		]
+	}
+}

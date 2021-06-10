@@ -1,0 +1,223 @@
+{
+	"name": "Immuta Config",
+	"properties": {
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "9653b237-5dfd-4874-aa51-04e5a90738ac"
+					}
+				},
+				"source": [
+					"dbutils.fs.ls(\"dbfs:/FileStore/tables\")"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "622fa907-ecd5-4b84-bedb-5a2533f1526b"
+					}
+				},
+				"source": [
+					"dbutils.fs.ls(\"dbfs:/cluster-logs/0422-194939-mink977/init_scripts/0422-194939-mink977_10_0_192_6/\")"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "f8e6a024-091a-4c20-8f73-cfcef2a8555b"
+					}
+				},
+				"source": [
+					"dbutils.fs.head(\"dbfs:/cluster-logs/0422-194939-mink977/init_scripts/0422-194939-mink977_10_0_192_6/20210504_184336_00_immuta_cluster_init_script.sh.stdout.log\", 1000000)"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "063bf08f-316e-4440-8daf-266c820321c8"
+					}
+				},
+				"source": [
+					"dbutils.fs.head(\"dbfs:/cluster-logs/0422-194939-mink977/driver/log4j-active.log\", 10000000)"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "d49e9c81-8b3c-428a-a590-39bab54adf1f"
+					}
+				},
+				"source": [
+					"%sh curl -k -H \"x-system-token: f30aff84-1475-4350-a133-883943e62390\" https://immuta.vacopdemo.com/hdfs/systemDetails"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "abc9711f-a828-40fc-add5-a3e49db438b5"
+					}
+				},
+				"source": [
+					"%sh curl -k https://13.90.32.189"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "40bade9e-f53d-47ac-97cf-84670593a8aa"
+					}
+				},
+				"source": [
+					"%sh curl -k -H \"x-system-token: f30aff84-1475-4350-a133-883943e62390\" https://13.90.32.189/hdfs/systemDetails"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "9724ecc7-13f1-4ded-b443-22be0a14942c"
+					}
+				},
+				"source": [
+					""
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "c08af944-8a54-4542-8cb5-e1f74c0a5b93"
+					}
+				},
+				"source": [
+					""
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "87b434d2-a25d-466a-90de-315bb289096b"
+					}
+				},
+				"source": [
+					"%sql show tables in cms_de_synth_claims"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "e07dd8df-5892-4793-b1d7-bd872a4b8dcf"
+					}
+				},
+				"source": [
+					"%sql use cms_de_synth_claims; show create table beneficiary_summary"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "dc98c9a6-4929-4b70-88c9-76a4a3640ad1"
+					}
+				},
+				"source": [
+					"dbutils.fs.mounts()"
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "873062a8-742d-4593-8512-143ae41e6c03"
+					}
+				},
+				"source": [
+					"%sql select * from default.customer_1 limit 100\n",
+					""
+				],
+				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"application/vnd.databricks.v1+cell": {
+						"title": "",
+						"showTitle": false,
+						"nuid": "cb7ad0a6-2cfa-448c-a93c-5fee76751129"
+					}
+				},
+				"source": [
+					"%sql show table"
+				],
+				"execution_count": 0
+			}
+		]
+	}
+}
