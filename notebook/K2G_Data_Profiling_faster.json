@@ -1,6 +1,10 @@
 {
 	"name": "K2G_Data_Profiling_faster",
 	"properties": {
+		"bigDataPool": {
+			"referenceName": "vacopsparkpool",
+			"type": "BigDataPoolReference"
+		},
 		"sessionProperties": {
 			"driverMemory": "28g",
 			"driverCores": 4,
@@ -17,6 +21,24 @@
 			"saveOutput": true,
 			"synapse_widget": {
 				"version": "0.1"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/74c259e4-9067-4391-a28a-32c2d748fa4c/resourceGroups/rg-dbw-comm-01/providers/Microsoft.Synapse/workspaces/syna-wrk-copdemo-comm-01/bigDataPools/vacopsparkpool",
+				"name": "vacopsparkpool",
+				"type": "Spark",
+				"endpoint": "https://syna-wrk-copdemo-comm-01.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/vacopsparkpool",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.0",
+				"nodeCount": 10,
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": false
 			},
 			"sessionKeepAliveTimeout": 30
 		},
