@@ -1,6 +1,8 @@
 {
 	"name": "cdm script_1",
 	"properties": {
+		"nbformat": 0,
+		"nbformat_minor": 0,
 		"sessionProperties": {
 			"driverMemory": "28g",
 			"driverCores": 4,
@@ -17,8 +19,7 @@
 			"saveOutput": true,
 			"synapse_widget": {
 				"version": "0.1"
-			},
-			"sessionKeepAliveTimeout": 30
+			}
 		},
 		"cells": [
 			{
@@ -39,6 +40,7 @@
 					"container = \"power-bi-cdm\"\n",
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -58,6 +60,7 @@
 					"           \"fs.azure.account.oauth2.client.endpoint\": \"https://login.microsoftonline.com/\"+tenantid+\"/oauth2/token\"}\n",
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -78,6 +81,7 @@
 					"\n",
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -92,6 +96,7 @@
 				"source": [
 					"#dbutils.fs.unmount(\"/mnt/power-bi-cdm\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -131,6 +136,7 @@
 					"  .add(StructField(\"decimal3\", DecimalType(5, 2), True))\n",
 					")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -146,6 +152,7 @@
 					"df = spark.createDataFrame(spark.sparkContext.parallelize(data), schema)\n",
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -169,6 +176,7 @@
 					"  .save())\n",
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -190,6 +198,7 @@
 					"display(readDf)\n",
 					""
 				],
+				"attachments": null,
 				"execution_count": 0
 			}
 		]

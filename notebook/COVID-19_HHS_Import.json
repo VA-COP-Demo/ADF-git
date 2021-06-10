@@ -1,6 +1,8 @@
 {
 	"name": "COVID-19_HHS_Import",
 	"properties": {
+		"nbformat": 0,
+		"nbformat_minor": 0,
 		"sessionProperties": {
 			"driverMemory": "28g",
 			"driverCores": 4,
@@ -17,8 +19,7 @@
 			"saveOutput": true,
 			"synapse_widget": {
 				"version": "0.1"
-			},
-			"sessionKeepAliveTimeout": 30
+			}
 		},
 		"cells": [
 			{
@@ -98,6 +99,7 @@
 					"\n",
 					"summary_df = spark.createDataFrame([], final_struc_a)"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -112,6 +114,7 @@
 				"source": [
 					"df = spark.read.option('multiline','true').json(\"dbfs:/mnt/health-data-api-covid19/raw-files/HealthDataCovid19API.json\").schema(data_schema_a)"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -126,6 +129,7 @@
 				"source": [
 					"display(df)"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -141,6 +145,7 @@
 					"%sql\n",
 					"create database covid_19_hhs_data"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -155,6 +160,7 @@
 				"source": [
 					"df.write.format('delta').save('dbfs:/mnt/health-data-api-covid19/raw-data/')"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -170,6 +176,7 @@
 					"%sql\n",
 					"create table covid_19_hhs_data.HealthDataCovid19API using delta location 'dbfs:/mnt/health-data-api-covid19/raw-data/'"
 				],
+				"attachments": null,
 				"execution_count": 0
 			}
 		]

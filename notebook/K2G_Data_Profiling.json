@@ -1,6 +1,8 @@
 {
 	"name": "K2G_Data_Profiling",
 	"properties": {
+		"nbformat": 0,
+		"nbformat_minor": 0,
 		"sessionProperties": {
 			"driverMemory": "28g",
 			"driverCores": 4,
@@ -17,8 +19,7 @@
 			"saveOutput": true,
 			"synapse_widget": {
 				"version": "0.1"
-			},
-			"sessionKeepAliveTimeout": 30
+			}
 		},
 		"cells": [
 			{
@@ -34,6 +35,7 @@
 					"%sql\n",
 					"describe CMS_DE_SYNTH_CLAIMS.BENEFICIARY_SUMMARY"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -49,6 +51,7 @@
 					"%sql\n",
 					"select count(*) from CMS_DE_SYNTH_CLAIMS.BENEFICIARY_SUMMARY"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -62,7 +65,8 @@
 				},
 				"source": [
 					"Perform some very basic profiling."
-				]
+				],
+				"attachments": null
 			},
 			{
 				"cell_type": "code",
@@ -77,6 +81,7 @@
 					"dbutils.fs.rm('dbfs:/home/cary.moore@databricks.com/syn_claim_puf/profile', True)\n",
 					"spark.sql(\"drop table if exists CMS_DE_SYNTH_CLAIMS.profile_data\")"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -93,6 +98,7 @@
 					"from pyspark.sql.functions import *\n",
 					"from pyspark import SparkContext"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -115,6 +121,7 @@
 					"using delta\n",
 					"location 'dbfs:/home/cary.moore@databricks.com/syn_claim_puf/profile'"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -172,6 +179,7 @@
 					"  \n",
 					"  return 0"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -187,6 +195,7 @@
 					"%sql\n",
 					"truncate table k2g_metadata.profile_data"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -202,6 +211,7 @@
 					"%sql\n",
 					"vacuum k2g_metadata.profile_data"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -222,6 +232,7 @@
 					"      except:\n",
 					"        print(y[0], y[1], z[0])"
 				],
+				"attachments": null,
 				"execution_count": 0
 			},
 			{
@@ -237,6 +248,7 @@
 					"%sql\n",
 					"select * from k2g_metadata.profile_data order by 1, 2"
 				],
+				"attachments": null,
 				"execution_count": 0
 			}
 		]
