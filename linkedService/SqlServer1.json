@@ -12,6 +12,7 @@
 		"connectVia": {
 			"referenceName": "integrationRuntime2",
 			"type": "IntegrationRuntimeReference"
-		}
+		},
+		"description": "Connecting to sql on prem and using azure keyvaults"
 	}
 }
