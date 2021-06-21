@@ -1,5 +1,5 @@
 {
-	"name": "healthdataapicoppy",
+	"name": "Health_Data_Api_Pipeline_JSON",
 	"properties": {
 		"activities": [
 			{
@@ -541,18 +541,68 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "heathdataApiCovid19JSON",
-						"type": "DatasetReference"
+						"referenceName": "COPS_HttpRequests",
+						"type": "DatasetReference",
+						"parameters": {
+							"HttpRequestcall": {
+								"value": "@pipeline().parameters.HTTPRequests",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "ADLSHealthDataCovid19JSON",
-						"type": "DatasetReference"
+						"referenceName": "COPS_ADLS_json",
+						"type": "DatasetReference",
+						"parameters": {
+							"Filesystem": {
+								"value": "@pipeline().parameters.Filesystem",
+								"type": "Expression"
+							},
+							"Directory": {
+								"value": "@pipeline().parameters.Directory",
+								"type": "Expression"
+							},
+							"Filename": {
+								"value": "@pipeline().parameters.Filename",
+								"type": "Expression"
+							},
+							"FileExtension": {
+								"value": "@pipeline().parameters.FileExtension",
+								"type": "Expression"
+							},
+							"Timestamp": {
+								"value": "@pipeline().TriggerTime",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
 		],
+		"parameters": {
+			"HTTPRequests": {
+				"type": "string",
+				"defaultValue": "https://healthdata.gov/resource/6xf2-c3ie.json"
+			},
+			"Filesystem": {
+				"type": "string",
+				"defaultValue": "health-data-api-covid19"
+			},
+			"Directory": {
+				"type": "string",
+				"defaultValue": "raw-files"
+			},
+			"Filename": {
+				"type": "string",
+				"defaultValue": "HealthDataCovid19API"
+			},
+			"FileExtension": {
+				"type": "string",
+				"defaultValue": "json"
+			}
+		},
 		"annotations": [],
 		"lastPublishTime": "2021-06-10T14:47:44Z"
 	},

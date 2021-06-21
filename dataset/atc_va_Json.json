@@ -1,5 +1,5 @@
 {
-	"name": "ADLSHealthDataCovid19JSON",
+	"name": "atc_va_Json",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
@@ -10,12 +10,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "HealthDataCovid19API.json",
-				"folderPath": "raw-files",
-				"fileSystem": "health-data-api-covid19"
+				"folderPath": "Refined",
+				"fileSystem": "atc-va"
 			}
 		},
 		"schema": {}
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+	}
 }

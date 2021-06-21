@@ -1,0 +1,199 @@
+{
+	"name": "PMN-SQL-OnPrem-Copy-Pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Get-Tables",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get-Tables').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"sqlReaderQuery": {
+										"value": "SELECT * FROM @{item().Table_Name}",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "COPS_Get_Dynamic_SQL",
+									"type": "DatasetReference",
+									"parameters": {
+										"ServerName": {
+											"value": "@pipeline().parameters.ServerName",
+											"type": "Expression"
+										},
+										"DatabaseName": {
+											"value": "@pipeline().parameters.DatabaseName",
+											"type": "Expression"
+										},
+										"Username": {
+											"value": "@pipeline().parameters.Username",
+											"type": "Expression"
+										},
+										"SecretName": {
+											"value": "@pipeline().parameters.SecretName",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "COPS_ADLS_CSV",
+									"type": "DatasetReference",
+									"parameters": {
+										"Filesystem": {
+											"value": "@pipeline().parameters.Filesystem",
+											"type": "Expression"
+										},
+										"Directory": {
+											"value": "@pipeline().parameters.Directory",
+											"type": "Expression"
+										},
+										"Filename": {
+											"value": "@{item().Table_Name}",
+											"type": "Expression"
+										},
+										"FileExtension": {
+											"value": "@pipeline().parameters.FileExtension",
+											"type": "Expression"
+										},
+										"Timestamp": {
+											"value": "@pipeline().TriggerTime",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "Get-Tables",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "SELECT QUOTENAME(table_Schema)+'.'+QUOTENAME(TABLE_NAME) AS Table_Name \n   FROM information_Schema.tables",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "COPS_Get_Dynamic_SQL",
+						"type": "DatasetReference",
+						"parameters": {
+							"ServerName": {
+								"value": "@pipeline().parameters.ServerName",
+								"type": "Expression"
+							},
+							"DatabaseName": {
+								"value": "@pipeline().parameters.DatabaseName",
+								"type": "Expression"
+							},
+							"Username": {
+								"value": "@pipeline().parameters.Username",
+								"type": "Expression"
+							},
+							"SecretName": {
+								"value": "@pipeline().parameters.SecretName",
+								"type": "Expression"
+							}
+						}
+					},
+					"firstRowOnly": false
+				}
+			}
+		],
+		"parameters": {
+			"Filesystem": {
+				"type": "string",
+				"defaultValue": "pmn-data"
+			},
+			"Directory": {
+				"type": "string",
+				"defaultValue": "raw-files"
+			},
+			"FileExtension": {
+				"type": "string",
+				"defaultValue": "csv"
+			},
+			"ServerName": {
+				"type": "string",
+				"defaultValue": "40.76.227.72"
+			},
+			"DatabaseName": {
+				"type": "string",
+				"defaultValue": "PMN-Starter"
+			},
+			"Username": {
+				"type": "string",
+				"defaultValue": "azureadmin"
+			},
+			"SecretName": {
+				"type": "string",
+				"defaultValue": "azureadmin"
+			}
+		},
+		"annotations": []
+	}
+}

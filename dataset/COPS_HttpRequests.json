@@ -1,9 +1,20 @@
 {
-	"name": "heathdataApiCovid19JSON",
+	"name": "COPS_HttpRequests",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "healthdatacovid19",
-			"type": "LinkedServiceReference"
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"HttpRequestcall": {
+					"value": "@dataset().HttpRequestcall",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"HttpRequestcall": {
+				"type": "string"
+			}
 		},
 		"annotations": [],
 		"type": "Json",

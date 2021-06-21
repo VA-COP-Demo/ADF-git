@@ -1,0 +1,89 @@
+{
+	"name": "atc_va_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "*",
+				"folderPath": "Raw",
+				"fileSystem": "atc-va"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Title",
+				"type": "String"
+			},
+			{
+				"name": "Catheter-associated urinary tract infection (CAUTI)",
+				"type": "String"
+			},
+			{
+				"name": "Central line-associated bloodstream infection (CLABSI)",
+				"type": "String"
+			},
+			{
+				"name": "Ventilator-Associated Event rate",
+				"type": "String"
+			},
+			{
+				"name": "A wound splits open after surgery on the abdomen/pelvis",
+				"type": "String"
+			},
+			{
+				"name": "Accidental cuts/tears from medical treat.",
+				"type": "String"
+			},
+			{
+				"name": "Postoperative sepsis rate",
+				"type": "String"
+			},
+			{
+				"name": "Postoperative hip fracture rate",
+				"type": "String"
+			},
+			{
+				"name": "Collapsed lung due to medical treatment",
+				"type": "String"
+			},
+			{
+				"name": "Deaths with serious treatable complications after surgery",
+				"type": "String"
+			},
+			{
+				"name": "Central venous catheter-related bloodstream infection rate",
+				"type": "String"
+			},
+			{
+				"name": "Pressure ulcer rate",
+				"type": "String"
+			},
+			{
+				"name": "Serious blood clots after surgery",
+				"type": "String"
+			},
+			{
+				"name": "Immunization for influenza",
+				"type": "String"
+			},
+			{
+				"name": "Overall rating of hospital (Global measure)",
+				"type": "String"
+			},
+			{
+				"name": "Care Transition (Composite measure)",
+				"type": "String"
+			}
+		]
+	}
+}
