@@ -1,0 +1,19 @@
+{
+	"name": "atc_va_Json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Refined",
+				"fileSystem": "atc-va"
+			}
+		},
+		"schema": {}
+	}
+}
