@@ -1,5 +1,5 @@
 {
-	"name": "COPS_Get_Dynamic_SQL_tables",
+	"name": "COPS_Get_Dynamic_SQL",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "SqlServer1_onprem",

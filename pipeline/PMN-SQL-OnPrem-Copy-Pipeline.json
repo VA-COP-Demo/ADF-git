@@ -65,7 +65,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "COPS_Get_Dynamic_SQL_tables",
+									"referenceName": "COPS_Get_Dynamic_SQL",
 									"type": "DatasetReference",
 									"parameters": {
 										"ServerName": {
@@ -139,7 +139,7 @@
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "COPS_Get_Dynamic_SQL_tables",
+						"referenceName": "COPS_Get_Dynamic_SQL",
 						"type": "DatasetReference",
 						"parameters": {
 							"ServerName": {
