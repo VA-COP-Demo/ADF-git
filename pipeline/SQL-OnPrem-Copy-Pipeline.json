@@ -54,7 +54,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "dynamicSQLTableSource",
+									"referenceName": "COPS_Dynamic_SQL",
 									"type": "DatasetReference",
 									"parameters": {
 										"cw_schema": {

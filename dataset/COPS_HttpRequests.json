@@ -1,0 +1,227 @@
+{
+	"name": "COPS_HttpRequests",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "healthdatacovid19",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"HttpRequestcall": {
+					"value": "@dataset().HttpRequestcall",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"HttpRequestcall": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"state": {
+					"type": "string"
+				},
+				"critical_staffing_shortage_today_yes": {
+					"type": "string"
+				},
+				"critical_staffing_shortage_today_no": {
+					"type": "string"
+				},
+				"critical_staffing_shortage_today_not_reported": {
+					"type": "string"
+				},
+				"critical_staffing_shortage_anticipated_within_week_yes": {
+					"type": "string"
+				},
+				"critical_staffing_shortage_anticipated_within_week_no": {
+					"type": "string"
+				},
+				"critical_staffing_shortage_anticipated_within_week_not_reported": {
+					"type": "string"
+				},
+				"hospital_onset_covid": {
+					"type": "string"
+				},
+				"hospital_onset_covid_coverage": {
+					"type": "string"
+				},
+				"inpatient_beds": {
+					"type": "string"
+				},
+				"inpatient_beds_coverage": {
+					"type": "string"
+				},
+				"inpatient_beds_used": {
+					"type": "string"
+				},
+				"inpatient_beds_used_coverage": {
+					"type": "string"
+				},
+				"inpatient_beds_used_covid": {
+					"type": "string"
+				},
+				"inpatient_beds_used_covid_coverage": {
+					"type": "string"
+				},
+				"previous_day_admission_adult_covid_confirmed": {
+					"type": "string"
+				},
+				"previous_day_admission_adult_covid_confirmed_coverage": {
+					"type": "string"
+				},
+				"previous_day_admission_adult_covid_suspected": {
+					"type": "string"
+				},
+				"previous_day_admission_adult_covid_suspected_coverage": {
+					"type": "string"
+				},
+				"previous_day_admission_pediatric_covid_confirmed": {
+					"type": "string"
+				},
+				"previous_day_admission_pediatric_covid_confirmed_coverage": {
+					"type": "string"
+				},
+				"previous_day_admission_pediatric_covid_suspected": {
+					"type": "string"
+				},
+				"previous_day_admission_pediatric_covid_suspected_coverage": {
+					"type": "string"
+				},
+				"staffed_adult_icu_bed_occupancy": {
+					"type": "string"
+				},
+				"staffed_adult_icu_bed_occupancy_coverage": {
+					"type": "string"
+				},
+				"staffed_icu_adult_patients_confirmed_and_suspected_covid": {
+					"type": "string"
+				},
+				"staffed_icu_adult_patients_confirmed_and_suspected_covid_coverage": {
+					"type": "string"
+				},
+				"staffed_icu_adult_patients_confirmed_covid": {
+					"type": "string"
+				},
+				"staffed_icu_adult_patients_confirmed_covid_coverage": {
+					"type": "string"
+				},
+				"total_adult_patients_hospitalized_confirmed_and_suspected_covid": {
+					"type": "string"
+				},
+				"total_adult_patients_hospitalized_confirmed_and_suspected_covid_coverage": {
+					"type": "string"
+				},
+				"total_adult_patients_hospitalized_confirmed_covid": {
+					"type": "string"
+				},
+				"total_adult_patients_hospitalized_confirmed_covid_coverage": {
+					"type": "string"
+				},
+				"total_pediatric_patients_hospitalized_confirmed_and_suspected_covid": {
+					"type": "string"
+				},
+				"total_pediatric_patients_hospitalized_confirmed_and_suspected_covid_coverage": {
+					"type": "string"
+				},
+				"total_pediatric_patients_hospitalized_confirmed_covid": {
+					"type": "string"
+				},
+				"total_pediatric_patients_hospitalized_confirmed_covid_coverage": {
+					"type": "string"
+				},
+				"total_staffed_adult_icu_beds": {
+					"type": "string"
+				},
+				"total_staffed_adult_icu_beds_coverage": {
+					"type": "string"
+				},
+				"inpatient_beds_utilization": {
+					"type": "string"
+				},
+				"inpatient_beds_utilization_coverage": {
+					"type": "string"
+				},
+				"inpatient_beds_utilization_numerator": {
+					"type": "string"
+				},
+				"inpatient_beds_utilization_denominator": {
+					"type": "string"
+				},
+				"percent_of_inpatients_with_covid": {
+					"type": "string"
+				},
+				"percent_of_inpatients_with_covid_coverage": {
+					"type": "string"
+				},
+				"percent_of_inpatients_with_covid_numerator": {
+					"type": "string"
+				},
+				"percent_of_inpatients_with_covid_denominator": {
+					"type": "string"
+				},
+				"inpatient_bed_covid_utilization": {
+					"type": "string"
+				},
+				"inpatient_bed_covid_utilization_coverage": {
+					"type": "string"
+				},
+				"inpatient_bed_covid_utilization_numerator": {
+					"type": "string"
+				},
+				"inpatient_bed_covid_utilization_denominator": {
+					"type": "string"
+				},
+				"adult_icu_bed_covid_utilization": {
+					"type": "string"
+				},
+				"adult_icu_bed_covid_utilization_coverage": {
+					"type": "string"
+				},
+				"adult_icu_bed_covid_utilization_numerator": {
+					"type": "string"
+				},
+				"adult_icu_bed_covid_utilization_denominator": {
+					"type": "string"
+				},
+				"adult_icu_bed_utilization": {
+					"type": "string"
+				},
+				"adult_icu_bed_utilization_coverage": {
+					"type": "string"
+				},
+				"adult_icu_bed_utilization_numerator": {
+					"type": "string"
+				},
+				"adult_icu_bed_utilization_denominator": {
+					"type": "string"
+				},
+				"reporting_cutoff_start": {
+					"type": "string"
+				},
+				"geocoded_state": {
+					"type": "object",
+					"properties": {
+						"type": {
+							"type": "string"
+						},
+						"coordinates": {
+							"type": "array",
+							"items": {
+								"type": "number"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}
