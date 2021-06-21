@@ -1,5 +1,5 @@
 {
-	"name": "Health_Data_Api_Pipeline",
+	"name": "Health_Data_Api_Pipeline_JSON",
 	"properties": {
 		"activities": [
 			{
