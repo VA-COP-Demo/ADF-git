@@ -1,18 +1,35 @@
 {
 	"name": "SqlServer1_onprem",
 	"properties": {
+		"parameters": {
+			"ServerName": {
+				"type": "string"
+			},
+			"DatabaseName": {
+				"type": "string"
+			},
+			"Username": {
+				"type": "string"
+			},
+			"SecretName": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "SqlServer",
 		"typeProperties": {
-			"connectionString": "Integrated Security=True;Data Source=40.76.227.72;Initial Catalog=PMN-Starter",
-			"userName": "azureadmin",
+			"connectionString": "Integrated Security=True;Data Source=@{linkedService().ServerName};Initial Catalog=@{linkedService().DatabaseName}",
+			"userName": "@{linkedService().Username}",
 			"password": {
 				"type": "AzureKeyVaultSecret",
 				"store": {
 					"referenceName": "AzureKeyVault1",
 					"type": "LinkedServiceReference"
 				},
-				"secretName": "azureadmin"
+				"secretName": {
+					"value": "@linkedService().SecretName",
+					"type": "Expression"
+				}
 			}
 		},
 		"connectVia": {
