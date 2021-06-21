@@ -64,17 +64,49 @@
 										"cw_table": {
 											"value": "@item().source.table",
 											"type": "Expression"
+										},
+										"ServerName": {
+											"value": "@pipeline().parameters.ServerName",
+											"type": "Expression"
+										},
+										"DatabaseName": {
+											"value": "@pipeline().parameters.DatabaseName",
+											"type": "Expression"
+										},
+										"Username": {
+											"value": "@pipeline().parameters.Username",
+											"type": "Expression"
+										},
+										"SecretName": {
+											"value": "@pipeline().parameters.SecretName",
+											"type": "Expression"
 										}
 									}
 								}
 							],
 							"outputs": [
 								{
-									"referenceName": "DestinationDatasetLake",
+									"referenceName": "COPS_ADLS_CSV",
 									"type": "DatasetReference",
 									"parameters": {
-										"cw_fileName": {
+										"Filesystem": {
+											"value": "@item().destination.fileNamepipeline().parameters.Filesystem",
+											"type": "Expression"
+										},
+										"Directory": {
+											"value": "@pipeline().parameters.Directory",
+											"type": "Expression"
+										},
+										"Filename": {
 											"value": "@item().destination.fileName",
+											"type": "Expression"
+										},
+										"FileExtension": {
+											"value": "@pipeline().parameters.FileExtension",
+											"type": "Expression"
+										},
+										"Timestamp": {
+											"value": "@pipeline().TriggerTime",
 											"type": "Expression"
 										}
 									}
@@ -1692,6 +1724,34 @@
 						}
 					}
 				]
+			},
+			"Filesystem": {
+				"type": "string",
+				"defaultValue": "pmn-data"
+			},
+			"Directory": {
+				"type": "string",
+				"defaultValue": "raw-files"
+			},
+			"FileExtension": {
+				"type": "string",
+				"defaultValue": "csv"
+			},
+			"ServerName": {
+				"type": "string",
+				"defaultValue": "40.76.227.72"
+			},
+			"DatabaseName": {
+				"type": "string",
+				"defaultValue": "PMN-Starter"
+			},
+			"Username": {
+				"type": "string",
+				"defaultValue": "azureadmin"
+			},
+			"SecretName": {
+				"type": "string",
+				"defaultValue": "azureadmin"
 			}
 		},
 		"annotations": []
