@@ -1,13 +1,18 @@
 {
 	"name": "healthdatacovid19",
-	"type": "Microsoft.Synapse/workspaces/linkedservices",
 	"properties": {
+		"parameters": {
+			"HttpRequestcall": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "HttpServer",
 		"typeProperties": {
-			"url": "https://healthdata.gov/resource/6xf2-c3ie.json",
+			"url": "@{linkedService().HttpRequestcall}",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
-	}
+	},
+	"type": "Microsoft.Synapse/workspaces/linkedservices"
 }
