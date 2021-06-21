@@ -19,7 +19,8 @@
 			"saveOutput": true,
 			"synapse_widget": {
 				"version": "0.1"
-			}
+			},
+			"sessionKeepAliveTimeout": 30
 		},
 		"cells": [
 			{
@@ -32,10 +33,183 @@
 					}
 				},
 				"source": [
-					""
+					"# Copyright (c) Microsoft Corporation. All rights reserved.\r\n",
+					"# Licensed under the MIT License. See License.txt in the project root for license information.\r\n",
+					"\r\n",
+					"import asyncio, sys, os\r\n",
+					"from typing import TYPE_CHECKING\r\n",
+					"\r\n",
+					"sys.path.append('../../../objectModel/Python')\r\n",
+					"\r\n",
+					"from cdm.enums import CdmDataFormat, CdmObjectType\r\n",
+					"from cdm.objectmodel import CdmCorpusDefinition\r\n",
+					"from cdm.storage import ADLSAdapter, LocalAdapter, RemoteAdapter\r\n",
+					"from cdm.utilities import CopyOptions\r\n",
+					"\r\n",
+					"ROOT_PATH = os.path.dirname(os.path.abspath(__file__))\r\n",
+					"\r\n",
+					"if TYPE_CHECKING:\r\n",
+					"    from cdm.objectmodel import CdmDocumentDefinition, CdmDataPartitionDefinition, CdmEntityDefinition, CdmLocalEntityDeclarationDefinition, \\\r\n",
+					"        CdmTypeAttributeDefinition"
 				],
-				"attachments": null,
 				"execution_count": 0
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": true
+				},
+				"source": [
+					"# ---------------------------------------------------------------------------------------------\r\n",
+					"# This sample demonstrates CDM Object Model use case in which a model.json file is loaded from\r\n",
+					"# a local file-system, its content explored and then changed, and finally saved to an\r\n",
+					"# ADLSg2 destination.\r\n",
+					"#\r\n",
+					"# IMPORTANT: Before running this sample, make sure following is satisfied:\r\n",
+					"#  1. The OM library is available in the execution scope of this sample\r\n",
+					"#  2. The model_json_root constant points to the location of the model.json file\r\n",
+					"#  3. ADLSg2 adapter configuration is updated according to your env setup\r\n",
+					"#  4. The partition location in model.json file is specifying the same ADLSg2 account and file-system settings\r\n",
+					"#  5. Ensure the Azure user object is assigned \"Storage Blob Data Contributor\" role in the ADLSg2 access management page\r\n",
+					"# ---------------------------------------------------------------------------------------------\r\n",
+					"\r\n",
+					"model_json_root = './4-read-local-save-adls/sample-data'\r\n",
+					"\r\n",
+					"# ---------------------------------------------------------------------------------------------\r\n",
+					"# Instantiate corpus and set it to use default namespace 'adls'\r\n",
+					"\r\n",
+					"corpus = CdmCorpusDefinition()\r\n",
+					"corpus.default_namespace = 'local'\r\n",
+					"\r\n",
+					"# ---------------------------------------------------------------------------------------------\r\n",
+					"# Set up a local, remote and adls adapters\r\n",
+					"# Fake cdm, normaly use the CDM Standards adapter\r\n",
+					"# Mount it as the 'cdm' device, not the default so must use \"cdm:/folder\" to get there\r\n",
+					"corpus.storage.mount('cdm', LocalAdapter(root=os.path.join(ROOT_PATH, '../../example-public-standards')))\r\n",
+					"\r\n",
+					"corpus.storage.mount('local', LocalAdapter(root=model_json_root))\r\n",
+					"# Example how to mount to the ADLS - make sure the hostname and root entered here are also changed\r\n",
+					"# in the example.model.json file we load in the next section\r\n",
+					"corpus.storage.mount('adls', ADLSAdapter(\r\n",
+					"    root='/<FILESYSTEM_NAME>',                        # Container name\r\n",
+					"    hostname='<ACCOUNT_NAME>.dfs.core.windows.net',   # Blob endpoint\r\n",
+					"    tenant='72f988bf-86f1-41af-91ab-2d7cd011db47',    # Tenant ID (Microsoft)\r\n",
+					"    resource='https://storage.azure.com',             # Resource type\r\n",
+					"    client_id='<CLIENT_ID>',                          # Test account client ID\r\n",
+					"    secret='<CLIENT_SECRET>'                          # Test account secret\r\n",
+					"))"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": true
+				},
+				"source": [
+					"# ---------------------------------------------------------------------------------------------\r\n",
+					"# Create manifest from a local model.json file\r\n",
+					"\r\n",
+					"loop = asyncio.get_event_loop()\r\n",
+					"task = loop.create_task(corpus.fetch_object_async('local:/model.json'))\r\n",
+					"manifest = loop.run_until_complete(task)\r\n",
+					"\r\n",
+					"# ------------------------------------------------------------------------------------------------------------\r\n",
+					"# Explore entities and partitions defined in the model\r\n",
+					"\r\n",
+					"print('Listing entity declarations:')\r\n",
+					"for decl in manifest.entities:\r\n",
+					"    print('  ' + decl.entity_name)\r\n",
+					"\r\n",
+					"    if decl.object_type == CdmObjectType.LOCAL_ENTITY_DECLARATION_DEF:\r\n",
+					"        for data_part in decl.data_partitions:\r\n",
+					"            print('    ' + data_part.location)"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": true
+				},
+				"source": [
+					"# ---------------------------------------------------------------------------------------------\r\n",
+					"# Make a few changes to the model\r\n",
+					"\r\n",
+					"# Create a new document where the new entity's definition will be stored\r\n",
+					"new_entity_doc = corpus.make_object(CdmObjectType.DOCUMENT_DEF, 'NewEntity.cdm.json')  # type: CdmDocumentDefinition\r\n",
+					"new_entity_doc.imports.append('cdm:/foundations.cdm.json')\r\n",
+					"corpus.storage.fetch_root_folder('local').documents.append(new_entity_doc)\r\n",
+					"\r\n",
+					"new_entity = new_entity_doc.definitions.append('NewEntity', CdmObjectType.ENTITY_DEF, False)  # type: CdmEntityDefinition\r\n",
+					"\r\n",
+					"# Define new string attribute and add it to the entity definition\r\n",
+					"new_attribute = corpus.make_object(CdmObjectType.TYPE_ATTRIBUTE_DEF, 'NewAttribute')  # type: CdmTypeAttributeDefinition\r\n",
+					"new_attribute.data_format = CdmDataFormat.STRING\r\n",
+					"new_entity.attributes.append(new_attribute)\r\n",
+					"\r\n",
+					"# Call will create entity_declaration_definition based on entity definition and add it to manifest.entities\r\n",
+					"new_entity_decl = manifest.entities.append(new_entity)  # type: CdmLocalEntityDeclaration\r\n",
+					"\r\n",
+					"# Define a partition and add it to the local declaration\r\n",
+					"new_partition = corpus.make_object(CdmObjectType.DATA_PARTITION_DEF, 'NewPartition', False)  # type: CdmDataPartitionDefinition\r\n",
+					"new_partition.location = 'adls:/NewPartition.csv'\r\n",
+					"new_entity_decl.data_partitions.append(new_partition)"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": true
+				},
+				"source": [
+					"# ---------------------------------------------------------------------------------------------\r\n",
+					"# Save the file to ADLSg2 - we achieve that by adding the manifest to the root folder of\r\n",
+					"# the ADLS file-system and performing a save on the manifest\r\n",
+					"\r\n",
+					"adls_folder = corpus.storage.fetch_root_folder('adls')  # type: CdmFolderDefinition\r\n",
+					"adls_folder.documents.append(manifest)\r\n",
+					"task = loop.create_task(manifest.save_as_async('model.json', True))\r\n",
+					"loop.run_until_complete(task)"
+				],
+				"execution_count": null
 			}
 		]
 	}
