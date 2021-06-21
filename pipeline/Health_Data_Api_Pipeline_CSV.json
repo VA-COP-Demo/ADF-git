@@ -1,5 +1,5 @@
 {
-	"name": "HeathDataAPI-ingest",
+	"name": "Health_Data_Api_Pipeline_CSV",
 	"properties": {
 		"activities": [
 			{
@@ -523,18 +523,290 @@
 							},
 							{
 								"source": {
-									"path": "$['geocoded_state']['type']"
+									"path": "$['previous_day_admission_adult_covid_confirmed_18_19']"
 								},
 								"sink": {
-									"name": "type"
+									"name": "previous_day_admission_adult_covid_confirmed_18_19"
 								}
 							},
 							{
 								"source": {
-									"path": "$['geocoded_state']['coordinates'][0]"
+									"path": "$['previous_day_admission_adult_covid_confirmed_18_19_coverage']"
 								},
 								"sink": {
-									"name": "items"
+									"name": "previous_day_admission_adult_covid_confirmed_18_19_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_20_29']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_20_29"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_20_29_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_20_29_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_30_39']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_30_39"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_30_39_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_30_39_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_40_49']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_40_49"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_40_49_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_40_49_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_50_59']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_50_59"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_50_59_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_50_59_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_60_69']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_60_69"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_60_69_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_60_69_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_70_79']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_70_79"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_70_79_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_70_79_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_80_']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_80_"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_80_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_80_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_unknown']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_unknown"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_unknown_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_unknown_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_18_19']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_18_19"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_18_19_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_18_19_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_20_29']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_20_29"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_20_29_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_20_29_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_30_39']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_30_39"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_30_39_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_30_39_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_40_49']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_40_49"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_40_49_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_40_49_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_50_59']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_50_59"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_50_59_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_50_59_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_60_69']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_60_69"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_60_69_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_60_69_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_70_79']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_70_79"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_70_79_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_70_79_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_80']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_80"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_80_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_80_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_unknown']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_unknown"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_unknown_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_unknown_coverage"
 								}
 							}
 						],
@@ -543,18 +815,68 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "heathdataApiCovid19JSON",
-						"type": "DatasetReference"
+						"referenceName": "COPS_HttpRequests",
+						"type": "DatasetReference",
+						"parameters": {
+							"HttpRequestcall": {
+								"value": "@pipeline().parameters.HTTPRequests",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "csvformatehhs",
-						"type": "DatasetReference"
+						"referenceName": "COPS_ADLS_CSV",
+						"type": "DatasetReference",
+						"parameters": {
+							"Filesystem": {
+								"value": "@pipeline().parameters.Filesystem",
+								"type": "Expression"
+							},
+							"Directory": {
+								"value": "@pipeline().parameters.Directory",
+								"type": "Expression"
+							},
+							"Filename": {
+								"value": "@pipeline().parameters.Filename",
+								"type": "Expression"
+							},
+							"FileExtension": {
+								"value": "@pipeline().parameters.FileExtension",
+								"type": "Expression"
+							},
+							"Timestamp": {
+								"value": "@pipeline().TriggerTime",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
 		],
+		"parameters": {
+			"HTTPRequests": {
+				"type": "string",
+				"defaultValue": "https://healthdata.gov/resource/6xf2-c3ie.json"
+			},
+			"Filesystem": {
+				"type": "string",
+				"defaultValue": "health-data-api-covid19"
+			},
+			"Directory": {
+				"type": "string",
+				"defaultValue": "raw-files"
+			},
+			"Filename": {
+				"type": "string",
+				"defaultValue": "HealthDataCovid19API"
+			},
+			"FileExtension": {
+				"type": "string",
+				"defaultValue": "csv"
+			}
+		},
 		"annotations": [],
 		"lastPublishTime": "2021-06-10T14:47:39Z"
 	},

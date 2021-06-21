@@ -6,7 +6,7 @@
 		"pipelines": [
 			{
 				"pipelineReference": {
-					"referenceName": "HeathDataAPI-ingest",
+					"referenceName": "Health_Data_Api_Pipeline_CSV",
 					"type": "PipelineReference"
 				}
 			}
