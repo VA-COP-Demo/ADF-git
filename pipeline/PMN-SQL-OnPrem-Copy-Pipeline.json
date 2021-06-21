@@ -1,5 +1,5 @@
 {
-	"name": "SQL-OnPrem-Copy-Pipeline",
+	"name": "PMN-SQL-OnPrem-Copy-Pipeline",
 	"properties": {
 		"activities": [
 			{
