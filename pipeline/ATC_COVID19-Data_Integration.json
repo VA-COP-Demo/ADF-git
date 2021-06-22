@@ -1,5 +1,5 @@
 {
-	"name": "atc-va-ingest",
+	"name": "ATC_COVID19-Data_Integration",
 	"properties": {
 		"activities": [
 			{
