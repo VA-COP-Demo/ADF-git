@@ -222,7 +222,7 @@
 			},
 			"DestinationDirectory": {
 				"type": "string",
-				"defaultValue": "Staging"
+				"defaultValue": "Refined"
 			},
 			"DestinationFilename": {
 				"type": "string",
@@ -238,7 +238,7 @@
 			},
 			"SourceDirectory": {
 				"type": "string",
-				"defaultValue": "Raw"
+				"defaultValue": "Staging"
 			},
 			"SourceFilename": {
 				"type": "string",
@@ -246,7 +246,7 @@
 			},
 			"SourceFileExtension": {
 				"type": "string",
-				"defaultValue": "csv"
+				"defaultValue": "json"
 			}
 		},
 		"annotations": []
