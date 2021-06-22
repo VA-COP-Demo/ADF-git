@@ -73,6 +73,40 @@
 				]
 			}
 		],
+		"parameters": {
+			"DestinationFilesystem": {
+				"type": "string",
+				"defaultValue": "atc-va"
+			},
+			"DestinationDirectory": {
+				"type": "string",
+				"defaultValue": "Staging"
+			},
+			"DestinationFilename": {
+				"type": "string",
+				"defaultValue": "*"
+			},
+			"DestinationFileExtension": {
+				"type": "string",
+				"defaultValue": "json"
+			},
+			"SourceFilesystem": {
+				"type": "string",
+				"defaultValue": "atc-va"
+			},
+			"SourceDirectory": {
+				"type": "string",
+				"defaultValue": "Raw"
+			},
+			"SourceFilename": {
+				"type": "string",
+				"defaultValue": "*"
+			},
+			"SourceFileExtension": {
+				"type": "string",
+				"defaultValue": "csv"
+			}
+		},
 		"annotations": []
 	}
 }
