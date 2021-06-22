@@ -3,8 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Lookup1",
-				"type": "Lookup",
+				"name": "Copy data1",
+				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -20,110 +20,50 @@
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
 							"type": "DelimitedTextReadSettings"
 						}
 					},
-					"dataset": {
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
 						"referenceName": "COPS_ADLS_CSV",
 						"type": "DatasetReference",
 						"parameters": {
 							"Filesystem": "@pipeline().parameters.SourceFilesystem",
 							"Directory": "@pipeline().parameters.SourceDirectory",
-							"Filename": "@pipeline().parameters.SourceFilename",
+							"Filename": {
+								"value": "@pipeline().parameters.SourceFilename",
+								"type": "Expression"
+							},
 							"FileExtension": "@pipeline().parameters.SourceFileExtension"
 						}
 					}
-				}
-			},
-			{
-				"name": "ForEach1",
-				"type": "ForEach",
-				"dependsOn": [
-					{
-						"activity": "Lookup1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
 				],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@activity('Lookup1').output.value",
-						"type": "Expression"
-					},
-					"isSequential": false,
-					"activities": [
-						{
-							"name": "Copy data1",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"source": {
-									"type": "DelimitedTextSource",
-									"storeSettings": {
-										"type": "AzureBlobFSReadSettings",
-										"recursive": true,
-										"wildcardFileName": "*",
-										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "DelimitedTextReadSettings"
-									}
-								},
-								"sink": {
-									"type": "JsonSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "JsonWriteSettings"
-									}
-								},
-								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "COPS_ADLS_CSV",
-									"type": "DatasetReference",
-									"parameters": {
-										"Filesystem": "@pipeline().parameters.SourceFilesystem",
-										"Directory": "@pipeline().parameters.SourceDirectory",
-										"Filename": {
-											"value": "@item()",
-											"type": "Expression"
-										},
-										"FileExtension": "@pipeline().parameters.SourceFileExtension"
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "COPS_ADLS_json",
-									"type": "DatasetReference",
-									"parameters": {
-										"Filesystem": "@pipeline().parameters.DestinationFilesyste",
-										"Directory": "@pipeline().parameters.DestinationDirectory",
-										"Filename": "@concat(pipeline().parameters.DestinationFilename,'_',pipeline().TriggerTime)",
-										"FileExtension": "@pipeline().parameters.DestinationFileExtension"
-									}
-								}
-							]
+				"outputs": [
+					{
+						"referenceName": "COPS_ADLS_json",
+						"type": "DatasetReference",
+						"parameters": {
+							"Filesystem": "@pipeline().parameters.DestinationFilesyste",
+							"Directory": "@pipeline().parameters.DestinationDirectory",
+							"Filename": "@concat(pipeline().parameters.DestinationFilename,'_',pipeline().TriggerTime)",
+							"FileExtension": "@pipeline().parameters.DestinationFileExtension"
 						}
-					]
-				}
+					}
+				]
 			}
 		],
 		"parameters": {
@@ -137,7 +77,7 @@
 			},
 			"DestinationFilename": {
 				"type": "string",
-				"defaultValue": "*"
+				"defaultValue": "VA Facility Quality Data"
 			},
 			"DestinationFileExtension": {
 				"type": "string",
@@ -153,7 +93,7 @@
 			},
 			"SourceFilename": {
 				"type": "string",
-				"defaultValue": "*"
+				"defaultValue": "VA Facility Quality Data"
 			},
 			"SourceFileExtension": {
 				"type": "string",
