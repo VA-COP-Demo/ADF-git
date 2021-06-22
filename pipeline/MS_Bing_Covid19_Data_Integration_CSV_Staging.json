@@ -1681,19 +1681,19 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"Filesystem": {
-								"value": "@pipeline().parameters.SourceFilesystem",
+								"value": "@pipeline().parameters.DestinationFilesystem",
 								"type": "Expression"
 							},
 							"Directory": {
-								"value": "@pipeline().parameters.SourceDirectory",
+								"value": "@pipeline().parameters.DestinationDirectory",
 								"type": "Expression"
 							},
 							"Filename": {
-								"value": "@concat(pipeline().parameters.SourceFilename,'_',pipeline().TriggerTime)",
+								"value": "@concat(pipeline().parameters.DestinationFilename,'_',pipeline().TriggerTime)",
 								"type": "Expression"
 							},
 							"FileExtension": {
-								"value": "@pipeline().parameters.SourceFileExtension",
+								"value": "@pipeline().parameters.DestinationFileExtension",
 								"type": "Expression"
 							}
 						}
