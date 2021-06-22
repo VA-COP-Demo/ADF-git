@@ -1,0 +1,254 @@
+{
+	"name": "ATC_COVID19-Data_Integration_Refined",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Title",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Title']"
+								}
+							},
+							{
+								"source": {
+									"name": "Catheter-associated urinary tract infection (CAUTI)",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Catheter-associated urinary tract infection (CAUTI)']"
+								}
+							},
+							{
+								"source": {
+									"name": "Central line-associated bloodstream infection (CLABSI)",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Central line-associated bloodstream infection (CLABSI)']"
+								}
+							},
+							{
+								"source": {
+									"name": "Ventilator-Associated Event rate",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Ventilator-Associated Event rate']"
+								}
+							},
+							{
+								"source": {
+									"name": "A wound splits open after surgery on the abdomen/pelvis",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['A wound splits open after surgery on the abdomen/pelvis']"
+								}
+							},
+							{
+								"source": {
+									"name": "Accidental cuts/tears from medical treat.",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Accidental cuts/tears from medical treat.']"
+								}
+							},
+							{
+								"source": {
+									"name": "Postoperative sepsis rate",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Postoperative sepsis rate']"
+								}
+							},
+							{
+								"source": {
+									"name": "Postoperative hip fracture rate",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Postoperative hip fracture rate']"
+								}
+							},
+							{
+								"source": {
+									"name": "Collapsed lung due to medical treatment",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Collapsed lung due to medical treatment']"
+								}
+							},
+							{
+								"source": {
+									"name": "Deaths with serious treatable complications after surgery",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Deaths with serious treatable complications after surgery']"
+								}
+							},
+							{
+								"source": {
+									"name": "Central venous catheter-related bloodstream infection rate",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Central venous catheter-related bloodstream infection rate']"
+								}
+							},
+							{
+								"source": {
+									"name": "Pressure ulcer rate",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Pressure ulcer rate']"
+								}
+							},
+							{
+								"source": {
+									"name": "Serious blood clots after surgery",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Serious blood clots after surgery']"
+								}
+							},
+							{
+								"source": {
+									"name": "Immunization for influenza",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Immunization for influenza']"
+								}
+							},
+							{
+								"source": {
+									"name": "Overall rating of hospital (Global measure)",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Overall rating of hospital (Global measure)']"
+								}
+							},
+							{
+								"source": {
+									"name": "Care Transition (Composite measure)",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Care Transition (Composite measure)']"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "COPS_ADLS_CSV",
+						"type": "DatasetReference",
+						"parameters": {
+							"Filesystem": "@pipeline().parameters.SourceFilesystem",
+							"Directory": "@pipeline().parameters.SourceDirectory",
+							"Filename": {
+								"value": "@pipeline().parameters.SourceFilename",
+								"type": "Expression"
+							},
+							"FileExtension": "@pipeline().parameters.SourceFileExtension"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "COPS_ADLS_json",
+						"type": "DatasetReference",
+						"parameters": {
+							"Filesystem": "@pipeline().parameters.DestinationFilesystem",
+							"Directory": "@pipeline().parameters.DestinationDirectory",
+							"Filename": "@concat(pipeline().parameters.DestinationFilename,'_',pipeline().TriggerTime)",
+							"FileExtension": "@pipeline().parameters.DestinationFileExtension"
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"DestinationFilesystem": {
+				"type": "string",
+				"defaultValue": "atc-va"
+			},
+			"DestinationDirectory": {
+				"type": "string",
+				"defaultValue": "Staging"
+			},
+			"DestinationFilename": {
+				"type": "string",
+				"defaultValue": "VA Facility Quality Data"
+			},
+			"DestinationFileExtension": {
+				"type": "string",
+				"defaultValue": "json"
+			},
+			"SourceFilesystem": {
+				"type": "string",
+				"defaultValue": "atc-va"
+			},
+			"SourceDirectory": {
+				"type": "string",
+				"defaultValue": "Raw"
+			},
+			"SourceFilename": {
+				"type": "string",
+				"defaultValue": "VA Facility Quality Data"
+			},
+			"SourceFileExtension": {
+				"type": "string",
+				"defaultValue": "csv"
+			}
+		},
+		"annotations": []
+	}
+}
