@@ -3,76 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy atc-va data",
-				"type": "Copy",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "DelimitedTextSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"fileListPath": "atc-va/**",
-							"enablePartitionDiscovery": false
-						},
-						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
-						}
-					},
-					"sink": {
-						"type": "JsonSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "JsonWriteSettings"
-						}
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"sink": {
-									"path": "$"
-								}
-							}
-						]
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "COPS_ADLS_CSV",
-						"type": "DatasetReference",
-						"parameters": {
-							"Filesystem": "@pipeline().parameters.SourceFilesystem",
-							"Directory": "@pipeline().parameters.SourceDirectory",
-							"Filename": "@pipeline().parameters.SourceFilename",
-							"FileExtension": "@pipeline().parameters.SourceFileExtension"
-						}
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "COPS_ADLS_json",
-						"type": "DatasetReference",
-						"parameters": {
-							"Filesystem": "@pipeline().parameters.DestinationFilesystem",
-							"Directory": "@pipeline().parameters.DestinationDirectory",
-							"Filename": "@concat(pipeline().parameters.DestinationFilename,'_',pipeline().TriggerTime)",
-							"FileExtension": "@pipeline().parameters.DestinationFileExtension"
-						}
-					}
-				]
-			},
-			{
 				"name": "Lookup1",
 				"type": "Lookup",
 				"dependsOn": [],
@@ -170,7 +100,7 @@
 									"parameters": {
 										"Filesystem": "@pipeline().parameters.SourceFilesystem",
 										"Directory": "@pipeline().parameters.SourceDirectory",
-										"Filename": "@pipeline().parameters.SourceFilen",
+										"Filename": "@pipeline().parameters.SourceFilename",
 										"FileExtension": "@pipeline().parameters.SourceFileExtension"
 									}
 								}
