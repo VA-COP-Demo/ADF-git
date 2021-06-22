@@ -16,14 +16,14 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "DelimitedTextSource",
+						"type": "JsonSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
+							"type": "JsonReadSettings"
 						}
 					},
 					"sink": {
@@ -188,15 +188,12 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "COPS_ADLS_CSV",
+						"referenceName": "COPS_ADLS_json",
 						"type": "DatasetReference",
 						"parameters": {
 							"Filesystem": "@pipeline().parameters.SourceFilesystem",
 							"Directory": "@pipeline().parameters.SourceDirectory",
-							"Filename": {
-								"value": "@pipeline().parameters.SourceFilename",
-								"type": "Expression"
-							},
+							"Filename": "@pipeline().parameters.SourceFilename",
 							"FileExtension": "@pipeline().parameters.SourceFileExtension"
 						}
 					}
