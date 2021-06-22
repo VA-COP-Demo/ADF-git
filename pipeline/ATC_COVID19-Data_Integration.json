@@ -71,6 +71,49 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Copy atc-va data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "COPS_ADLS_CSV",
+						"type": "DatasetReference",
+						"parameters": {
+							"Filesystem": "@pipeline().parameters.SourceFilesystem",
+							"Directory": "@pipeline().parameters.SourceDirectory",
+							"Filename": "@pipeline().parameters.SourceFilename",
+							"FileExtension": "@pipeline().parameters.SourceFileExtension"
+						}
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -80,7 +123,7 @@
 			},
 			"DestinationDirectory": {
 				"type": "string",
-				"defaultValue": "Staging"
+				"defaultValue": "Staging/**"
 			},
 			"DestinationFilename": {
 				"type": "string",
@@ -96,7 +139,7 @@
 			},
 			"SourceDirectory": {
 				"type": "string",
-				"defaultValue": "Raw"
+				"defaultValue": "Raw/**"
 			},
 			"SourceFilename": {
 				"type": "string",
