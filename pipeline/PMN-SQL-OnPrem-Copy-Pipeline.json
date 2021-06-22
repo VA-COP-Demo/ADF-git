@@ -101,7 +101,7 @@
 											"type": "Expression"
 										},
 										"Filename": {
-											"value": "@concat(item().Table_Name,'_',pipeline().TriggerTime)",
+											"value": "@{item().Table_Name}",
 											"type": "Expression"
 										},
 										"FileExtension": {
