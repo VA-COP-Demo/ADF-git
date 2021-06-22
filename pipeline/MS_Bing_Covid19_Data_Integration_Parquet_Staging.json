@@ -1,5 +1,5 @@
 {
-	"name": "MS_Bing_Covid19_Data_Integration_CSV_Staging_copy1",
+	"name": "MS_Bing_Covid19_Data_Integration_Parquet_Staging",
 	"properties": {
 		"activities": [
 			{
