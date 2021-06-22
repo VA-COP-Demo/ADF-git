@@ -848,7 +848,7 @@
 								"type": "Expression"
 							},
 							"Filename": {
-								"value": "@pipeline().parameters.DestinationFilename",
+								"value": "@concat(pipeline().parameters.DestinationFilename,'_',pipeline().TriggerTime)",
 								"type": "Expression"
 							},
 							"FileExtension": {
