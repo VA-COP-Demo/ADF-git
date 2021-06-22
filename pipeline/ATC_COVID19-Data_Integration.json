@@ -31,8 +31,7 @@
 					"sink": {
 						"type": "JsonSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings",
-							"copyBehavior": "FlattenHierarchy"
+							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
 							"type": "JsonWriteSettings"
@@ -52,14 +51,26 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "atc_va_dataset",
-						"type": "DatasetReference"
+						"referenceName": "COPS_ADLS_CSV",
+						"type": "DatasetReference",
+						"parameters": {
+							"Filesystem": "@pipeline().parameters.SourceFilesystem",
+							"Directory": "@pipeline().parameters.SourceDirectory",
+							"Filename": "@pipeline().parameters.SourceFilename",
+							"FileExtension": "@pipeline().parameters.SourceFileExtension"
+						}
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "atc_va_Json",
-						"type": "DatasetReference"
+						"referenceName": "COPS_ADLS_json",
+						"type": "DatasetReference",
+						"parameters": {
+							"Filesystem": "@pipeline().parameters.DestinationFilesystem",
+							"Directory": "@pipeline().parameters.DestinationDirectory",
+							"Filename": "@concat(pipeline().parameters.DestinationFilename,'_',pipeline().TriggerTime)",
+							"FileExtension": "@pipeline().parameters.DestinationFileExtension"
+						}
 					}
 				]
 			}
