@@ -875,7 +875,7 @@
 			},
 			"DestinationFileExtension": {
 				"type": "string",
-				"defaultValue": "csv"
+				"defaultValue": "json"
 			},
 			"SourceFilesystem": {
 				"type": "string",
@@ -891,7 +891,7 @@
 			},
 			"SourceFileExtension": {
 				"type": "string",
-				"defaultValue": "json"
+				"defaultValue": "csv"
 			}
 		},
 		"annotations": [],
