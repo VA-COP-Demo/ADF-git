@@ -839,15 +839,11 @@
 								"type": "Expression"
 							},
 							"Filename": {
-								"value": "@pipeline().parameters.Filename",
+								"value": "@concat(pipeline().parameters.Filename,'_',pipeline().TriggerTime)",
 								"type": "Expression"
 							},
 							"FileExtension": {
 								"value": "@pipeline().parameters.FileExtension",
-								"type": "Expression"
-							},
-							"Timestamp": {
-								"value": "@pipeline().TriggerTime",
 								"type": "Expression"
 							}
 						}
