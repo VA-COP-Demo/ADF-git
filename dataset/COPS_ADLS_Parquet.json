@@ -1,5 +1,5 @@
 {
-	"name": "COPS_ADLS_json",
+	"name": "COPS_ADLS_Parquet",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
@@ -20,7 +20,7 @@
 			}
 		},
 		"annotations": [],
-		"type": "Json",
+		"type": "Parquet",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
@@ -36,9 +36,9 @@
 					"value": "@dataset().Filesystem",
 					"type": "Expression"
 				}
-			}
+			},
+			"compressionCodec": "snappy"
 		},
-		"schema": {}
-	},
-	"type": "Microsoft.Synapse/workspaces/datasets"
+		"schema": []
+	}
 }

@@ -1,5 +1,5 @@
 {
-	"name": "atc-va-ingest",
+	"name": "ATC_COVID19-Data_Integration",
 	"properties": {
 		"activities": [
 			{
@@ -20,6 +20,8 @@
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
+							"wildcardFolderPath": "Raw",
+							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {

@@ -5,13 +5,31 @@
 			"referenceName": "AzureDataLakeStorage1",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"Filesystem": {
+				"type": "string"
+			},
+			"Directory": {
+				"type": "string"
+			},
+			"Filename": {
+				"type": "string"
+			},
+			"FileExtension": {
+				"type": "string"
+			},
+			"Timestamp": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "Refined",
-				"fileSystem": "atc-va"
+				"fileName": "@concat(dataset().Filename,'_',dataset().Timestamp,'.',dataset().FileExtension)",
+				"folderPath": "@dataset().Directory",
+				"fileSystem": "@dataset().Filesystem"
 			}
 		},
 		"schema": {}
