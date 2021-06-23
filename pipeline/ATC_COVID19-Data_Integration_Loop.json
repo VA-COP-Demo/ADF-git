@@ -65,10 +65,10 @@
 										"Filesystem": "@pipeline().parameters.SourceFilesystem",
 										"Directory": "@pipeline().parameters.SourceDirectory",
 										"Filename": {
-											"value": "@{item().name}",
+											"value": "split(@{item().name},'.',0)",
 											"type": "Expression"
 										},
-										"FileExtension": " "
+										"FileExtension": "split(@{item().name},'.',1)"
 									}
 								}
 							],
