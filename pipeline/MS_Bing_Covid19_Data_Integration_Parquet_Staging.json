@@ -16,14 +16,11 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "JsonSource",
+						"type": "ParquetSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"enablePartitionDiscovery": false
-						},
-						"formatSettings": {
-							"type": "JsonReadSettings"
 						}
 					},
 					"sink": {
@@ -176,13 +173,12 @@
 									"path": "$['load_time']"
 								}
 							}
-						],
-						"collectionReference": ""
+						]
 					}
 				},
 				"inputs": [
 					{
-						"referenceName": "COPS_ADLS_json",
+						"referenceName": "COPS_ADLS_Parquet",
 						"type": "DatasetReference",
 						"parameters": {
 							"Filesystem": {
@@ -194,11 +190,11 @@
 								"type": "Expression"
 							},
 							"Filename": {
-								"value": "@pipeline().parameters.SourceFilename",
+								"value": "@concat(pipeline().parameters.DestinationFilename,'_',pipeline().TriggerTime)",
 								"type": "Expression"
 							},
 							"FileExtension": {
-								"value": "@pipeline().parameters.SourceFileExtension",
+								"value": "@pipeline().parameters.DestinationFileExtension",
 								"type": "Expression"
 							}
 						}
