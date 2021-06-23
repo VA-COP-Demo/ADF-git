@@ -3,48 +3,11 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Lookup1",
-				"type": "Lookup",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "DelimitedTextSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true,
-							"wildcardFileName": "*",
-							"enablePartitionDiscovery": false
-						},
-						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
-						}
-					},
-					"dataset": {
-						"referenceName": "COPS_ADLS_CSV",
-						"type": "DatasetReference",
-						"parameters": {
-							"Filesystem": "@pipeline().parameters.SourceFilesystem",
-							"Directory": "@pipeline().parameters.SourceDirectory",
-							"Filename": "@pipeline().parameters.SourceFilename",
-							"FileExtension": "@pipeline().parameters.SourceFileExtension"
-						}
-					}
-				}
-			},
-			{
 				"name": "ForEach1",
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Lookup1",
+						"activity": "Get Metadata1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -124,6 +87,39 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "Get Metadata1",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "COPS_ADLS_CSV",
+						"type": "DatasetReference",
+						"parameters": {
+							"Filesystem": "@pipeline().parameters.SourceFilesystem",
+							"Directory": "@pipeline().parameters.SourceDirectory",
+							"Filename": "@pipeline().parameters.SourceFilename",
+							"FileExtension": "@pipeline().parameters.SourceFileExtension"
+						}
+					},
+					"fieldList": [],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -157,7 +153,7 @@
 			},
 			"SourceFileExtension": {
 				"type": "string",
-				"defaultValue": "csv"
+				"defaultValue": "*csv"
 			}
 		},
 		"annotations": []
