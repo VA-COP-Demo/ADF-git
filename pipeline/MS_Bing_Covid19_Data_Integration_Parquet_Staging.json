@@ -190,11 +190,11 @@
 								"type": "Expression"
 							},
 							"Filename": {
-								"value": "@concat(pipeline().parameters.DestinationFilename,'_',pipeline().TriggerTime)",
+								"value": "@pipeline().parameters.SourceFilename",
 								"type": "Expression"
 							},
 							"FileExtension": {
-								"value": "@pipeline().parameters.DestinationFileExtension",
+								"value": "@pipeline().parameters.SourceFileExtension",
 								"type": "Expression"
 							}
 						}
