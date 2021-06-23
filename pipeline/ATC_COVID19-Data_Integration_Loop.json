@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Lookup1').output.value",
+						"value": "@activity('Get Metadata1').output.childItems",
 						"type": "Expression"
 					},
 					"isSequential": false,
@@ -39,7 +39,6 @@
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
-										"wildcardFileName": "*",
 										"enablePartitionDiscovery": false
 									},
 									"formatSettings": {
@@ -65,7 +64,7 @@
 										"Filesystem": "@pipeline().parameters.SourceFilesystem",
 										"Directory": "@pipeline().parameters.SourceDirectory",
 										"Filename": {
-											"value": "@item()",
+											"value": "@{item().name}",
 											"type": "Expression"
 										},
 										"FileExtension": "@pipeline().parameters.SourceFileExtension"
@@ -111,7 +110,9 @@
 							"FileExtension": "@pipeline().parameters.SourceFileExtension"
 						}
 					},
-					"fieldList": [],
+					"fieldList": [
+						"childItems"
+					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
 						"enablePartitionDiscovery": false
