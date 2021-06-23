@@ -102,7 +102,7 @@
 				]
 			},
 			{
-				"name": "Copy data1_copy1",
+				"name": "Copy data1_copy2",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -122,14 +122,14 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "JsonSource",
+						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
-							"type": "JsonReadSettings"
+							"type": "DelimitedTextReadSettings"
 						}
 					},
 					"sink": {
@@ -147,779 +147,1126 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['state']"
+									"name": "ST",
+									"type": "String"
 								},
 								"sink": {
-									"name": "state"
+									"path": "$['ST']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['critical_staffing_shortage_today_yes']"
+									"name": "STATE",
+									"type": "String"
 								},
 								"sink": {
-									"name": "critical_staffing_shortage_today_yes"
+									"path": "$['STATE']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['critical_staffing_shortage_today_no']"
+									"name": "ST_ABBR",
+									"type": "String"
 								},
 								"sink": {
-									"name": "critical_staffing_shortage_today_no"
+									"path": "$['ST_ABBR']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['critical_staffing_shortage_today_not_reported']"
+									"name": "STCNTY",
+									"type": "String"
 								},
 								"sink": {
-									"name": "critical_staffing_shortage_today_not_reported"
+									"path": "$['STCNTY']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['critical_staffing_shortage_anticipated_within_week_yes']"
+									"name": "COUNTY",
+									"type": "String"
 								},
 								"sink": {
-									"name": "critical_staffing_shortage_anticipated_within_week_yes"
+									"path": "$['COUNTY']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['critical_staffing_shortage_anticipated_within_week_no']"
+									"name": "FIPS",
+									"type": "String"
 								},
 								"sink": {
-									"name": "critical_staffing_shortage_anticipated_within_week_no"
+									"path": "$['FIPS']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['critical_staffing_shortage_anticipated_within_week_not_reported']"
+									"name": "LOCATION",
+									"type": "String"
 								},
 								"sink": {
-									"name": "critical_staffing_shortage_anticipated_within_week_not_reported"
+									"path": "$['LOCATION']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['hospital_onset_covid']"
+									"name": "AREA_SQMI",
+									"type": "String"
 								},
 								"sink": {
-									"name": "hospital_onset_covid"
+									"path": "$['AREA_SQMI']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['hospital_onset_covid_coverage']"
+									"name": "E_TOTPOP",
+									"type": "String"
 								},
 								"sink": {
-									"name": "hospital_onset_covid_coverage"
+									"path": "$['E_TOTPOP']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['inpatient_beds']"
+									"name": "M_TOTPOP",
+									"type": "String"
 								},
 								"sink": {
-									"name": "inpatient_beds"
+									"path": "$['M_TOTPOP']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['inpatient_beds_coverage']"
+									"name": "E_HU",
+									"type": "String"
 								},
 								"sink": {
-									"name": "inpatient_beds_coverage"
+									"path": "$['E_HU']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['inpatient_beds_used']"
+									"name": "M_HU",
+									"type": "String"
 								},
 								"sink": {
-									"name": "inpatient_beds_used"
+									"path": "$['M_HU']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['inpatient_beds_used_coverage']"
+									"name": "E_HH",
+									"type": "String"
 								},
 								"sink": {
-									"name": "inpatient_beds_used_coverage"
+									"path": "$['E_HH']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['inpatient_beds_used_covid']"
+									"name": "M_HH",
+									"type": "String"
 								},
 								"sink": {
-									"name": "inpatient_beds_used_covid"
+									"path": "$['M_HH']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['inpatient_beds_used_covid_coverage']"
+									"name": "E_POV",
+									"type": "String"
 								},
 								"sink": {
-									"name": "inpatient_beds_used_covid_coverage"
+									"path": "$['E_POV']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_confirmed']"
+									"name": "M_POV",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_confirmed"
+									"path": "$['M_POV']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_confirmed_coverage']"
+									"name": "E_UNEMP",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_confirmed_coverage"
+									"path": "$['E_UNEMP']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_suspected']"
+									"name": "M_UNEMP",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_suspected"
+									"path": "$['M_UNEMP']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_suspected_coverage']"
+									"name": "E_PCI",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_suspected_coverage"
+									"path": "$['E_PCI']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_pediatric_covid_confirmed']"
+									"name": "M_PCI",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_pediatric_covid_confirmed"
+									"path": "$['M_PCI']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_pediatric_covid_confirmed_coverage']"
+									"name": "E_NOHSDP",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_pediatric_covid_confirmed_coverage"
+									"path": "$['E_NOHSDP']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_pediatric_covid_suspected']"
+									"name": "M_NOHSDP",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_pediatric_covid_suspected"
+									"path": "$['M_NOHSDP']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_pediatric_covid_suspected_coverage']"
+									"name": "E_AGE65",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_pediatric_covid_suspected_coverage"
+									"path": "$['E_AGE65']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['staffed_adult_icu_bed_occupancy']"
+									"name": "M_AGE65",
+									"type": "String"
 								},
 								"sink": {
-									"name": "staffed_adult_icu_bed_occupancy"
+									"path": "$['M_AGE65']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['staffed_adult_icu_bed_occupancy_coverage']"
+									"name": "E_AGE17",
+									"type": "String"
 								},
 								"sink": {
-									"name": "staffed_adult_icu_bed_occupancy_coverage"
+									"path": "$['E_AGE17']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['staffed_icu_adult_patients_confirmed_and_suspected_covid']"
+									"name": "M_AGE17",
+									"type": "String"
 								},
 								"sink": {
-									"name": "staffed_icu_adult_patients_confirmed_and_suspected_covid"
+									"path": "$['M_AGE17']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['staffed_icu_adult_patients_confirmed_and_suspected_covid_coverage']"
+									"name": "E_DISABL",
+									"type": "String"
 								},
 								"sink": {
-									"name": "staffed_icu_adult_patients_confirmed_and_suspected_covid_coverage"
+									"path": "$['E_DISABL']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['staffed_icu_adult_patients_confirmed_covid']"
+									"name": "M_DISABL",
+									"type": "String"
 								},
 								"sink": {
-									"name": "staffed_icu_adult_patients_confirmed_covid"
+									"path": "$['M_DISABL']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['staffed_icu_adult_patients_confirmed_covid_coverage']"
+									"name": "E_SNGPNT",
+									"type": "String"
 								},
 								"sink": {
-									"name": "staffed_icu_adult_patients_confirmed_covid_coverage"
+									"path": "$['E_SNGPNT']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['total_adult_patients_hospitalized_confirmed_and_suspected_covid']"
+									"name": "M_SNGPNT",
+									"type": "String"
 								},
 								"sink": {
-									"name": "total_adult_patients_hospitalized_confirmed_and_suspected_covid"
+									"path": "$['M_SNGPNT']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['total_adult_patients_hospitalized_confirmed_and_suspected_covid_coverage']"
+									"name": "E_MINRTY",
+									"type": "String"
 								},
 								"sink": {
-									"name": "total_adult_patients_hospitalized_confirmed_and_suspected_covid_coverage"
+									"path": "$['E_MINRTY']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['total_adult_patients_hospitalized_confirmed_covid']"
+									"name": "M_MINRTY",
+									"type": "String"
 								},
 								"sink": {
-									"name": "total_adult_patients_hospitalized_confirmed_covid"
+									"path": "$['M_MINRTY']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['total_adult_patients_hospitalized_confirmed_covid_coverage']"
+									"name": "E_LIMENG",
+									"type": "String"
 								},
 								"sink": {
-									"name": "total_adult_patients_hospitalized_confirmed_covid_coverage"
+									"path": "$['E_LIMENG']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['total_pediatric_patients_hospitalized_confirmed_and_suspected_covid']"
+									"name": "M_LIMENG",
+									"type": "String"
 								},
 								"sink": {
-									"name": "total_pediatric_patients_hospitalized_confirmed_and_suspected_covid"
+									"path": "$['M_LIMENG']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['total_pediatric_patients_hospitalized_confirmed_and_suspected_covid_coverage']"
+									"name": "E_MUNIT",
+									"type": "String"
 								},
 								"sink": {
-									"name": "total_pediatric_patients_hospitalized_confirmed_and_suspected_covid_coverage"
+									"path": "$['E_MUNIT']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['total_pediatric_patients_hospitalized_confirmed_covid']"
+									"name": "M_MUNIT",
+									"type": "String"
 								},
 								"sink": {
-									"name": "total_pediatric_patients_hospitalized_confirmed_covid"
+									"path": "$['M_MUNIT']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['total_pediatric_patients_hospitalized_confirmed_covid_coverage']"
+									"name": "E_MOBILE",
+									"type": "String"
 								},
 								"sink": {
-									"name": "total_pediatric_patients_hospitalized_confirmed_covid_coverage"
+									"path": "$['E_MOBILE']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['total_staffed_adult_icu_beds']"
+									"name": "M_MOBILE",
+									"type": "String"
 								},
 								"sink": {
-									"name": "total_staffed_adult_icu_beds"
+									"path": "$['M_MOBILE']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['total_staffed_adult_icu_beds_coverage']"
+									"name": "E_CROWD",
+									"type": "String"
 								},
 								"sink": {
-									"name": "total_staffed_adult_icu_beds_coverage"
+									"path": "$['E_CROWD']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['inpatient_beds_utilization']"
+									"name": "M_CROWD",
+									"type": "String"
 								},
 								"sink": {
-									"name": "inpatient_beds_utilization"
+									"path": "$['M_CROWD']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['inpatient_beds_utilization_coverage']"
+									"name": "E_NOVEH",
+									"type": "String"
 								},
 								"sink": {
-									"name": "inpatient_beds_utilization_coverage"
+									"path": "$['E_NOVEH']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['inpatient_beds_utilization_numerator']"
+									"name": "M_NOVEH",
+									"type": "String"
 								},
 								"sink": {
-									"name": "inpatient_beds_utilization_numerator"
+									"path": "$['M_NOVEH']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['inpatient_beds_utilization_denominator']"
+									"name": "E_GROUPQ",
+									"type": "String"
 								},
 								"sink": {
-									"name": "inpatient_beds_utilization_denominator"
+									"path": "$['E_GROUPQ']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['percent_of_inpatients_with_covid']"
+									"name": "M_GROUPQ",
+									"type": "String"
 								},
 								"sink": {
-									"name": "percent_of_inpatients_with_covid"
+									"path": "$['M_GROUPQ']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['percent_of_inpatients_with_covid_coverage']"
+									"name": "EP_POV",
+									"type": "String"
 								},
 								"sink": {
-									"name": "percent_of_inpatients_with_covid_coverage"
+									"path": "$['EP_POV']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['percent_of_inpatients_with_covid_numerator']"
+									"name": "MP_POV",
+									"type": "String"
 								},
 								"sink": {
-									"name": "percent_of_inpatients_with_covid_numerator"
+									"path": "$['MP_POV']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['percent_of_inpatients_with_covid_denominator']"
+									"name": "EP_UNEMP",
+									"type": "String"
 								},
 								"sink": {
-									"name": "percent_of_inpatients_with_covid_denominator"
+									"path": "$['EP_UNEMP']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['inpatient_bed_covid_utilization']"
+									"name": "MP_UNEMP",
+									"type": "String"
 								},
 								"sink": {
-									"name": "inpatient_bed_covid_utilization"
+									"path": "$['MP_UNEMP']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['inpatient_bed_covid_utilization_coverage']"
+									"name": "EP_PCI",
+									"type": "String"
 								},
 								"sink": {
-									"name": "inpatient_bed_covid_utilization_coverage"
+									"path": "$['EP_PCI']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['inpatient_bed_covid_utilization_numerator']"
+									"name": "MP_PCI",
+									"type": "String"
 								},
 								"sink": {
-									"name": "inpatient_bed_covid_utilization_numerator"
+									"path": "$['MP_PCI']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['inpatient_bed_covid_utilization_denominator']"
+									"name": "EP_NOHSDP",
+									"type": "String"
 								},
 								"sink": {
-									"name": "inpatient_bed_covid_utilization_denominator"
+									"path": "$['EP_NOHSDP']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['adult_icu_bed_covid_utilization']"
+									"name": "MP_NOHSDP",
+									"type": "String"
 								},
 								"sink": {
-									"name": "adult_icu_bed_covid_utilization"
+									"path": "$['MP_NOHSDP']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['adult_icu_bed_covid_utilization_coverage']"
+									"name": "EP_AGE65",
+									"type": "String"
 								},
 								"sink": {
-									"name": "adult_icu_bed_covid_utilization_coverage"
+									"path": "$['EP_AGE65']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['adult_icu_bed_covid_utilization_numerator']"
+									"name": "MP_AGE65",
+									"type": "String"
 								},
 								"sink": {
-									"name": "adult_icu_bed_covid_utilization_numerator"
+									"path": "$['MP_AGE65']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['adult_icu_bed_covid_utilization_denominator']"
+									"name": "EP_AGE17",
+									"type": "String"
 								},
 								"sink": {
-									"name": "adult_icu_bed_covid_utilization_denominator"
+									"path": "$['EP_AGE17']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['adult_icu_bed_utilization']"
+									"name": "MP_AGE17",
+									"type": "String"
 								},
 								"sink": {
-									"name": "adult_icu_bed_utilization"
+									"path": "$['MP_AGE17']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['adult_icu_bed_utilization_coverage']"
+									"name": "EP_DISABL",
+									"type": "String"
 								},
 								"sink": {
-									"name": "adult_icu_bed_utilization_coverage"
+									"path": "$['EP_DISABL']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['adult_icu_bed_utilization_numerator']"
+									"name": "MP_DISABL",
+									"type": "String"
 								},
 								"sink": {
-									"name": "adult_icu_bed_utilization_numerator"
+									"path": "$['MP_DISABL']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['adult_icu_bed_utilization_denominator']"
+									"name": "EP_SNGPNT",
+									"type": "String"
 								},
 								"sink": {
-									"name": "adult_icu_bed_utilization_denominator"
+									"path": "$['EP_SNGPNT']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['reporting_cutoff_start']"
+									"name": "MP_SNGPNT",
+									"type": "String"
 								},
 								"sink": {
-									"name": "reporting_cutoff_start"
+									"path": "$['MP_SNGPNT']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_confirmed_18_19']"
+									"name": "EP_MINRTY",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_confirmed_18_19"
+									"path": "$['EP_MINRTY']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_confirmed_18_19_coverage']"
+									"name": "MP_MINRTY",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_confirmed_18_19_coverage"
+									"path": "$['MP_MINRTY']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_confirmed_20_29']"
+									"name": "EP_LIMENG",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_confirmed_20_29"
+									"path": "$['EP_LIMENG']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_confirmed_20_29_coverage']"
+									"name": "MP_LIMENG",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_confirmed_20_29_coverage"
+									"path": "$['MP_LIMENG']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_confirmed_30_39']"
+									"name": "EP_MUNIT",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_confirmed_30_39"
+									"path": "$['EP_MUNIT']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_confirmed_30_39_coverage']"
+									"name": "MP_MUNIT",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_confirmed_30_39_coverage"
+									"path": "$['MP_MUNIT']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_confirmed_40_49']"
+									"name": "EP_MOBILE",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_confirmed_40_49"
+									"path": "$['EP_MOBILE']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_confirmed_40_49_coverage']"
+									"name": "MP_MOBILE",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_confirmed_40_49_coverage"
+									"path": "$['MP_MOBILE']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_confirmed_50_59']"
+									"name": "EP_CROWD",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_confirmed_50_59"
+									"path": "$['EP_CROWD']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_confirmed_50_59_coverage']"
+									"name": "MP_CROWD",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_confirmed_50_59_coverage"
+									"path": "$['MP_CROWD']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_confirmed_60_69']"
+									"name": "EP_NOVEH",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_confirmed_60_69"
+									"path": "$['EP_NOVEH']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_confirmed_60_69_coverage']"
+									"name": "MP_NOVEH",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_confirmed_60_69_coverage"
+									"path": "$['MP_NOVEH']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_confirmed_70_79']"
+									"name": "EP_GROUPQ",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_confirmed_70_79"
+									"path": "$['EP_GROUPQ']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_confirmed_70_79_coverage']"
+									"name": "MP_GROUPQ",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_confirmed_70_79_coverage"
+									"path": "$['MP_GROUPQ']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_confirmed_80_']"
+									"name": "EPL_POV",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_confirmed_80_"
+									"path": "$['EPL_POV']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_confirmed_80_coverage']"
+									"name": "EPL_UNEMP",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_confirmed_80_coverage"
+									"path": "$['EPL_UNEMP']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_confirmed_unknown']"
+									"name": "EPL_PCI",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_confirmed_unknown"
+									"path": "$['EPL_PCI']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_confirmed_unknown_coverage']"
+									"name": "EPL_NOHSDP",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_confirmed_unknown_coverage"
+									"path": "$['EPL_NOHSDP']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_suspected_18_19']"
+									"name": "SPL_THEME1",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_suspected_18_19"
+									"path": "$['SPL_THEME1']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_suspected_18_19_coverage']"
+									"name": "RPL_THEME1",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_suspected_18_19_coverage"
+									"path": "$['RPL_THEME1']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_suspected_20_29']"
+									"name": "EPL_AGE65",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_suspected_20_29"
+									"path": "$['EPL_AGE65']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_suspected_20_29_coverage']"
+									"name": "EPL_AGE17",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_suspected_20_29_coverage"
+									"path": "$['EPL_AGE17']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_suspected_30_39']"
+									"name": "EPL_DISABL",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_suspected_30_39"
+									"path": "$['EPL_DISABL']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_suspected_30_39_coverage']"
+									"name": "EPL_SNGPNT",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_suspected_30_39_coverage"
+									"path": "$['EPL_SNGPNT']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_suspected_40_49']"
+									"name": "SPL_THEME2",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_suspected_40_49"
+									"path": "$['SPL_THEME2']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_suspected_40_49_coverage']"
+									"name": "RPL_THEME2",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_suspected_40_49_coverage"
+									"path": "$['RPL_THEME2']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_suspected_50_59']"
+									"name": "EPL_MINRTY",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_suspected_50_59"
+									"path": "$['EPL_MINRTY']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_suspected_50_59_coverage']"
+									"name": "EPL_LIMENG",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_suspected_50_59_coverage"
+									"path": "$['EPL_LIMENG']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_suspected_60_69']"
+									"name": "SPL_THEME3",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_suspected_60_69"
+									"path": "$['SPL_THEME3']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_suspected_60_69_coverage']"
+									"name": "RPL_THEME3",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_suspected_60_69_coverage"
+									"path": "$['RPL_THEME3']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_suspected_70_79']"
+									"name": "EPL_MUNIT",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_suspected_70_79"
+									"path": "$['EPL_MUNIT']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_suspected_70_79_coverage']"
+									"name": "EPL_MOBILE",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_suspected_70_79_coverage"
+									"path": "$['EPL_MOBILE']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_suspected_80']"
+									"name": "EPL_CROWD",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_suspected_80"
+									"path": "$['EPL_CROWD']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_suspected_80_coverage']"
+									"name": "EPL_NOVEH",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_suspected_80_coverage"
+									"path": "$['EPL_NOVEH']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_suspected_unknown']"
+									"name": "EPL_GROUPQ",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_suspected_unknown"
+									"path": "$['EPL_GROUPQ']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['previous_day_admission_adult_covid_suspected_unknown_coverage']"
+									"name": "SPL_THEME4",
+									"type": "String"
 								},
 								"sink": {
-									"name": "previous_day_admission_adult_covid_suspected_unknown_coverage"
+									"path": "$['SPL_THEME4']"
+								}
+							},
+							{
+								"source": {
+									"name": "RPL_THEME4",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['RPL_THEME4']"
+								}
+							},
+							{
+								"source": {
+									"name": "SPL_THEMES",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['SPL_THEMES']"
+								}
+							},
+							{
+								"source": {
+									"name": "RPL_THEMES",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['RPL_THEMES']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_POV",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_POV']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_UNEMP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_UNEMP']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_PCI",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_PCI']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_NOHSDP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_NOHSDP']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_THEME1",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_THEME1']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_AGE65",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_AGE65']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_AGE17",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_AGE17']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_DISABL",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_DISABL']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_SNGPNT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_SNGPNT']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_THEME2",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_THEME2']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_MINRTY",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_MINRTY']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_LIMENG",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_LIMENG']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_THEME3",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_THEME3']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_MUNIT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_MUNIT']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_MOBILE",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_MOBILE']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_CROWD",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_CROWD']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_NOVEH",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_NOVEH']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_GROUPQ",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_GROUPQ']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_THEME4",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_THEME4']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_TOTAL",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_TOTAL']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_UNINSUR",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_UNINSUR']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_UNINSUR",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_UNINSUR']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_UNINSUR",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_UNINSUR']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_UNINSUR",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_UNINSUR']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_DAYPOP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_DAYPOP']"
 								}
 							}
-						],
-						"collectionReference": ""
+						]
 					}
 				},
 				"inputs": [
 					{
-						"referenceName": "COPS_ADLS_json",
+						"referenceName": "COPS_ADLS_CSV",
 						"type": "DatasetReference",
 						"parameters": {
 							"Filesystem": {
@@ -955,7 +1302,7 @@
 								"type": "Expression"
 							},
 							"Filename": {
-								"value": "@pipeline().parameters.DestinationFilename",
+								"value": "@concat(pipeline().parameters.DestinationFilename,'_',pipeline().TriggerTime)",
 								"type": "Expression"
 							},
 							"FileExtension": {
