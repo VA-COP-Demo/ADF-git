@@ -68,7 +68,7 @@
 											"value": "@{split(item().name,'.')[0]}",
 											"type": "Expression"
 										},
-										"FileExtension": "@{split(@item().name,'.')[1]}"
+										"FileExtension": "@{split(item().name,'.')[1]}"
 									}
 								}
 							],
