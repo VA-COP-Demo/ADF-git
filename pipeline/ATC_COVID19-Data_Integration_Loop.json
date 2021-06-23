@@ -122,6 +122,89 @@
 						"type": "DelimitedTextReadSettings"
 					}
 				}
+			},
+			{
+				"name": "ForEach1_copy1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "ForEach1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get Metadata1').output.childItems",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"activities": [
+						{
+							"name": "Copy data1_copy1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "JsonSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings",
+										"copyBehavior": "FlattenHierarchy"
+									},
+									"formatSettings": {
+										"type": "JsonWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "COPS_ADLS_json",
+									"type": "DatasetReference",
+									"parameters": {
+										"Filesystem": "@pipeline().parameters.DestinationFilesystem",
+										"Directory": "@pipeline().parameters.DestinationDirectory",
+										"Filename": "@concat(@concat(split(item().name,'.')[0],'_',pipeline().TriggerTime),'_',pipeline().TriggerTime)",
+										"FileExtension": "@pipeline().parameters.DestinationFileExtension"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "COPS_ADLS_json",
+									"type": "DatasetReference",
+									"parameters": {
+										"Filesystem": "@pipeline().parameters.DestinationFilesystem",
+										"Directory": "@pipeline().parameters.DestinationDirectory",
+										"Filename": "@{split(item().name,'.')[0]}",
+										"FileExtension": "@pipeline().parameters.DestinationFileExtension"
+									}
+								}
+							]
+						}
+					]
+				}
 			}
 		],
 		"parameters": {
