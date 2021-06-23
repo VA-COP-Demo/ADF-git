@@ -185,7 +185,7 @@
 									"parameters": {
 										"Filesystem": "@pipeline().parameters.DestinationFilesystem",
 										"Directory": "@pipeline().parameters.DestinationDirectory",
-										"Filename": "@concat(@concat(split(item().name,'.')[0],'_',pipeline().TriggerTime),'_',pipeline().TriggerTime)",
+										"Filename": "@concat(split(item().name,'.')[0],'_',pipeline().TriggerTime),'_',pipeline().TriggerTime)",
 										"FileExtension": "@pipeline().parameters.DestinationFileExtension"
 									}
 								}
