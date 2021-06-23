@@ -48,7 +48,8 @@
 								"sink": {
 									"type": "JsonSink",
 									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
+										"type": "AzureBlobFSWriteSettings",
+										"copyBehavior": "FlattenHierarchy"
 									},
 									"formatSettings": {
 										"type": "JsonWriteSettings"
@@ -67,7 +68,7 @@
 											"value": "@{item().name}",
 											"type": "Expression"
 										},
-										"FileExtension": "@pipeline().parameters.SourceFileExtension"
+										"FileExtension": " "
 									}
 								}
 							],
