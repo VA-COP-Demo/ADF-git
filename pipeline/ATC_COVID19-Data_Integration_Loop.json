@@ -77,7 +77,7 @@
 									"referenceName": "COPS_ADLS_json",
 									"type": "DatasetReference",
 									"parameters": {
-										"Filesystem": "@pipeline().parameters.DestinationFilesyste",
+										"Filesystem": "@pipeline().parameters.DestinationFilesystem",
 										"Directory": "@pipeline().parameters.DestinationDirectory",
 										"Filename": "@concat(pipeline().parameters.DestinationFilename,'_',pipeline().TriggerTime)",
 										"FileExtension": "@pipeline().parameters.DestinationFileExtension"
