@@ -16,14 +16,14 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "DelimitedTextSource",
+						"type": "JsonSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
+							"type": "JsonReadSettings"
 						}
 					},
 					"sink": {
@@ -1161,23 +1161,23 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "COPS_ADLS_CSV",
+						"referenceName": "COPS_ADLS_json",
 						"type": "DatasetReference",
 						"parameters": {
 							"Filesystem": {
-								"value": "@pipeline().parameters.SourceFilesystem",
+								"value": "@pipeline().parameters.DestinationFilesystem",
 								"type": "Expression"
 							},
 							"Directory": {
-								"value": "@pipeline().parameters.SourceDirectory",
+								"value": "@pipeline().parameters.DestinationDirectory",
 								"type": "Expression"
 							},
 							"Filename": {
-								"value": "@pipeline().parameters.SourceFilename",
+								"value": "@pipeline().parameters.DestinationFilename",
 								"type": "Expression"
 							},
 							"FileExtension": {
-								"value": "@pipeline().parameters.SourceFileExtension",
+								"value": "@pipeline().parameters.DestinationFileExtension",
 								"type": "Expression"
 							}
 						}
@@ -1209,7 +1209,7 @@
 				]
 			},
 			{
-				"name": "Copy data1_copy2",
+				"name": "Copy data1_copy3",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -2410,7 +2410,7 @@
 								"type": "Expression"
 							},
 							"Filename": {
-								"value": "@pipeline().parameters.DestinationFilename",
+								"value": "@concat(pipeline().parameters.DestinationFilename,'_',pipeline().TriggerTime)",
 								"type": "Expression"
 							},
 							"FileExtension": {
