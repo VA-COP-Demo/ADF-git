@@ -862,7 +862,7 @@
 			},
 			"Directory": {
 				"type": "string",
-				"defaultValue": "raw-files"
+				"defaultValue": "Raw"
 			},
 			"Filename": {
 				"type": "string",
