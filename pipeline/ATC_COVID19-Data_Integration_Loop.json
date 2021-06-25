@@ -116,6 +116,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -185,7 +186,7 @@
 									"parameters": {
 										"Filesystem": "@pipeline().parameters.DestinationFilesystem",
 										"Directory": "@pipeline().parameters.DestinationDirectory",
-										"Filename": "@concat(split(item().name,'.')[0],'_',pipeline().TriggerTime),'_',pipeline().TriggerTime)",
+										"Filename": "@concat(split(item().name,'.')[0]),'_',pipeline().TriggerTime)",
 										"FileExtension": "@pipeline().parameters.DestinationFileExtension"
 									}
 								}
