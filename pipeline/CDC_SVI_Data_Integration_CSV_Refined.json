@@ -1,0 +1,2463 @@
+{
+	"name": "CDC_SVI_Data_Integration_CSV_Refined",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "ST",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['ST']"
+								}
+							},
+							{
+								"source": {
+									"name": "STATE",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['STATE']"
+								}
+							},
+							{
+								"source": {
+									"name": "ST_ABBR",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['ST_ABBR']"
+								}
+							},
+							{
+								"source": {
+									"name": "STCNTY",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['STCNTY']"
+								}
+							},
+							{
+								"source": {
+									"name": "COUNTY",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['COUNTY']"
+								}
+							},
+							{
+								"source": {
+									"name": "FIPS",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['FIPS']"
+								}
+							},
+							{
+								"source": {
+									"name": "LOCATION",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['LOCATION']"
+								}
+							},
+							{
+								"source": {
+									"name": "AREA_SQMI",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['AREA_SQMI']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_TOTPOP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_TOTPOP']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_TOTPOP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_TOTPOP']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_HU",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_HU']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_HU",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_HU']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_HH",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_HH']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_HH",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_HH']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_POV",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_POV']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_POV",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_POV']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_UNEMP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_UNEMP']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_UNEMP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_UNEMP']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_PCI",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_PCI']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_PCI",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_PCI']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_NOHSDP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_NOHSDP']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_NOHSDP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_NOHSDP']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_AGE65",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_AGE65']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_AGE65",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_AGE65']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_AGE17",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_AGE17']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_AGE17",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_AGE17']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_DISABL",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_DISABL']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_DISABL",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_DISABL']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_SNGPNT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_SNGPNT']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_SNGPNT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_SNGPNT']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_MINRTY",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_MINRTY']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_MINRTY",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_MINRTY']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_LIMENG",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_LIMENG']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_LIMENG",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_LIMENG']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_MUNIT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_MUNIT']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_MUNIT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_MUNIT']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_MOBILE",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_MOBILE']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_MOBILE",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_MOBILE']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_CROWD",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_CROWD']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_CROWD",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_CROWD']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_NOVEH",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_NOVEH']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_NOVEH",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_NOVEH']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_GROUPQ",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_GROUPQ']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_GROUPQ",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_GROUPQ']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_POV",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_POV']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_POV",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_POV']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_UNEMP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_UNEMP']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_UNEMP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_UNEMP']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_PCI",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_PCI']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_PCI",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_PCI']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_NOHSDP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_NOHSDP']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_NOHSDP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_NOHSDP']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_AGE65",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_AGE65']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_AGE65",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_AGE65']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_AGE17",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_AGE17']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_AGE17",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_AGE17']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_DISABL",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_DISABL']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_DISABL",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_DISABL']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_SNGPNT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_SNGPNT']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_SNGPNT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_SNGPNT']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_MINRTY",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_MINRTY']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_MINRTY",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_MINRTY']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_LIMENG",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_LIMENG']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_LIMENG",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_LIMENG']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_MUNIT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_MUNIT']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_MUNIT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_MUNIT']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_MOBILE",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_MOBILE']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_MOBILE",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_MOBILE']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_CROWD",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_CROWD']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_CROWD",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_CROWD']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_NOVEH",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_NOVEH']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_NOVEH",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_NOVEH']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_GROUPQ",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_GROUPQ']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_GROUPQ",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_GROUPQ']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_POV",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_POV']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_UNEMP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_UNEMP']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_PCI",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_PCI']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_NOHSDP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_NOHSDP']"
+								}
+							},
+							{
+								"source": {
+									"name": "SPL_THEME1",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['SPL_THEME1']"
+								}
+							},
+							{
+								"source": {
+									"name": "RPL_THEME1",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['RPL_THEME1']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_AGE65",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_AGE65']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_AGE17",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_AGE17']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_DISABL",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_DISABL']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_SNGPNT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_SNGPNT']"
+								}
+							},
+							{
+								"source": {
+									"name": "SPL_THEME2",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['SPL_THEME2']"
+								}
+							},
+							{
+								"source": {
+									"name": "RPL_THEME2",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['RPL_THEME2']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_MINRTY",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_MINRTY']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_LIMENG",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_LIMENG']"
+								}
+							},
+							{
+								"source": {
+									"name": "SPL_THEME3",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['SPL_THEME3']"
+								}
+							},
+							{
+								"source": {
+									"name": "RPL_THEME3",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['RPL_THEME3']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_MUNIT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_MUNIT']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_MOBILE",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_MOBILE']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_CROWD",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_CROWD']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_NOVEH",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_NOVEH']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_GROUPQ",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_GROUPQ']"
+								}
+							},
+							{
+								"source": {
+									"name": "SPL_THEME4",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['SPL_THEME4']"
+								}
+							},
+							{
+								"source": {
+									"name": "RPL_THEME4",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['RPL_THEME4']"
+								}
+							},
+							{
+								"source": {
+									"name": "SPL_THEMES",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['SPL_THEMES']"
+								}
+							},
+							{
+								"source": {
+									"name": "RPL_THEMES",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['RPL_THEMES']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_POV",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_POV']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_UNEMP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_UNEMP']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_PCI",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_PCI']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_NOHSDP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_NOHSDP']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_THEME1",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_THEME1']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_AGE65",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_AGE65']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_AGE17",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_AGE17']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_DISABL",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_DISABL']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_SNGPNT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_SNGPNT']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_THEME2",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_THEME2']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_MINRTY",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_MINRTY']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_LIMENG",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_LIMENG']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_THEME3",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_THEME3']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_MUNIT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_MUNIT']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_MOBILE",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_MOBILE']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_CROWD",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_CROWD']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_NOVEH",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_NOVEH']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_GROUPQ",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_GROUPQ']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_THEME4",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_THEME4']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_TOTAL",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_TOTAL']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_UNINSUR",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_UNINSUR']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_UNINSUR",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_UNINSUR']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_UNINSUR",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_UNINSUR']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_UNINSUR",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_UNINSUR']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_DAYPOP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_DAYPOP']"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "COPS_ADLS_json",
+						"type": "DatasetReference",
+						"parameters": {
+							"Filesystem": {
+								"value": "@pipeline().parameters.SourceFilesystem",
+								"type": "Expression"
+							},
+							"Directory": {
+								"value": "@pipeline().parameters.SourceDirectory",
+								"type": "Expression"
+							},
+							"Filename": {
+								"value": "@pipeline().parameters.SourceFilename",
+								"type": "Expression"
+							},
+							"FileExtension": {
+								"value": "@pipeline().parameters.SourceFileExtension",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "COPS_ADLS_json",
+						"type": "DatasetReference",
+						"parameters": {
+							"Filesystem": {
+								"value": "@pipeline().parameters.DestinationFilesystem",
+								"type": "Expression"
+							},
+							"Directory": {
+								"value": "@pipeline().parameters.DestinationDirectory",
+								"type": "Expression"
+							},
+							"Filename": {
+								"value": "@concat(pipeline().parameters.DestinationFilename,'_',pipeline().TriggerTime)",
+								"type": "Expression"
+							},
+							"FileExtension": {
+								"value": "@pipeline().parameters.DestinationFileExtension",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "Copy data1_copy3",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy data1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "ST",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['ST']"
+								}
+							},
+							{
+								"source": {
+									"name": "STATE",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['STATE']"
+								}
+							},
+							{
+								"source": {
+									"name": "ST_ABBR",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['ST_ABBR']"
+								}
+							},
+							{
+								"source": {
+									"name": "STCNTY",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['STCNTY']"
+								}
+							},
+							{
+								"source": {
+									"name": "COUNTY",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['COUNTY']"
+								}
+							},
+							{
+								"source": {
+									"name": "FIPS",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['FIPS']"
+								}
+							},
+							{
+								"source": {
+									"name": "LOCATION",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['LOCATION']"
+								}
+							},
+							{
+								"source": {
+									"name": "AREA_SQMI",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['AREA_SQMI']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_TOTPOP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_TOTPOP']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_TOTPOP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_TOTPOP']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_HU",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_HU']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_HU",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_HU']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_HH",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_HH']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_HH",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_HH']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_POV",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_POV']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_POV",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_POV']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_UNEMP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_UNEMP']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_UNEMP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_UNEMP']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_PCI",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_PCI']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_PCI",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_PCI']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_NOHSDP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_NOHSDP']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_NOHSDP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_NOHSDP']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_AGE65",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_AGE65']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_AGE65",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_AGE65']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_AGE17",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_AGE17']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_AGE17",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_AGE17']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_DISABL",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_DISABL']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_DISABL",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_DISABL']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_SNGPNT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_SNGPNT']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_SNGPNT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_SNGPNT']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_MINRTY",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_MINRTY']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_MINRTY",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_MINRTY']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_LIMENG",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_LIMENG']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_LIMENG",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_LIMENG']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_MUNIT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_MUNIT']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_MUNIT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_MUNIT']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_MOBILE",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_MOBILE']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_MOBILE",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_MOBILE']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_CROWD",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_CROWD']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_CROWD",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_CROWD']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_NOVEH",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_NOVEH']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_NOVEH",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_NOVEH']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_GROUPQ",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_GROUPQ']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_GROUPQ",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_GROUPQ']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_POV",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_POV']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_POV",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_POV']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_UNEMP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_UNEMP']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_UNEMP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_UNEMP']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_PCI",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_PCI']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_PCI",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_PCI']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_NOHSDP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_NOHSDP']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_NOHSDP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_NOHSDP']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_AGE65",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_AGE65']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_AGE65",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_AGE65']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_AGE17",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_AGE17']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_AGE17",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_AGE17']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_DISABL",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_DISABL']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_DISABL",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_DISABL']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_SNGPNT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_SNGPNT']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_SNGPNT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_SNGPNT']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_MINRTY",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_MINRTY']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_MINRTY",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_MINRTY']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_LIMENG",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_LIMENG']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_LIMENG",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_LIMENG']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_MUNIT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_MUNIT']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_MUNIT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_MUNIT']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_MOBILE",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_MOBILE']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_MOBILE",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_MOBILE']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_CROWD",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_CROWD']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_CROWD",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_CROWD']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_NOVEH",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_NOVEH']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_NOVEH",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_NOVEH']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_GROUPQ",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_GROUPQ']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_GROUPQ",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_GROUPQ']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_POV",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_POV']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_UNEMP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_UNEMP']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_PCI",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_PCI']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_NOHSDP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_NOHSDP']"
+								}
+							},
+							{
+								"source": {
+									"name": "SPL_THEME1",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['SPL_THEME1']"
+								}
+							},
+							{
+								"source": {
+									"name": "RPL_THEME1",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['RPL_THEME1']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_AGE65",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_AGE65']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_AGE17",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_AGE17']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_DISABL",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_DISABL']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_SNGPNT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_SNGPNT']"
+								}
+							},
+							{
+								"source": {
+									"name": "SPL_THEME2",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['SPL_THEME2']"
+								}
+							},
+							{
+								"source": {
+									"name": "RPL_THEME2",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['RPL_THEME2']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_MINRTY",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_MINRTY']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_LIMENG",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_LIMENG']"
+								}
+							},
+							{
+								"source": {
+									"name": "SPL_THEME3",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['SPL_THEME3']"
+								}
+							},
+							{
+								"source": {
+									"name": "RPL_THEME3",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['RPL_THEME3']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_MUNIT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_MUNIT']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_MOBILE",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_MOBILE']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_CROWD",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_CROWD']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_NOVEH",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_NOVEH']"
+								}
+							},
+							{
+								"source": {
+									"name": "EPL_GROUPQ",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EPL_GROUPQ']"
+								}
+							},
+							{
+								"source": {
+									"name": "SPL_THEME4",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['SPL_THEME4']"
+								}
+							},
+							{
+								"source": {
+									"name": "RPL_THEME4",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['RPL_THEME4']"
+								}
+							},
+							{
+								"source": {
+									"name": "SPL_THEMES",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['SPL_THEMES']"
+								}
+							},
+							{
+								"source": {
+									"name": "RPL_THEMES",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['RPL_THEMES']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_POV",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_POV']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_UNEMP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_UNEMP']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_PCI",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_PCI']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_NOHSDP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_NOHSDP']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_THEME1",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_THEME1']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_AGE65",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_AGE65']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_AGE17",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_AGE17']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_DISABL",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_DISABL']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_SNGPNT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_SNGPNT']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_THEME2",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_THEME2']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_MINRTY",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_MINRTY']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_LIMENG",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_LIMENG']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_THEME3",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_THEME3']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_MUNIT",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_MUNIT']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_MOBILE",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_MOBILE']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_CROWD",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_CROWD']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_NOVEH",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_NOVEH']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_GROUPQ",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_GROUPQ']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_THEME4",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_THEME4']"
+								}
+							},
+							{
+								"source": {
+									"name": "F_TOTAL",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['F_TOTAL']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_UNINSUR",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_UNINSUR']"
+								}
+							},
+							{
+								"source": {
+									"name": "M_UNINSUR",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['M_UNINSUR']"
+								}
+							},
+							{
+								"source": {
+									"name": "EP_UNINSUR",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['EP_UNINSUR']"
+								}
+							},
+							{
+								"source": {
+									"name": "MP_UNINSUR",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['MP_UNINSUR']"
+								}
+							},
+							{
+								"source": {
+									"name": "E_DAYPOP",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['E_DAYPOP']"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "COPS_ADLS_json",
+						"type": "DatasetReference",
+						"parameters": {
+							"Filesystem": {
+								"value": "@pipeline().parameters.DestinationFilesystem",
+								"type": "Expression"
+							},
+							"Directory": {
+								"value": "@pipeline().parameters.DestinationDirectory",
+								"type": "Expression"
+							},
+							"Filename": {
+								"value": "@concat(pipeline().parameters.DestinationFilename,'_',pipeline().TriggerTime)",
+								"type": "Expression"
+							},
+							"FileExtension": {
+								"value": "@pipeline().parameters.DestinationFileExtension",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "COPS_ADLS_json",
+						"type": "DatasetReference",
+						"parameters": {
+							"Filesystem": {
+								"value": "@pipeline().parameters.DestinationFilesystem",
+								"type": "Expression"
+							},
+							"Directory": {
+								"value": "@pipeline().parameters.DestinationDirectory",
+								"type": "Expression"
+							},
+							"Filename": {
+								"value": "@pipeline().parameters.DestinationFilename",
+								"type": "Expression"
+							},
+							"FileExtension": {
+								"value": "@pipeline().parameters.DestinationFileExtension",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"DestinationFilesystem": {
+				"type": "string",
+				"defaultValue": "cdc-svi"
+			},
+			"DestinationDirectory": {
+				"type": "string",
+				"defaultValue": "Refined"
+			},
+			"DestinationFilename": {
+				"type": "string",
+				"defaultValue": "SVI2018"
+			},
+			"DestinationFileExtension": {
+				"type": "string",
+				"defaultValue": "json"
+			},
+			"SourceFilesystem": {
+				"type": "string",
+				"defaultValue": "cdc-svi"
+			},
+			"SourceDirectory": {
+				"type": "string",
+				"defaultValue": "Staging"
+			},
+			"SourceFilename": {
+				"type": "string",
+				"defaultValue": "SVI2018"
+			},
+			"SourceFileExtension": {
+				"type": "string",
+				"defaultValue": "json"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-06-10T14:47:39Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

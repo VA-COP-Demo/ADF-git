@@ -1,0 +1,246 @@
+{
+	"name": "ATC_COVID19-Data_Integration_Loop",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get Metadata1').output.childItems",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"activities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "JsonSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings",
+										"copyBehavior": "FlattenHierarchy"
+									},
+									"formatSettings": {
+										"type": "JsonWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "COPS_ADLS_CSV",
+									"type": "DatasetReference",
+									"parameters": {
+										"Filesystem": "@pipeline().parameters.SourceFilesystem",
+										"Directory": "@pipeline().parameters.SourceDirectory",
+										"Filename": {
+											"value": "@{split(item().name,'.')[0]}",
+											"type": "Expression"
+										},
+										"FileExtension": "@{split(item().name,'.')[1]}"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "COPS_ADLS_json",
+									"type": "DatasetReference",
+									"parameters": {
+										"Filesystem": "@pipeline().parameters.DestinationFilesystem",
+										"Directory": "@pipeline().parameters.DestinationDirectory",
+										"Filename": "@concat(split(item().name,'.')[0],'_',pipeline().TriggerTime)",
+										"FileExtension": "@pipeline().parameters.DestinationFileExtension"
+									}
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "Get Metadata1",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "COPS_ADLS_CSV",
+						"type": "DatasetReference",
+						"parameters": {
+							"Filesystem": "@pipeline().parameters.SourceFilesystem",
+							"Directory": "@pipeline().parameters.SourceDirectory",
+							"Filename": "@pipeline().parameters.SourceFilename",
+							"FileExtension": "@pipeline().parameters.SourceFileExtension"
+						}
+					},
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
+			},
+			{
+				"name": "ForEach1_copy1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "ForEach1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get Metadata1').output.childItems",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"activities": [
+						{
+							"name": "Copy data1_copy1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "JsonSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings",
+										"copyBehavior": "FlattenHierarchy"
+									},
+									"formatSettings": {
+										"type": "JsonWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "COPS_ADLS_json",
+									"type": "DatasetReference",
+									"parameters": {
+										"Filesystem": "@pipeline().parameters.DestinationFilesystem",
+										"Directory": "@pipeline().parameters.DestinationDirectory",
+										"Filename": "@concat(split(item().name,'.')[0],'_',pipeline().TriggerTime),'_',pipeline().TriggerTime)",
+										"FileExtension": "@pipeline().parameters.DestinationFileExtension"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "COPS_ADLS_json",
+									"type": "DatasetReference",
+									"parameters": {
+										"Filesystem": "@pipeline().parameters.DestinationFilesystem",
+										"Directory": "@pipeline().parameters.DestinationDirectory",
+										"Filename": "@{split(item().name,'.')[0]}",
+										"FileExtension": "@pipeline().parameters.DestinationFileExtension"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"DestinationFilesystem": {
+				"type": "string",
+				"defaultValue": "atc-va"
+			},
+			"DestinationDirectory": {
+				"type": "string",
+				"defaultValue": "Staging"
+			},
+			"DestinationFilename": {
+				"type": "string",
+				"defaultValue": "*"
+			},
+			"DestinationFileExtension": {
+				"type": "string",
+				"defaultValue": "json"
+			},
+			"SourceFilesystem": {
+				"type": "string",
+				"defaultValue": "atc-va"
+			},
+			"SourceDirectory": {
+				"type": "string",
+				"defaultValue": "Raw"
+			},
+			"SourceFilename": {
+				"type": "string",
+				"defaultValue": "*"
+			},
+			"SourceFileExtension": {
+				"type": "string",
+				"defaultValue": "*csv"
+			}
+		},
+		"annotations": []
+	}
+}

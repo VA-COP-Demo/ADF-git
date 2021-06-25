@@ -28,12 +28,10 @@
 					"sink": {
 						"type": "JsonSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings",
-							"copyBehavior": "MergeFiles"
+							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
-							"type": "JsonWriteSettings",
-							"filePattern": "arrayOfObjects"
+							"type": "JsonWriteSettings"
 						}
 					},
 					"enableStaging": false,
@@ -45,7 +43,7 @@
 									"path": "$['state']"
 								},
 								"sink": {
-									"path": "state"
+									"name": "state"
 								}
 							},
 							{
@@ -53,7 +51,7 @@
 									"path": "$['critical_staffing_shortage_today_yes']"
 								},
 								"sink": {
-									"path": "critical_staffing_shortage_today_yes"
+									"name": "critical_staffing_shortage_today_yes"
 								}
 							},
 							{
@@ -61,7 +59,7 @@
 									"path": "$['critical_staffing_shortage_today_no']"
 								},
 								"sink": {
-									"path": "critical_staffing_shortage_today_no"
+									"name": "critical_staffing_shortage_today_no"
 								}
 							},
 							{
@@ -69,7 +67,7 @@
 									"path": "$['critical_staffing_shortage_today_not_reported']"
 								},
 								"sink": {
-									"path": "critical_staffing_shortage_today_not_reported"
+									"name": "critical_staffing_shortage_today_not_reported"
 								}
 							},
 							{
@@ -77,7 +75,7 @@
 									"path": "$['critical_staffing_shortage_anticipated_within_week_yes']"
 								},
 								"sink": {
-									"path": "critical_staffing_shortage_anticipated_within_week_yes"
+									"name": "critical_staffing_shortage_anticipated_within_week_yes"
 								}
 							},
 							{
@@ -85,7 +83,7 @@
 									"path": "$['critical_staffing_shortage_anticipated_within_week_no']"
 								},
 								"sink": {
-									"path": "critical_staffing_shortage_anticipated_within_week_no"
+									"name": "critical_staffing_shortage_anticipated_within_week_no"
 								}
 							},
 							{
@@ -93,7 +91,7 @@
 									"path": "$['critical_staffing_shortage_anticipated_within_week_not_reported']"
 								},
 								"sink": {
-									"path": "critical_staffing_shortage_anticipated_within_week_not_reported"
+									"name": "critical_staffing_shortage_anticipated_within_week_not_reported"
 								}
 							},
 							{
@@ -101,7 +99,7 @@
 									"path": "$['hospital_onset_covid']"
 								},
 								"sink": {
-									"path": "hospital_onset_covid"
+									"name": "hospital_onset_covid"
 								}
 							},
 							{
@@ -109,7 +107,7 @@
 									"path": "$['hospital_onset_covid_coverage']"
 								},
 								"sink": {
-									"path": "hospital_onset_covid_coverage"
+									"name": "hospital_onset_covid_coverage"
 								}
 							},
 							{
@@ -117,7 +115,7 @@
 									"path": "$['inpatient_beds']"
 								},
 								"sink": {
-									"path": "inpatient_beds"
+									"name": "inpatient_beds"
 								}
 							},
 							{
@@ -125,7 +123,7 @@
 									"path": "$['inpatient_beds_coverage']"
 								},
 								"sink": {
-									"path": "inpatient_beds_coverage"
+									"name": "inpatient_beds_coverage"
 								}
 							},
 							{
@@ -133,7 +131,7 @@
 									"path": "$['inpatient_beds_used']"
 								},
 								"sink": {
-									"path": "inpatient_beds_used"
+									"name": "inpatient_beds_used"
 								}
 							},
 							{
@@ -141,7 +139,7 @@
 									"path": "$['inpatient_beds_used_coverage']"
 								},
 								"sink": {
-									"path": "inpatient_beds_used_coverage"
+									"name": "inpatient_beds_used_coverage"
 								}
 							},
 							{
@@ -149,7 +147,7 @@
 									"path": "$['inpatient_beds_used_covid']"
 								},
 								"sink": {
-									"path": "inpatient_beds_used_covid"
+									"name": "inpatient_beds_used_covid"
 								}
 							},
 							{
@@ -157,7 +155,7 @@
 									"path": "$['inpatient_beds_used_covid_coverage']"
 								},
 								"sink": {
-									"path": "inpatient_beds_used_covid_coverage"
+									"name": "inpatient_beds_used_covid_coverage"
 								}
 							},
 							{
@@ -165,7 +163,7 @@
 									"path": "$['previous_day_admission_adult_covid_confirmed']"
 								},
 								"sink": {
-									"path": "previous_day_admission_adult_covid_confirmed"
+									"name": "previous_day_admission_adult_covid_confirmed"
 								}
 							},
 							{
@@ -173,7 +171,7 @@
 									"path": "$['previous_day_admission_adult_covid_confirmed_coverage']"
 								},
 								"sink": {
-									"path": "previous_day_admission_adult_covid_confirmed_coverage"
+									"name": "previous_day_admission_adult_covid_confirmed_coverage"
 								}
 							},
 							{
@@ -181,7 +179,7 @@
 									"path": "$['previous_day_admission_adult_covid_suspected']"
 								},
 								"sink": {
-									"path": "previous_day_admission_adult_covid_suspected"
+									"name": "previous_day_admission_adult_covid_suspected"
 								}
 							},
 							{
@@ -189,7 +187,7 @@
 									"path": "$['previous_day_admission_adult_covid_suspected_coverage']"
 								},
 								"sink": {
-									"path": "previous_day_admission_adult_covid_suspected_coverage"
+									"name": "previous_day_admission_adult_covid_suspected_coverage"
 								}
 							},
 							{
@@ -197,7 +195,7 @@
 									"path": "$['previous_day_admission_pediatric_covid_confirmed']"
 								},
 								"sink": {
-									"path": "previous_day_admission_pediatric_covid_confirmed"
+									"name": "previous_day_admission_pediatric_covid_confirmed"
 								}
 							},
 							{
@@ -205,7 +203,7 @@
 									"path": "$['previous_day_admission_pediatric_covid_confirmed_coverage']"
 								},
 								"sink": {
-									"path": "previous_day_admission_pediatric_covid_confirmed_coverage"
+									"name": "previous_day_admission_pediatric_covid_confirmed_coverage"
 								}
 							},
 							{
@@ -213,7 +211,7 @@
 									"path": "$['previous_day_admission_pediatric_covid_suspected']"
 								},
 								"sink": {
-									"path": "previous_day_admission_pediatric_covid_suspected"
+									"name": "previous_day_admission_pediatric_covid_suspected"
 								}
 							},
 							{
@@ -221,7 +219,7 @@
 									"path": "$['previous_day_admission_pediatric_covid_suspected_coverage']"
 								},
 								"sink": {
-									"path": "previous_day_admission_pediatric_covid_suspected_coverage"
+									"name": "previous_day_admission_pediatric_covid_suspected_coverage"
 								}
 							},
 							{
@@ -229,7 +227,7 @@
 									"path": "$['staffed_adult_icu_bed_occupancy']"
 								},
 								"sink": {
-									"path": "staffed_adult_icu_bed_occupancy"
+									"name": "staffed_adult_icu_bed_occupancy"
 								}
 							},
 							{
@@ -237,7 +235,7 @@
 									"path": "$['staffed_adult_icu_bed_occupancy_coverage']"
 								},
 								"sink": {
-									"path": "staffed_adult_icu_bed_occupancy_coverage"
+									"name": "staffed_adult_icu_bed_occupancy_coverage"
 								}
 							},
 							{
@@ -245,7 +243,7 @@
 									"path": "$['staffed_icu_adult_patients_confirmed_and_suspected_covid']"
 								},
 								"sink": {
-									"path": "staffed_icu_adult_patients_confirmed_and_suspected_covid"
+									"name": "staffed_icu_adult_patients_confirmed_and_suspected_covid"
 								}
 							},
 							{
@@ -253,7 +251,7 @@
 									"path": "$['staffed_icu_adult_patients_confirmed_and_suspected_covid_coverage']"
 								},
 								"sink": {
-									"path": "staffed_icu_adult_patients_confirmed_and_suspected_covid_coverage"
+									"name": "staffed_icu_adult_patients_confirmed_and_suspected_covid_coverage"
 								}
 							},
 							{
@@ -261,7 +259,7 @@
 									"path": "$['staffed_icu_adult_patients_confirmed_covid']"
 								},
 								"sink": {
-									"path": "staffed_icu_adult_patients_confirmed_covid"
+									"name": "staffed_icu_adult_patients_confirmed_covid"
 								}
 							},
 							{
@@ -269,7 +267,7 @@
 									"path": "$['staffed_icu_adult_patients_confirmed_covid_coverage']"
 								},
 								"sink": {
-									"path": "staffed_icu_adult_patients_confirmed_covid_coverage"
+									"name": "staffed_icu_adult_patients_confirmed_covid_coverage"
 								}
 							},
 							{
@@ -277,7 +275,7 @@
 									"path": "$['total_adult_patients_hospitalized_confirmed_and_suspected_covid']"
 								},
 								"sink": {
-									"path": "total_adult_patients_hospitalized_confirmed_and_suspected_covid"
+									"name": "total_adult_patients_hospitalized_confirmed_and_suspected_covid"
 								}
 							},
 							{
@@ -285,7 +283,7 @@
 									"path": "$['total_adult_patients_hospitalized_confirmed_and_suspected_covid_coverage']"
 								},
 								"sink": {
-									"path": "total_adult_patients_hospitalized_confirmed_and_suspected_covid_coverage"
+									"name": "total_adult_patients_hospitalized_confirmed_and_suspected_covid_coverage"
 								}
 							},
 							{
@@ -293,7 +291,7 @@
 									"path": "$['total_adult_patients_hospitalized_confirmed_covid']"
 								},
 								"sink": {
-									"path": "total_adult_patients_hospitalized_confirmed_covid"
+									"name": "total_adult_patients_hospitalized_confirmed_covid"
 								}
 							},
 							{
@@ -301,7 +299,7 @@
 									"path": "$['total_adult_patients_hospitalized_confirmed_covid_coverage']"
 								},
 								"sink": {
-									"path": "total_adult_patients_hospitalized_confirmed_covid_coverage"
+									"name": "total_adult_patients_hospitalized_confirmed_covid_coverage"
 								}
 							},
 							{
@@ -309,7 +307,7 @@
 									"path": "$['total_pediatric_patients_hospitalized_confirmed_and_suspected_covid']"
 								},
 								"sink": {
-									"path": "total_pediatric_patients_hospitalized_confirmed_and_suspected_covid"
+									"name": "total_pediatric_patients_hospitalized_confirmed_and_suspected_covid"
 								}
 							},
 							{
@@ -317,7 +315,7 @@
 									"path": "$['total_pediatric_patients_hospitalized_confirmed_and_suspected_covid_coverage']"
 								},
 								"sink": {
-									"path": "total_pediatric_patients_hospitalized_confirmed_and_suspected_covid_coverage"
+									"name": "total_pediatric_patients_hospitalized_confirmed_and_suspected_covid_coverage"
 								}
 							},
 							{
@@ -325,7 +323,7 @@
 									"path": "$['total_pediatric_patients_hospitalized_confirmed_covid']"
 								},
 								"sink": {
-									"path": "total_pediatric_patients_hospitalized_confirmed_covid"
+									"name": "total_pediatric_patients_hospitalized_confirmed_covid"
 								}
 							},
 							{
@@ -333,7 +331,7 @@
 									"path": "$['total_pediatric_patients_hospitalized_confirmed_covid_coverage']"
 								},
 								"sink": {
-									"path": "total_pediatric_patients_hospitalized_confirmed_covid_coverage"
+									"name": "total_pediatric_patients_hospitalized_confirmed_covid_coverage"
 								}
 							},
 							{
@@ -341,7 +339,7 @@
 									"path": "$['total_staffed_adult_icu_beds']"
 								},
 								"sink": {
-									"path": "total_staffed_adult_icu_beds"
+									"name": "total_staffed_adult_icu_beds"
 								}
 							},
 							{
@@ -349,7 +347,7 @@
 									"path": "$['total_staffed_adult_icu_beds_coverage']"
 								},
 								"sink": {
-									"path": "total_staffed_adult_icu_beds_coverage"
+									"name": "total_staffed_adult_icu_beds_coverage"
 								}
 							},
 							{
@@ -357,7 +355,7 @@
 									"path": "$['inpatient_beds_utilization']"
 								},
 								"sink": {
-									"path": "inpatient_beds_utilization"
+									"name": "inpatient_beds_utilization"
 								}
 							},
 							{
@@ -365,7 +363,7 @@
 									"path": "$['inpatient_beds_utilization_coverage']"
 								},
 								"sink": {
-									"path": "inpatient_beds_utilization_coverage"
+									"name": "inpatient_beds_utilization_coverage"
 								}
 							},
 							{
@@ -373,7 +371,7 @@
 									"path": "$['inpatient_beds_utilization_numerator']"
 								},
 								"sink": {
-									"path": "inpatient_beds_utilization_numerator"
+									"name": "inpatient_beds_utilization_numerator"
 								}
 							},
 							{
@@ -381,7 +379,7 @@
 									"path": "$['inpatient_beds_utilization_denominator']"
 								},
 								"sink": {
-									"path": "inpatient_beds_utilization_denominator"
+									"name": "inpatient_beds_utilization_denominator"
 								}
 							},
 							{
@@ -389,7 +387,7 @@
 									"path": "$['percent_of_inpatients_with_covid']"
 								},
 								"sink": {
-									"path": "percent_of_inpatients_with_covid"
+									"name": "percent_of_inpatients_with_covid"
 								}
 							},
 							{
@@ -397,7 +395,7 @@
 									"path": "$['percent_of_inpatients_with_covid_coverage']"
 								},
 								"sink": {
-									"path": "percent_of_inpatients_with_covid_coverage"
+									"name": "percent_of_inpatients_with_covid_coverage"
 								}
 							},
 							{
@@ -405,7 +403,7 @@
 									"path": "$['percent_of_inpatients_with_covid_numerator']"
 								},
 								"sink": {
-									"path": "percent_of_inpatients_with_covid_numerator"
+									"name": "percent_of_inpatients_with_covid_numerator"
 								}
 							},
 							{
@@ -413,7 +411,7 @@
 									"path": "$['percent_of_inpatients_with_covid_denominator']"
 								},
 								"sink": {
-									"path": "percent_of_inpatients_with_covid_denominator"
+									"name": "percent_of_inpatients_with_covid_denominator"
 								}
 							},
 							{
@@ -421,7 +419,7 @@
 									"path": "$['inpatient_bed_covid_utilization']"
 								},
 								"sink": {
-									"path": "inpatient_bed_covid_utilization"
+									"name": "inpatient_bed_covid_utilization"
 								}
 							},
 							{
@@ -429,7 +427,7 @@
 									"path": "$['inpatient_bed_covid_utilization_coverage']"
 								},
 								"sink": {
-									"path": "inpatient_bed_covid_utilization_coverage"
+									"name": "inpatient_bed_covid_utilization_coverage"
 								}
 							},
 							{
@@ -437,7 +435,7 @@
 									"path": "$['inpatient_bed_covid_utilization_numerator']"
 								},
 								"sink": {
-									"path": "inpatient_bed_covid_utilization_numerator"
+									"name": "inpatient_bed_covid_utilization_numerator"
 								}
 							},
 							{
@@ -445,7 +443,7 @@
 									"path": "$['inpatient_bed_covid_utilization_denominator']"
 								},
 								"sink": {
-									"path": "inpatient_bed_covid_utilization_denominator"
+									"name": "inpatient_bed_covid_utilization_denominator"
 								}
 							},
 							{
@@ -453,7 +451,7 @@
 									"path": "$['adult_icu_bed_covid_utilization']"
 								},
 								"sink": {
-									"path": "adult_icu_bed_covid_utilization"
+									"name": "adult_icu_bed_covid_utilization"
 								}
 							},
 							{
@@ -461,7 +459,7 @@
 									"path": "$['adult_icu_bed_covid_utilization_coverage']"
 								},
 								"sink": {
-									"path": "adult_icu_bed_covid_utilization_coverage"
+									"name": "adult_icu_bed_covid_utilization_coverage"
 								}
 							},
 							{
@@ -469,7 +467,7 @@
 									"path": "$['adult_icu_bed_covid_utilization_numerator']"
 								},
 								"sink": {
-									"path": "adult_icu_bed_covid_utilization_numerator"
+									"name": "adult_icu_bed_covid_utilization_numerator"
 								}
 							},
 							{
@@ -477,7 +475,7 @@
 									"path": "$['adult_icu_bed_covid_utilization_denominator']"
 								},
 								"sink": {
-									"path": "adult_icu_bed_covid_utilization_denominator"
+									"name": "adult_icu_bed_covid_utilization_denominator"
 								}
 							},
 							{
@@ -485,7 +483,7 @@
 									"path": "$['adult_icu_bed_utilization']"
 								},
 								"sink": {
-									"path": "adult_icu_bed_utilization"
+									"name": "adult_icu_bed_utilization"
 								}
 							},
 							{
@@ -493,7 +491,7 @@
 									"path": "$['adult_icu_bed_utilization_coverage']"
 								},
 								"sink": {
-									"path": "adult_icu_bed_utilization_coverage"
+									"name": "adult_icu_bed_utilization_coverage"
 								}
 							},
 							{
@@ -501,7 +499,7 @@
 									"path": "$['adult_icu_bed_utilization_numerator']"
 								},
 								"sink": {
-									"path": "adult_icu_bed_utilization_numerator"
+									"name": "adult_icu_bed_utilization_numerator"
 								}
 							},
 							{
@@ -509,7 +507,7 @@
 									"path": "$['adult_icu_bed_utilization_denominator']"
 								},
 								"sink": {
-									"path": "adult_icu_bed_utilization_denominator"
+									"name": "adult_icu_bed_utilization_denominator"
 								}
 							},
 							{
@@ -517,26 +515,299 @@
 									"path": "$['reporting_cutoff_start']"
 								},
 								"sink": {
-									"path": "reporting_cutoff_start"
+									"name": "reporting_cutoff_start"
 								}
 							},
 							{
 								"source": {
-									"path": "$['geocoded_state']['type']"
+									"path": "$['previous_day_admission_adult_covid_confirmed_18_19']"
 								},
 								"sink": {
-									"path": "type"
+									"name": "previous_day_admission_adult_covid_confirmed_18_19"
 								}
 							},
 							{
 								"source": {
-									"path": "$['geocoded_state']['coordinates']"
+									"path": "$['previous_day_admission_adult_covid_confirmed_18_19_coverage']"
 								},
 								"sink": {
-									"path": "coordinates"
+									"name": "previous_day_admission_adult_covid_confirmed_18_19_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_20_29']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_20_29"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_20_29_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_20_29_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_30_39']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_30_39"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_30_39_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_30_39_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_40_49']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_40_49"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_40_49_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_40_49_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_50_59']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_50_59"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_50_59_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_50_59_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_60_69']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_60_69"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_60_69_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_60_69_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_70_79']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_70_79"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_70_79_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_70_79_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_80_']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_80_"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_80_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_80_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_unknown']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_unknown"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_confirmed_unknown_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_confirmed_unknown_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_18_19']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_18_19"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_18_19_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_18_19_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_20_29']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_20_29"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_20_29_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_20_29_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_30_39']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_30_39"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_30_39_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_30_39_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_40_49']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_40_49"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_40_49_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_40_49_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_50_59']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_50_59"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_50_59_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_50_59_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_60_69']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_60_69"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_60_69_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_60_69_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_70_79']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_70_79"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_70_79_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_70_79_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_80']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_80"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_80_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_80_coverage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_unknown']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_unknown"
+								}
+							},
+							{
+								"source": {
+									"path": "$['previous_day_admission_adult_covid_suspected_unknown_coverage']"
+								},
+								"sink": {
+									"name": "previous_day_admission_adult_covid_suspected_unknown_coverage"
 								}
 							}
-						]
+						],
+						"collectionReference": ""
 					}
 				},
 				"inputs": [
@@ -600,7 +871,7 @@
 			}
 		},
 		"annotations": [],
-		"lastPublishTime": "2021-06-10T14:47:44Z"
+		"lastPublishTime": "2021-06-10T14:47:39Z"
 	},
 	"type": "Microsoft.Synapse/workspaces/pipelines"
 }

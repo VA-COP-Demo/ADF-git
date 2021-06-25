@@ -1,5 +1,5 @@
 {
-	"name": "MS_Bing_Covid19_Data_Integration_CSV_Refined",
+	"name": "MS_Bing_Covid19_Data_Integration_Parquet_Staging",
 	"properties": {
 		"activities": [
 			{
@@ -16,14 +16,11 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "JsonSource",
+						"type": "ParquetSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"enablePartitionDiscovery": false
-						},
-						"formatSettings": {
-							"type": "JsonReadSettings"
 						}
 					},
 					"sink": {
@@ -176,13 +173,12 @@
 									"path": "$['load_time']"
 								}
 							}
-						],
-						"collectionReference": ""
+						]
 					}
 				},
 				"inputs": [
 					{
-						"referenceName": "COPS_ADLS_json",
+						"referenceName": "COPS_ADLS_Parquet",
 						"type": "DatasetReference",
 						"parameters": {
 							"Filesystem": {
@@ -471,7 +467,7 @@
 			},
 			"DestinationDirectory": {
 				"type": "string",
-				"defaultValue": "Refined"
+				"defaultValue": "Staging"
 			},
 			"DestinationFilename": {
 				"type": "string",
@@ -487,7 +483,7 @@
 			},
 			"SourceDirectory": {
 				"type": "string",
-				"defaultValue": "Staging"
+				"defaultValue": "Raw"
 			},
 			"SourceFilename": {
 				"type": "string",
@@ -495,7 +491,7 @@
 			},
 			"SourceFileExtension": {
 				"type": "string",
-				"defaultValue": "json"
+				"defaultValue": "parquet"
 			}
 		},
 		"annotations": [],
