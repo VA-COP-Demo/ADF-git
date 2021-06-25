@@ -143,7 +143,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "ForEach1",
+						"activity": "Get Metadata1_copy1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -158,70 +158,130 @@
 					"isSequential": false,
 					"activities": [
 						{
-							"name": "Copy data1_copy1",
-							"type": "Copy",
+							"name": "If Condition2",
+							"type": "IfCondition",
 							"dependsOn": [],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
 							"userProperties": [],
 							"typeProperties": {
-								"source": {
-									"type": "JsonSource",
-									"storeSettings": {
-										"type": "AzureBlobFSReadSettings",
-										"recursive": true,
-										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "JsonReadSettings"
-									}
+								"expression": {
+									"value": "@equals(concat(split(item().name,'.')[0],'_',pipeline().TriggerTime),split(item().name,'.')[0])",
+									"type": "Expression"
 								},
-								"sink": {
-									"type": "JsonSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings",
-										"copyBehavior": "FlattenHierarchy"
-									},
-									"formatSettings": {
-										"type": "JsonWriteSettings"
-									}
-								},
-								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "COPS_ADLS_json",
-									"type": "DatasetReference",
-									"parameters": {
-										"Filesystem": "@pipeline().parameters.DestinationFilesystem",
-										"Directory": "@pipeline().parameters.DestinationDirectory",
-										"Filename": {
-											"value": "@concat(split(item().name,'.')[0],'_',pipeline().TriggerTime)",
-											"type": "Expression"
+								"ifTrueActivities": [
+									{
+										"name": "Copy data1_copy1_copy1",
+										"type": "Copy",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "7.00:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
 										},
-										"FileExtension": "@pipeline().parameters.DestinationFileExtension"
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "JsonSource",
+												"storeSettings": {
+													"type": "AzureBlobFSReadSettings",
+													"recursive": true,
+													"enablePartitionDiscovery": false
+												},
+												"formatSettings": {
+													"type": "JsonReadSettings"
+												}
+											},
+											"sink": {
+												"type": "JsonSink",
+												"storeSettings": {
+													"type": "AzureBlobFSWriteSettings",
+													"copyBehavior": "FlattenHierarchy"
+												},
+												"formatSettings": {
+													"type": "JsonWriteSettings"
+												}
+											},
+											"enableStaging": false
+										},
+										"inputs": [
+											{
+												"referenceName": "COPS_ADLS_json",
+												"type": "DatasetReference",
+												"parameters": {
+													"Filesystem": "@pipeline().parameters.DestinationFilesystem",
+													"Directory": "@pipeline().parameters.DestinationDirectory",
+													"Filename": {
+														"value": "@concat(split(item().name,'.')[0],'_',pipeline().TriggerTime)",
+														"type": "Expression"
+													},
+													"FileExtension": "@pipeline().parameters.DestinationFileExtension"
+												}
+											}
+										],
+										"outputs": [
+											{
+												"referenceName": "COPS_ADLS_json",
+												"type": "DatasetReference",
+												"parameters": {
+													"Filesystem": "@pipeline().parameters.DestinationFilesystem",
+													"Directory": "@pipeline().parameters.DestinationDirectory",
+													"Filename": {
+														"value": "@(split(item().name,'.')[0])",
+														"type": "Expression"
+													},
+													"FileExtension": "@pipeline().parameters.DestinationFileExtension"
+												}
+											}
+										]
 									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "COPS_ADLS_json",
-									"type": "DatasetReference",
-									"parameters": {
-										"Filesystem": "@pipeline().parameters.DestinationFilesystem",
-										"Directory": "@pipeline().parameters.DestinationDirectory",
-										"Filename": "@{split(item().name,'.')[0]}",
-										"FileExtension": "@pipeline().parameters.DestinationFileExtension"
-									}
-								}
-							]
+								]
+							}
 						}
 					]
+				}
+			},
+			{
+				"name": "Get Metadata1_copy1",
+				"type": "GetMetadata",
+				"dependsOn": [
+					{
+						"activity": "ForEach1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "COPS_ADLS_json",
+						"type": "DatasetReference",
+						"parameters": {
+							"Filesystem": "@pipeline().parameters.DestinationFilesystem",
+							"Directory": "@pipeline().parameters.DestinationDirectory",
+							"Filename": "@pipeline().parameters.DestinationFilename",
+							"FileExtension": "@pipeline().parameters.DestinationFileExtension"
+						}
+					},
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "JsonReadSettings"
+					}
 				}
 			}
 		],
