@@ -22,65 +22,82 @@
 					"isSequential": false,
 					"activities": [
 						{
-							"name": "Copy data1",
-							"type": "Copy",
+							"name": "If Condition1",
+							"type": "IfCondition",
 							"dependsOn": [],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
 							"userProperties": [],
 							"typeProperties": {
-								"source": {
-									"type": "JsonSource",
-									"storeSettings": {
-										"type": "AzureBlobFSReadSettings",
-										"recursive": true,
-										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "JsonReadSettings"
-									}
+								"expression": {
+									"value": "@equals(split(item().name,'.')[0],split(split(item().name,'.')[0],'_')[0])",
+									"type": "Expression"
 								},
-								"sink": {
-									"type": "JsonSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings",
-										"copyBehavior": "FlattenHierarchy"
-									},
-									"formatSettings": {
-										"type": "JsonWriteSettings"
+								"ifTrueActivities": [
+									{
+										"name": "Copy data1",
+										"type": "Copy",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "7.00:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "JsonSource",
+												"storeSettings": {
+													"type": "AzureBlobFSReadSettings",
+													"recursive": true,
+													"enablePartitionDiscovery": false
+												},
+												"formatSettings": {
+													"type": "JsonReadSettings"
+												}
+											},
+											"sink": {
+												"type": "JsonSink",
+												"storeSettings": {
+													"type": "AzureBlobFSWriteSettings",
+													"copyBehavior": "FlattenHierarchy"
+												},
+												"formatSettings": {
+													"type": "JsonWriteSettings"
+												}
+											},
+											"enableStaging": false
+										},
+										"inputs": [
+											{
+												"referenceName": "COPS_ADLS_json",
+												"type": "DatasetReference",
+												"parameters": {
+													"Filesystem": "@pipeline().parameters.SourceFilesystem",
+													"Directory": "@pipeline().parameters.SourceDirectory",
+													"Filename": "@{split(item().name,'.')[0]}",
+													"FileExtension": "@{split(item().name,'.')[1]}"
+												}
+											}
+										],
+										"outputs": [
+											{
+												"referenceName": "COPS_ADLS_json",
+												"type": "DatasetReference",
+												"parameters": {
+													"Filesystem": "@pipeline().parameters.DestinationFilesystem",
+													"Directory": "@pipeline().parameters.DestinationDirectory",
+													"Filename": {
+														"value": "@concat(split(item().name,'.')[0],'_',pipeline().TriggerTime)",
+														"type": "Expression"
+													},
+													"FileExtension": "@pipeline().parameters.DestinationFileExtension"
+												}
+											}
+										]
 									}
-								},
-								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "COPS_ADLS_json",
-									"type": "DatasetReference",
-									"parameters": {
-										"Filesystem": "@pipeline().parameters.SourceFilesystem",
-										"Directory": "@pipeline().parameters.SourceDirectory",
-										"Filename": "@{split(item().name,'.')[0]}",
-										"FileExtension": "@{split(item().name,'.')[1]}"
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "COPS_ADLS_json",
-									"type": "DatasetReference",
-									"parameters": {
-										"Filesystem": "@pipeline().parameters.DestinationFilesystem",
-										"Directory": "@pipeline().parameters.DestinationDirectory",
-										"Filename": "@concat(split(item().name,'.')[0],'_',pipeline().TriggerTime)",
-										"FileExtension": "@pipeline().parameters.DestinationFileExtension"
-									}
-								}
-							]
+								]
+							}
 						}
 					]
 				}
