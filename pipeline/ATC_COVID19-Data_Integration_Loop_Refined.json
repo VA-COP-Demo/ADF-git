@@ -164,7 +164,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "\n@equals(concat(split(split(item().name,'.')[0],'_')[0],'_',pipeline().TriggerTime),split(item().name,'.')[0])",
+									"value": "@equals(concat(split(split(item().name,'.')[0],'_')[0],'_',pipeline().TriggerTime),split(item().name,'.')[0])",
 									"type": "Expression"
 								},
 								"ifTrueActivities": [
