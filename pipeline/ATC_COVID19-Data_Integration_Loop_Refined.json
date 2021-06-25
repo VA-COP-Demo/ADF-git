@@ -35,14 +35,14 @@
 							"userProperties": [],
 							"typeProperties": {
 								"source": {
-									"type": "DelimitedTextSource",
+									"type": "JsonSource",
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
 										"enablePartitionDiscovery": false
 									},
 									"formatSettings": {
-										"type": "DelimitedTextReadSettings"
+										"type": "JsonReadSettings"
 									}
 								},
 								"sink": {
@@ -59,15 +59,12 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "COPS_ADLS_CSV",
+									"referenceName": "COPS_ADLS_json",
 									"type": "DatasetReference",
 									"parameters": {
 										"Filesystem": "@pipeline().parameters.SourceFilesystem",
 										"Directory": "@pipeline().parameters.SourceDirectory",
-										"Filename": {
-											"value": "@{split(item().name,'.')[0]}",
-											"type": "Expression"
-										},
+										"Filename": "@{split(item().name,'.')[0]}",
 										"FileExtension": "@{split(item().name,'.')[1]}"
 									}
 								}
@@ -102,7 +99,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "COPS_ADLS_CSV",
+						"referenceName": "COPS_ADLS_json",
 						"type": "DatasetReference",
 						"parameters": {
 							"Filesystem": "@pipeline().parameters.SourceFilesystem",
@@ -120,7 +117,7 @@
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
-						"type": "DelimitedTextReadSettings"
+						"type": "JsonReadSettings"
 					}
 				}
 			},
@@ -218,7 +215,7 @@
 			},
 			"DestinationDirectory": {
 				"type": "string",
-				"defaultValue": "Staging"
+				"defaultValue": "Refined"
 			},
 			"DestinationFilename": {
 				"type": "string",
@@ -234,7 +231,7 @@
 			},
 			"SourceDirectory": {
 				"type": "string",
-				"defaultValue": "Raw"
+				"defaultValue": "Staging"
 			},
 			"SourceFilename": {
 				"type": "string",
@@ -242,7 +239,7 @@
 			},
 			"SourceFileExtension": {
 				"type": "string",
-				"defaultValue": "*csv"
+				"defaultValue": "*json"
 			}
 		},
 		"annotations": []
