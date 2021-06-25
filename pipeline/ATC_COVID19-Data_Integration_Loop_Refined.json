@@ -227,7 +227,7 @@
 													"Filesystem": "@pipeline().parameters.DestinationFilesystem",
 													"Directory": "@pipeline().parameters.DestinationDirectory",
 													"Filename": {
-														"value": "@(split(item().name,'.')[0])",
+														"value": "@{split(item().name,'.')[0]}",
 														"type": "Expression"
 													},
 													"FileExtension": "@pipeline().parameters.DestinationFileExtension"
