@@ -42,8 +42,7 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "ST",
-									"type": "String"
+									"path": "$['ST']"
 								},
 								"sink": {
 									"path": "$['ST']"
@@ -51,8 +50,7 @@
 							},
 							{
 								"source": {
-									"name": "STATE",
-									"type": "String"
+									"path": "$['STATE']"
 								},
 								"sink": {
 									"path": "$['STATE']"
@@ -60,8 +58,7 @@
 							},
 							{
 								"source": {
-									"name": "ST_ABBR",
-									"type": "String"
+									"path": "$['ST_ABBR']"
 								},
 								"sink": {
 									"path": "$['ST_ABBR']"
@@ -69,8 +66,7 @@
 							},
 							{
 								"source": {
-									"name": "STCNTY",
-									"type": "String"
+									"path": "$['STCNTY']"
 								},
 								"sink": {
 									"path": "$['STCNTY']"
@@ -78,8 +74,7 @@
 							},
 							{
 								"source": {
-									"name": "COUNTY",
-									"type": "String"
+									"path": "$['COUNTY']"
 								},
 								"sink": {
 									"path": "$['COUNTY']"
@@ -87,8 +82,7 @@
 							},
 							{
 								"source": {
-									"name": "FIPS",
-									"type": "String"
+									"path": "$['FIPS']"
 								},
 								"sink": {
 									"path": "$['FIPS']"
@@ -96,8 +90,7 @@
 							},
 							{
 								"source": {
-									"name": "LOCATION",
-									"type": "String"
+									"path": "$['LOCATION']"
 								},
 								"sink": {
 									"path": "$['LOCATION']"
@@ -105,8 +98,7 @@
 							},
 							{
 								"source": {
-									"name": "AREA_SQMI",
-									"type": "String"
+									"path": "$['AREA_SQMI']"
 								},
 								"sink": {
 									"path": "$['AREA_SQMI']"
@@ -114,8 +106,7 @@
 							},
 							{
 								"source": {
-									"name": "E_TOTPOP",
-									"type": "String"
+									"path": "$['E_TOTPOP']"
 								},
 								"sink": {
 									"path": "$['E_TOTPOP']"
@@ -123,8 +114,7 @@
 							},
 							{
 								"source": {
-									"name": "M_TOTPOP",
-									"type": "String"
+									"path": "$['M_TOTPOP']"
 								},
 								"sink": {
 									"path": "$['M_TOTPOP']"
@@ -132,8 +122,7 @@
 							},
 							{
 								"source": {
-									"name": "E_HU",
-									"type": "String"
+									"path": "$['E_HU']"
 								},
 								"sink": {
 									"path": "$['E_HU']"
@@ -141,8 +130,7 @@
 							},
 							{
 								"source": {
-									"name": "M_HU",
-									"type": "String"
+									"path": "$['M_HU']"
 								},
 								"sink": {
 									"path": "$['M_HU']"
@@ -150,8 +138,7 @@
 							},
 							{
 								"source": {
-									"name": "E_HH",
-									"type": "String"
+									"path": "$['E_HH']"
 								},
 								"sink": {
 									"path": "$['E_HH']"
@@ -159,8 +146,7 @@
 							},
 							{
 								"source": {
-									"name": "M_HH",
-									"type": "String"
+									"path": "$['M_HH']"
 								},
 								"sink": {
 									"path": "$['M_HH']"
@@ -168,8 +154,7 @@
 							},
 							{
 								"source": {
-									"name": "E_POV",
-									"type": "String"
+									"path": "$['E_POV']"
 								},
 								"sink": {
 									"path": "$['E_POV']"
@@ -177,8 +162,7 @@
 							},
 							{
 								"source": {
-									"name": "M_POV",
-									"type": "String"
+									"path": "$['M_POV']"
 								},
 								"sink": {
 									"path": "$['M_POV']"
@@ -186,8 +170,7 @@
 							},
 							{
 								"source": {
-									"name": "E_UNEMP",
-									"type": "String"
+									"path": "$['E_UNEMP']"
 								},
 								"sink": {
 									"path": "$['E_UNEMP']"
@@ -195,8 +178,7 @@
 							},
 							{
 								"source": {
-									"name": "M_UNEMP",
-									"type": "String"
+									"path": "$['M_UNEMP']"
 								},
 								"sink": {
 									"path": "$['M_UNEMP']"
@@ -204,8 +186,7 @@
 							},
 							{
 								"source": {
-									"name": "E_PCI",
-									"type": "String"
+									"path": "$['E_PCI']"
 								},
 								"sink": {
 									"path": "$['E_PCI']"
@@ -213,8 +194,7 @@
 							},
 							{
 								"source": {
-									"name": "M_PCI",
-									"type": "String"
+									"path": "$['M_PCI']"
 								},
 								"sink": {
 									"path": "$['M_PCI']"
@@ -222,8 +202,7 @@
 							},
 							{
 								"source": {
-									"name": "E_NOHSDP",
-									"type": "String"
+									"path": "$['E_NOHSDP']"
 								},
 								"sink": {
 									"path": "$['E_NOHSDP']"
@@ -231,8 +210,7 @@
 							},
 							{
 								"source": {
-									"name": "M_NOHSDP",
-									"type": "String"
+									"path": "$['M_NOHSDP']"
 								},
 								"sink": {
 									"path": "$['M_NOHSDP']"
@@ -240,8 +218,7 @@
 							},
 							{
 								"source": {
-									"name": "E_AGE65",
-									"type": "String"
+									"path": "$['E_AGE65']"
 								},
 								"sink": {
 									"path": "$['E_AGE65']"
@@ -249,8 +226,7 @@
 							},
 							{
 								"source": {
-									"name": "M_AGE65",
-									"type": "String"
+									"path": "$['M_AGE65']"
 								},
 								"sink": {
 									"path": "$['M_AGE65']"
@@ -258,8 +234,7 @@
 							},
 							{
 								"source": {
-									"name": "E_AGE17",
-									"type": "String"
+									"path": "$['E_AGE17']"
 								},
 								"sink": {
 									"path": "$['E_AGE17']"
@@ -267,8 +242,7 @@
 							},
 							{
 								"source": {
-									"name": "M_AGE17",
-									"type": "String"
+									"path": "$['M_AGE17']"
 								},
 								"sink": {
 									"path": "$['M_AGE17']"
@@ -276,8 +250,7 @@
 							},
 							{
 								"source": {
-									"name": "E_DISABL",
-									"type": "String"
+									"path": "$['E_DISABL']"
 								},
 								"sink": {
 									"path": "$['E_DISABL']"
@@ -285,8 +258,7 @@
 							},
 							{
 								"source": {
-									"name": "M_DISABL",
-									"type": "String"
+									"path": "$['M_DISABL']"
 								},
 								"sink": {
 									"path": "$['M_DISABL']"
@@ -294,8 +266,7 @@
 							},
 							{
 								"source": {
-									"name": "E_SNGPNT",
-									"type": "String"
+									"path": "$['E_SNGPNT']"
 								},
 								"sink": {
 									"path": "$['E_SNGPNT']"
@@ -303,8 +274,7 @@
 							},
 							{
 								"source": {
-									"name": "M_SNGPNT",
-									"type": "String"
+									"path": "$['M_SNGPNT']"
 								},
 								"sink": {
 									"path": "$['M_SNGPNT']"
@@ -312,8 +282,7 @@
 							},
 							{
 								"source": {
-									"name": "E_MINRTY",
-									"type": "String"
+									"path": "$['E_MINRTY']"
 								},
 								"sink": {
 									"path": "$['E_MINRTY']"
@@ -321,8 +290,7 @@
 							},
 							{
 								"source": {
-									"name": "M_MINRTY",
-									"type": "String"
+									"path": "$['M_MINRTY']"
 								},
 								"sink": {
 									"path": "$['M_MINRTY']"
@@ -330,8 +298,7 @@
 							},
 							{
 								"source": {
-									"name": "E_LIMENG",
-									"type": "String"
+									"path": "$['E_LIMENG']"
 								},
 								"sink": {
 									"path": "$['E_LIMENG']"
@@ -339,8 +306,7 @@
 							},
 							{
 								"source": {
-									"name": "M_LIMENG",
-									"type": "String"
+									"path": "$['M_LIMENG']"
 								},
 								"sink": {
 									"path": "$['M_LIMENG']"
@@ -348,8 +314,7 @@
 							},
 							{
 								"source": {
-									"name": "E_MUNIT",
-									"type": "String"
+									"path": "$['E_MUNIT']"
 								},
 								"sink": {
 									"path": "$['E_MUNIT']"
@@ -357,8 +322,7 @@
 							},
 							{
 								"source": {
-									"name": "M_MUNIT",
-									"type": "String"
+									"path": "$['M_MUNIT']"
 								},
 								"sink": {
 									"path": "$['M_MUNIT']"
@@ -366,8 +330,7 @@
 							},
 							{
 								"source": {
-									"name": "E_MOBILE",
-									"type": "String"
+									"path": "$['E_MOBILE']"
 								},
 								"sink": {
 									"path": "$['E_MOBILE']"
@@ -375,8 +338,7 @@
 							},
 							{
 								"source": {
-									"name": "M_MOBILE",
-									"type": "String"
+									"path": "$['M_MOBILE']"
 								},
 								"sink": {
 									"path": "$['M_MOBILE']"
@@ -384,8 +346,7 @@
 							},
 							{
 								"source": {
-									"name": "E_CROWD",
-									"type": "String"
+									"path": "$['E_CROWD']"
 								},
 								"sink": {
 									"path": "$['E_CROWD']"
@@ -393,8 +354,7 @@
 							},
 							{
 								"source": {
-									"name": "M_CROWD",
-									"type": "String"
+									"path": "$['M_CROWD']"
 								},
 								"sink": {
 									"path": "$['M_CROWD']"
@@ -402,8 +362,7 @@
 							},
 							{
 								"source": {
-									"name": "E_NOVEH",
-									"type": "String"
+									"path": "$['E_NOVEH']"
 								},
 								"sink": {
 									"path": "$['E_NOVEH']"
@@ -411,8 +370,7 @@
 							},
 							{
 								"source": {
-									"name": "M_NOVEH",
-									"type": "String"
+									"path": "$['M_NOVEH']"
 								},
 								"sink": {
 									"path": "$['M_NOVEH']"
@@ -420,8 +378,7 @@
 							},
 							{
 								"source": {
-									"name": "E_GROUPQ",
-									"type": "String"
+									"path": "$['E_GROUPQ']"
 								},
 								"sink": {
 									"path": "$['E_GROUPQ']"
@@ -429,8 +386,7 @@
 							},
 							{
 								"source": {
-									"name": "M_GROUPQ",
-									"type": "String"
+									"path": "$['M_GROUPQ']"
 								},
 								"sink": {
 									"path": "$['M_GROUPQ']"
@@ -438,8 +394,7 @@
 							},
 							{
 								"source": {
-									"name": "EP_POV",
-									"type": "String"
+									"path": "$['EP_POV']"
 								},
 								"sink": {
 									"path": "$['EP_POV']"
@@ -447,8 +402,7 @@
 							},
 							{
 								"source": {
-									"name": "MP_POV",
-									"type": "String"
+									"path": "$['MP_POV']"
 								},
 								"sink": {
 									"path": "$['MP_POV']"
@@ -456,8 +410,7 @@
 							},
 							{
 								"source": {
-									"name": "EP_UNEMP",
-									"type": "String"
+									"path": "$['EP_UNEMP']"
 								},
 								"sink": {
 									"path": "$['EP_UNEMP']"
@@ -465,8 +418,7 @@
 							},
 							{
 								"source": {
-									"name": "MP_UNEMP",
-									"type": "String"
+									"path": "$['MP_UNEMP']"
 								},
 								"sink": {
 									"path": "$['MP_UNEMP']"
@@ -474,8 +426,7 @@
 							},
 							{
 								"source": {
-									"name": "EP_PCI",
-									"type": "String"
+									"path": "$['EP_PCI']"
 								},
 								"sink": {
 									"path": "$['EP_PCI']"
@@ -483,8 +434,7 @@
 							},
 							{
 								"source": {
-									"name": "MP_PCI",
-									"type": "String"
+									"path": "$['MP_PCI']"
 								},
 								"sink": {
 									"path": "$['MP_PCI']"
@@ -492,8 +442,7 @@
 							},
 							{
 								"source": {
-									"name": "EP_NOHSDP",
-									"type": "String"
+									"path": "$['EP_NOHSDP']"
 								},
 								"sink": {
 									"path": "$['EP_NOHSDP']"
@@ -501,8 +450,7 @@
 							},
 							{
 								"source": {
-									"name": "MP_NOHSDP",
-									"type": "String"
+									"path": "$['MP_NOHSDP']"
 								},
 								"sink": {
 									"path": "$['MP_NOHSDP']"
@@ -510,8 +458,7 @@
 							},
 							{
 								"source": {
-									"name": "EP_AGE65",
-									"type": "String"
+									"path": "$['EP_AGE65']"
 								},
 								"sink": {
 									"path": "$['EP_AGE65']"
@@ -519,8 +466,7 @@
 							},
 							{
 								"source": {
-									"name": "MP_AGE65",
-									"type": "String"
+									"path": "$['MP_AGE65']"
 								},
 								"sink": {
 									"path": "$['MP_AGE65']"
@@ -528,8 +474,7 @@
 							},
 							{
 								"source": {
-									"name": "EP_AGE17",
-									"type": "String"
+									"path": "$['EP_AGE17']"
 								},
 								"sink": {
 									"path": "$['EP_AGE17']"
@@ -537,8 +482,7 @@
 							},
 							{
 								"source": {
-									"name": "MP_AGE17",
-									"type": "String"
+									"path": "$['MP_AGE17']"
 								},
 								"sink": {
 									"path": "$['MP_AGE17']"
@@ -546,8 +490,7 @@
 							},
 							{
 								"source": {
-									"name": "EP_DISABL",
-									"type": "String"
+									"path": "$['EP_DISABL']"
 								},
 								"sink": {
 									"path": "$['EP_DISABL']"
@@ -555,8 +498,7 @@
 							},
 							{
 								"source": {
-									"name": "MP_DISABL",
-									"type": "String"
+									"path": "$['MP_DISABL']"
 								},
 								"sink": {
 									"path": "$['MP_DISABL']"
@@ -564,8 +506,7 @@
 							},
 							{
 								"source": {
-									"name": "EP_SNGPNT",
-									"type": "String"
+									"path": "$['EP_SNGPNT']"
 								},
 								"sink": {
 									"path": "$['EP_SNGPNT']"
@@ -573,8 +514,7 @@
 							},
 							{
 								"source": {
-									"name": "MP_SNGPNT",
-									"type": "String"
+									"path": "$['MP_SNGPNT']"
 								},
 								"sink": {
 									"path": "$['MP_SNGPNT']"
@@ -582,8 +522,7 @@
 							},
 							{
 								"source": {
-									"name": "EP_MINRTY",
-									"type": "String"
+									"path": "$['EP_MINRTY']"
 								},
 								"sink": {
 									"path": "$['EP_MINRTY']"
@@ -591,8 +530,7 @@
 							},
 							{
 								"source": {
-									"name": "MP_MINRTY",
-									"type": "String"
+									"path": "$['MP_MINRTY']"
 								},
 								"sink": {
 									"path": "$['MP_MINRTY']"
@@ -600,8 +538,7 @@
 							},
 							{
 								"source": {
-									"name": "EP_LIMENG",
-									"type": "String"
+									"path": "$['EP_LIMENG']"
 								},
 								"sink": {
 									"path": "$['EP_LIMENG']"
@@ -609,8 +546,7 @@
 							},
 							{
 								"source": {
-									"name": "MP_LIMENG",
-									"type": "String"
+									"path": "$['MP_LIMENG']"
 								},
 								"sink": {
 									"path": "$['MP_LIMENG']"
@@ -618,8 +554,7 @@
 							},
 							{
 								"source": {
-									"name": "EP_MUNIT",
-									"type": "String"
+									"path": "$['EP_MUNIT']"
 								},
 								"sink": {
 									"path": "$['EP_MUNIT']"
@@ -627,8 +562,7 @@
 							},
 							{
 								"source": {
-									"name": "MP_MUNIT",
-									"type": "String"
+									"path": "$['MP_MUNIT']"
 								},
 								"sink": {
 									"path": "$['MP_MUNIT']"
@@ -636,8 +570,7 @@
 							},
 							{
 								"source": {
-									"name": "EP_MOBILE",
-									"type": "String"
+									"path": "$['EP_MOBILE']"
 								},
 								"sink": {
 									"path": "$['EP_MOBILE']"
@@ -645,8 +578,7 @@
 							},
 							{
 								"source": {
-									"name": "MP_MOBILE",
-									"type": "String"
+									"path": "$['MP_MOBILE']"
 								},
 								"sink": {
 									"path": "$['MP_MOBILE']"
@@ -654,8 +586,7 @@
 							},
 							{
 								"source": {
-									"name": "EP_CROWD",
-									"type": "String"
+									"path": "$['EP_CROWD']"
 								},
 								"sink": {
 									"path": "$['EP_CROWD']"
@@ -663,8 +594,7 @@
 							},
 							{
 								"source": {
-									"name": "MP_CROWD",
-									"type": "String"
+									"path": "$['MP_CROWD']"
 								},
 								"sink": {
 									"path": "$['MP_CROWD']"
@@ -672,8 +602,7 @@
 							},
 							{
 								"source": {
-									"name": "EP_NOVEH",
-									"type": "String"
+									"path": "$['EP_NOVEH']"
 								},
 								"sink": {
 									"path": "$['EP_NOVEH']"
@@ -681,8 +610,7 @@
 							},
 							{
 								"source": {
-									"name": "MP_NOVEH",
-									"type": "String"
+									"path": "$['MP_NOVEH']"
 								},
 								"sink": {
 									"path": "$['MP_NOVEH']"
@@ -690,8 +618,7 @@
 							},
 							{
 								"source": {
-									"name": "EP_GROUPQ",
-									"type": "String"
+									"path": "$['EP_GROUPQ']"
 								},
 								"sink": {
 									"path": "$['EP_GROUPQ']"
@@ -699,8 +626,7 @@
 							},
 							{
 								"source": {
-									"name": "MP_GROUPQ",
-									"type": "String"
+									"path": "$['MP_GROUPQ']"
 								},
 								"sink": {
 									"path": "$['MP_GROUPQ']"
@@ -708,8 +634,7 @@
 							},
 							{
 								"source": {
-									"name": "EPL_POV",
-									"type": "String"
+									"path": "$['EPL_POV']"
 								},
 								"sink": {
 									"path": "$['EPL_POV']"
@@ -717,8 +642,7 @@
 							},
 							{
 								"source": {
-									"name": "EPL_UNEMP",
-									"type": "String"
+									"path": "$['EPL_UNEMP']"
 								},
 								"sink": {
 									"path": "$['EPL_UNEMP']"
@@ -726,8 +650,7 @@
 							},
 							{
 								"source": {
-									"name": "EPL_PCI",
-									"type": "String"
+									"path": "$['EPL_PCI']"
 								},
 								"sink": {
 									"path": "$['EPL_PCI']"
@@ -735,8 +658,7 @@
 							},
 							{
 								"source": {
-									"name": "EPL_NOHSDP",
-									"type": "String"
+									"path": "$['EPL_NOHSDP']"
 								},
 								"sink": {
 									"path": "$['EPL_NOHSDP']"
@@ -744,8 +666,7 @@
 							},
 							{
 								"source": {
-									"name": "SPL_THEME1",
-									"type": "String"
+									"path": "$['SPL_THEME1']"
 								},
 								"sink": {
 									"path": "$['SPL_THEME1']"
@@ -753,8 +674,7 @@
 							},
 							{
 								"source": {
-									"name": "RPL_THEME1",
-									"type": "String"
+									"path": "$['RPL_THEME1']"
 								},
 								"sink": {
 									"path": "$['RPL_THEME1']"
@@ -762,8 +682,7 @@
 							},
 							{
 								"source": {
-									"name": "EPL_AGE65",
-									"type": "String"
+									"path": "$['EPL_AGE65']"
 								},
 								"sink": {
 									"path": "$['EPL_AGE65']"
@@ -771,8 +690,7 @@
 							},
 							{
 								"source": {
-									"name": "EPL_AGE17",
-									"type": "String"
+									"path": "$['EPL_AGE17']"
 								},
 								"sink": {
 									"path": "$['EPL_AGE17']"
@@ -780,8 +698,7 @@
 							},
 							{
 								"source": {
-									"name": "EPL_DISABL",
-									"type": "String"
+									"path": "$['EPL_DISABL']"
 								},
 								"sink": {
 									"path": "$['EPL_DISABL']"
@@ -789,8 +706,7 @@
 							},
 							{
 								"source": {
-									"name": "EPL_SNGPNT",
-									"type": "String"
+									"path": "$['EPL_SNGPNT']"
 								},
 								"sink": {
 									"path": "$['EPL_SNGPNT']"
@@ -798,8 +714,7 @@
 							},
 							{
 								"source": {
-									"name": "SPL_THEME2",
-									"type": "String"
+									"path": "$['SPL_THEME2']"
 								},
 								"sink": {
 									"path": "$['SPL_THEME2']"
@@ -807,8 +722,7 @@
 							},
 							{
 								"source": {
-									"name": "RPL_THEME2",
-									"type": "String"
+									"path": "$['RPL_THEME2']"
 								},
 								"sink": {
 									"path": "$['RPL_THEME2']"
@@ -816,8 +730,7 @@
 							},
 							{
 								"source": {
-									"name": "EPL_MINRTY",
-									"type": "String"
+									"path": "$['EPL_MINRTY']"
 								},
 								"sink": {
 									"path": "$['EPL_MINRTY']"
@@ -825,8 +738,7 @@
 							},
 							{
 								"source": {
-									"name": "EPL_LIMENG",
-									"type": "String"
+									"path": "$['EPL_LIMENG']"
 								},
 								"sink": {
 									"path": "$['EPL_LIMENG']"
@@ -834,8 +746,7 @@
 							},
 							{
 								"source": {
-									"name": "SPL_THEME3",
-									"type": "String"
+									"path": "$['SPL_THEME3']"
 								},
 								"sink": {
 									"path": "$['SPL_THEME3']"
@@ -843,8 +754,7 @@
 							},
 							{
 								"source": {
-									"name": "RPL_THEME3",
-									"type": "String"
+									"path": "$['RPL_THEME3']"
 								},
 								"sink": {
 									"path": "$['RPL_THEME3']"
@@ -852,8 +762,7 @@
 							},
 							{
 								"source": {
-									"name": "EPL_MUNIT",
-									"type": "String"
+									"path": "$['EPL_MUNIT']"
 								},
 								"sink": {
 									"path": "$['EPL_MUNIT']"
@@ -861,8 +770,7 @@
 							},
 							{
 								"source": {
-									"name": "EPL_MOBILE",
-									"type": "String"
+									"path": "$['EPL_MOBILE']"
 								},
 								"sink": {
 									"path": "$['EPL_MOBILE']"
@@ -870,8 +778,7 @@
 							},
 							{
 								"source": {
-									"name": "EPL_CROWD",
-									"type": "String"
+									"path": "$['EPL_CROWD']"
 								},
 								"sink": {
 									"path": "$['EPL_CROWD']"
@@ -879,8 +786,7 @@
 							},
 							{
 								"source": {
-									"name": "EPL_NOVEH",
-									"type": "String"
+									"path": "$['EPL_NOVEH']"
 								},
 								"sink": {
 									"path": "$['EPL_NOVEH']"
@@ -888,8 +794,7 @@
 							},
 							{
 								"source": {
-									"name": "EPL_GROUPQ",
-									"type": "String"
+									"path": "$['EPL_GROUPQ']"
 								},
 								"sink": {
 									"path": "$['EPL_GROUPQ']"
@@ -897,8 +802,7 @@
 							},
 							{
 								"source": {
-									"name": "SPL_THEME4",
-									"type": "String"
+									"path": "$['SPL_THEME4']"
 								},
 								"sink": {
 									"path": "$['SPL_THEME4']"
@@ -906,8 +810,7 @@
 							},
 							{
 								"source": {
-									"name": "RPL_THEME4",
-									"type": "String"
+									"path": "$['RPL_THEME4']"
 								},
 								"sink": {
 									"path": "$['RPL_THEME4']"
@@ -915,8 +818,7 @@
 							},
 							{
 								"source": {
-									"name": "SPL_THEMES",
-									"type": "String"
+									"path": "$['SPL_THEMES']"
 								},
 								"sink": {
 									"path": "$['SPL_THEMES']"
@@ -924,8 +826,7 @@
 							},
 							{
 								"source": {
-									"name": "RPL_THEMES",
-									"type": "String"
+									"path": "$['RPL_THEMES']"
 								},
 								"sink": {
 									"path": "$['RPL_THEMES']"
@@ -933,8 +834,7 @@
 							},
 							{
 								"source": {
-									"name": "F_POV",
-									"type": "String"
+									"path": "$['F_POV']"
 								},
 								"sink": {
 									"path": "$['F_POV']"
@@ -942,8 +842,7 @@
 							},
 							{
 								"source": {
-									"name": "F_UNEMP",
-									"type": "String"
+									"path": "$['F_UNEMP']"
 								},
 								"sink": {
 									"path": "$['F_UNEMP']"
@@ -951,8 +850,7 @@
 							},
 							{
 								"source": {
-									"name": "F_PCI",
-									"type": "String"
+									"path": "$['F_PCI']"
 								},
 								"sink": {
 									"path": "$['F_PCI']"
@@ -960,8 +858,7 @@
 							},
 							{
 								"source": {
-									"name": "F_NOHSDP",
-									"type": "String"
+									"path": "$['F_NOHSDP']"
 								},
 								"sink": {
 									"path": "$['F_NOHSDP']"
@@ -969,8 +866,7 @@
 							},
 							{
 								"source": {
-									"name": "F_THEME1",
-									"type": "String"
+									"path": "$['F_THEME1']"
 								},
 								"sink": {
 									"path": "$['F_THEME1']"
@@ -978,8 +874,7 @@
 							},
 							{
 								"source": {
-									"name": "F_AGE65",
-									"type": "String"
+									"path": "$['F_AGE65']"
 								},
 								"sink": {
 									"path": "$['F_AGE65']"
@@ -987,8 +882,7 @@
 							},
 							{
 								"source": {
-									"name": "F_AGE17",
-									"type": "String"
+									"path": "$['F_AGE17']"
 								},
 								"sink": {
 									"path": "$['F_AGE17']"
@@ -996,8 +890,7 @@
 							},
 							{
 								"source": {
-									"name": "F_DISABL",
-									"type": "String"
+									"path": "$['F_DISABL']"
 								},
 								"sink": {
 									"path": "$['F_DISABL']"
@@ -1005,8 +898,7 @@
 							},
 							{
 								"source": {
-									"name": "F_SNGPNT",
-									"type": "String"
+									"path": "$['F_SNGPNT']"
 								},
 								"sink": {
 									"path": "$['F_SNGPNT']"
@@ -1014,8 +906,7 @@
 							},
 							{
 								"source": {
-									"name": "F_THEME2",
-									"type": "String"
+									"path": "$['F_THEME2']"
 								},
 								"sink": {
 									"path": "$['F_THEME2']"
@@ -1023,8 +914,7 @@
 							},
 							{
 								"source": {
-									"name": "F_MINRTY",
-									"type": "String"
+									"path": "$['F_MINRTY']"
 								},
 								"sink": {
 									"path": "$['F_MINRTY']"
@@ -1032,8 +922,7 @@
 							},
 							{
 								"source": {
-									"name": "F_LIMENG",
-									"type": "String"
+									"path": "$['F_LIMENG']"
 								},
 								"sink": {
 									"path": "$['F_LIMENG']"
@@ -1041,8 +930,7 @@
 							},
 							{
 								"source": {
-									"name": "F_THEME3",
-									"type": "String"
+									"path": "$['F_THEME3']"
 								},
 								"sink": {
 									"path": "$['F_THEME3']"
@@ -1050,8 +938,7 @@
 							},
 							{
 								"source": {
-									"name": "F_MUNIT",
-									"type": "String"
+									"path": "$['F_MUNIT']"
 								},
 								"sink": {
 									"path": "$['F_MUNIT']"
@@ -1059,8 +946,7 @@
 							},
 							{
 								"source": {
-									"name": "F_MOBILE",
-									"type": "String"
+									"path": "$['F_MOBILE']"
 								},
 								"sink": {
 									"path": "$['F_MOBILE']"
@@ -1068,8 +954,7 @@
 							},
 							{
 								"source": {
-									"name": "F_CROWD",
-									"type": "String"
+									"path": "$['F_CROWD']"
 								},
 								"sink": {
 									"path": "$['F_CROWD']"
@@ -1077,8 +962,7 @@
 							},
 							{
 								"source": {
-									"name": "F_NOVEH",
-									"type": "String"
+									"path": "$['F_NOVEH']"
 								},
 								"sink": {
 									"path": "$['F_NOVEH']"
@@ -1086,8 +970,7 @@
 							},
 							{
 								"source": {
-									"name": "F_GROUPQ",
-									"type": "String"
+									"path": "$['F_GROUPQ']"
 								},
 								"sink": {
 									"path": "$['F_GROUPQ']"
@@ -1095,8 +978,7 @@
 							},
 							{
 								"source": {
-									"name": "F_THEME4",
-									"type": "String"
+									"path": "$['F_THEME4']"
 								},
 								"sink": {
 									"path": "$['F_THEME4']"
@@ -1104,8 +986,7 @@
 							},
 							{
 								"source": {
-									"name": "F_TOTAL",
-									"type": "String"
+									"path": "$['F_TOTAL']"
 								},
 								"sink": {
 									"path": "$['F_TOTAL']"
@@ -1113,8 +994,7 @@
 							},
 							{
 								"source": {
-									"name": "E_UNINSUR",
-									"type": "String"
+									"path": "$['E_UNINSUR']"
 								},
 								"sink": {
 									"path": "$['E_UNINSUR']"
@@ -1122,8 +1002,7 @@
 							},
 							{
 								"source": {
-									"name": "M_UNINSUR",
-									"type": "String"
+									"path": "$['M_UNINSUR']"
 								},
 								"sink": {
 									"path": "$['M_UNINSUR']"
@@ -1131,8 +1010,7 @@
 							},
 							{
 								"source": {
-									"name": "EP_UNINSUR",
-									"type": "String"
+									"path": "$['EP_UNINSUR']"
 								},
 								"sink": {
 									"path": "$['EP_UNINSUR']"
@@ -1140,8 +1018,7 @@
 							},
 							{
 								"source": {
-									"name": "MP_UNINSUR",
-									"type": "String"
+									"path": "$['MP_UNINSUR']"
 								},
 								"sink": {
 									"path": "$['MP_UNINSUR']"
@@ -1149,14 +1026,14 @@
 							},
 							{
 								"source": {
-									"name": "E_DAYPOP",
-									"type": "String"
+									"path": "$['E_DAYPOP']"
 								},
 								"sink": {
 									"path": "$['E_DAYPOP']"
 								}
 							}
-						]
+						],
+						"collectionReference": ""
 					}
 				},
 				"inputs": [
@@ -1209,7 +1086,7 @@
 				]
 			},
 			{
-				"name": "Copy data1_copy3",
+				"name": "Copy data1_copy4",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -1255,1118 +1132,994 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "ST",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['ST']"
+								},
+								"sink": {
+									"path": "$['State-level FIPS code']"
 								}
 							},
 							{
 								"source": {
-									"name": "STATE",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['STATE']"
+								},
+								"sink": {
+									"path": "$['State name']"
 								}
 							},
 							{
 								"source": {
-									"name": "ST_ABBR",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['ST_ABBR']"
+								},
+								"sink": {
+									"path": "$['State abbreviation']"
 								}
 							},
 							{
 								"source": {
-									"name": "STCNTY",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['STCNTY']"
+								},
+								"sink": {
+									"path": "$['County level FIPS code']"
 								}
 							},
 							{
 								"source": {
-									"name": "COUNTY",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['COUNTY']"
+								},
+								"sink": {
+									"path": "$['County name']"
 								}
 							},
 							{
 								"source": {
-									"name": "FIPS",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['FIPS']"
+								},
+								"sink": {
+									"path": "$['Tract-level FIPS code']"
 								}
 							},
 							{
 								"source": {
-									"name": "LOCATION",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['LOCATION']"
+								},
+								"sink": {
+									"path": "$['county state']"
 								}
 							},
 							{
 								"source": {
-									"name": "AREA_SQMI",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['AREA_SQMI']"
+								},
+								"sink": {
+									"path": "$['Tract area']"
 								}
 							},
 							{
 								"source": {
-									"name": "E_TOTPOP",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['E_TOTPOP']"
+								},
+								"sink": {
+									"path": "$['Population estimate1']"
 								}
 							},
 							{
 								"source": {
-									"name": "M_TOTPOP",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['M_TOTPOP']"
+								},
+								"sink": {
+									"path": "$['Population estimate MOE1']"
 								}
 							},
 							{
 								"source": {
-									"name": "E_HU",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['E_HU']"
+								},
+								"sink": {
+									"path": "$['Housing units estimate1']"
 								}
 							},
 							{
 								"source": {
-									"name": "M_HU",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['M_HU']"
+								},
+								"sink": {
+									"path": "$['Housing units estimate MOE1']"
 								}
 							},
 							{
 								"source": {
-									"name": "E_HH",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['E_HH']"
+								},
+								"sink": {
+									"path": "$['Households estimate1']"
 								}
 							},
 							{
 								"source": {
-									"name": "M_HH",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['M_HH']"
+								},
+								"sink": {
+									"path": "$['Households estimate MOE1']"
 								}
 							},
 							{
 								"source": {
-									"name": "E_POV",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['E_POV']"
+								},
+								"sink": {
+									"path": "$['Persons below poverty estimate1']"
 								}
 							},
 							{
 								"source": {
-									"name": "M_POV",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['M_POV']"
+								},
+								"sink": {
+									"path": "$['Persons below poverty estimate MOE1']"
 								}
 							},
 							{
 								"source": {
-									"name": "E_UNEMP",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['E_UNEMP']"
+								},
+								"sink": {
+									"path": "$['Civilian unemployed estimate1']"
 								}
 							},
 							{
 								"source": {
-									"name": "M_UNEMP",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['M_UNEMP']"
+								},
+								"sink": {
+									"path": "$['Civilian unemployed estimate MOE1']"
 								}
 							},
 							{
 								"source": {
-									"name": "E_PCI",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['E_PCI']"
+								},
+								"sink": {
+									"path": "$['Per capita income estimate1']"
 								}
 							},
 							{
 								"source": {
-									"name": "M_PCI",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['M_PCI']"
+								},
+								"sink": {
+									"path": "$['Per capita income estimate MOE1']"
 								}
 							},
 							{
 								"source": {
-									"name": "E_NOHSDP",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['E_NOHSDP']"
+								},
+								"sink": {
+									"path": "$['Persons with no high school diploma estimate1']"
 								}
 							},
 							{
 								"source": {
-									"name": "M_NOHSDP",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['M_NOHSDP']"
+								},
+								"sink": {
+									"path": "$['Persons with no high school diploma estimate MOE1']"
 								}
 							},
 							{
 								"source": {
-									"name": "E_AGE65",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['E_AGE65']"
+								},
+								"sink": {
+									"path": "$['Persons aged 65 and older estimate1']"
 								}
 							},
 							{
 								"source": {
-									"name": "M_AGE65",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['M_AGE65']"
+								},
+								"sink": {
+									"path": "$['Persons aged 65 and older estimate MOE1']"
 								}
 							},
 							{
 								"source": {
-									"name": "E_AGE17",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['E_AGE17']"
+								},
+								"sink": {
+									"path": "$['Persons aged 17 and younger estimate1']"
 								}
 							},
 							{
 								"source": {
-									"name": "M_AGE17",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['M_AGE17']"
+								},
+								"sink": {
+									"path": "$['Persons aged 17 and younger estimate MOE1']"
 								}
 							},
 							{
 								"source": {
-									"name": "E_DISABL",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['E_DISABL']"
+								},
+								"sink": {
+									"path": "$['Civilian noninstitutiona lized population with a disability estimate1']"
 								}
 							},
 							{
 								"source": {
-									"name": "M_DISABL",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['M_DISABL']"
+								},
+								"sink": {
+									"path": "$['Civilian noninstitutiona lized population with a disability estimate MOE1']"
 								}
 							},
 							{
 								"source": {
-									"name": "E_SNGPNT",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['E_SNGPNT']"
+								},
+								"sink": {
+									"path": "$['household with children under 18 estimate1']"
 								}
 							},
 							{
 								"source": {
-									"name": "M_SNGPNT",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['M_SNGPNT']"
+								},
+								"sink": {
+									"path": "$['Single parent household with children under 18 estimate MOE1']"
 								}
 							},
 							{
 								"source": {
-									"name": "E_MINRTY",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['E_MINRTY']"
+								},
+								"sink": {
+									"path": "$['Minority (all persons except white, non - Hispanic) estimate1']"
 								}
 							},
 							{
 								"source": {
-									"name": "M_MINRTY",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['M_MINRTY']"
+								},
+								"sink": {
+									"path": "$['Minority (all persons except white, non - Hispanic) estimate MOE1']"
 								}
 							},
 							{
 								"source": {
-									"name": "E_LIMENG",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['E_LIMENG']"
+								},
+								"sink": {
+									"path": "$['Persons who speak English less than well estimate1']"
 								}
 							},
 							{
 								"source": {
-									"name": "M_LIMENG",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['M_LIMENG']"
+								},
+								"sink": {
+									"path": "$['Persons who speak English less than well estimate MOE1']"
 								}
 							},
 							{
 								"source": {
-									"name": "E_MUNIT",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['E_MUNIT']"
+								},
+								"sink": {
+									"path": "$['Housing in structures with 10 or more units estimate1']"
 								}
 							},
 							{
 								"source": {
-									"name": "M_MUNIT",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['M_MUNIT']"
+								},
+								"sink": {
+									"path": "$['Housing in structures with 10 or more units estimate MOE1']"
 								}
 							},
 							{
 								"source": {
-									"name": "E_MOBILE",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['E_MOBILE']"
+								},
+								"sink": {
+									"path": "$['Mobile homes estimate1']"
 								}
 							},
 							{
 								"source": {
-									"name": "M_MOBILE",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['M_MOBILE']"
+								},
+								"sink": {
+									"path": "$['Mobile homes estimate MOE1']"
 								}
 							},
 							{
 								"source": {
-									"name": "E_CROWD",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['E_CROWD']"
+								},
+								"sink": {
+									"path": "$['At household level (occupied housing units), more people than rooms estimate1']"
 								}
 							},
 							{
 								"source": {
-									"name": "M_CROWD",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['M_CROWD']"
+								},
+								"sink": {
+									"path": "$['At household level (occupied housing units), more people than rooms estimate MOE1']"
 								}
 							},
 							{
 								"source": {
-									"name": "E_NOVEH",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['E_NOVEH']"
+								},
+								"sink": {
+									"path": "$['Households with no vehicle available estimate1']"
 								}
 							},
 							{
 								"source": {
-									"name": "M_NOVEH",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['M_NOVEH']"
+								},
+								"sink": {
+									"path": "$['Households with no vehicle available estimate MOE1']"
 								}
 							},
 							{
 								"source": {
-									"name": "E_GROUPQ",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['E_GROUPQ']"
+								},
+								"sink": {
+									"path": "$['Persons in group quarters estimate1']"
 								}
 							},
 							{
 								"source": {
-									"name": "M_GROUPQ",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['M_GROUPQ']"
+								},
+								"sink": {
+									"path": "$['Persons in group quarters estimate MOE1']"
 								}
 							},
 							{
 								"source": {
-									"name": "EP_POV",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EP_POV']"
+								},
+								"sink": {
+									"path": "$['Percentage of persons below poverty estimate2']"
 								}
 							},
 							{
 								"source": {
-									"name": "MP_POV",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['MP_POV']"
+								},
+								"sink": {
+									"path": "$['Percentage of persons below poverty estimate MOE2']"
 								}
 							},
 							{
 								"source": {
-									"name": "EP_UNEMP",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EP_UNEMP']"
+								},
+								"sink": {
+									"path": "$['Unemployment Rate estimate2']"
 								}
 							},
 							{
 								"source": {
-									"name": "MP_UNEMP",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['MP_UNEMP']"
+								},
+								"sink": {
+									"path": "$['Unemployment Rate estimate MOE2']"
 								}
 							},
 							{
 								"source": {
-									"name": "EP_PCI",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EP_PCI']"
+								},
+								"sink": {
+									"path": "$['Per capita income estimate2']"
 								}
 							},
 							{
 								"source": {
-									"name": "MP_PCI",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['MP_PCI']"
+								},
+								"sink": {
+									"path": "$['Per capita income estimate MOE2']"
 								}
 							},
 							{
 								"source": {
-									"name": "EP_NOHSDP",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EP_NOHSDP']"
+								},
+								"sink": {
+									"path": "$['Percentage of persons with no high school diploma estimate2']"
 								}
 							},
 							{
 								"source": {
-									"name": "MP_NOHSDP",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['MP_NOHSDP']"
+								},
+								"sink": {
+									"path": "$['Percentage of persons with no high school diploma estimate MOE2']"
 								}
 							},
 							{
 								"source": {
-									"name": "EP_AGE65",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EP_AGE65']"
+								},
+								"sink": {
+									"path": "$['Percentage of persons aged 65 and older estimate2']"
 								}
 							},
 							{
 								"source": {
-									"name": "MP_AGE65",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['MP_AGE65']"
+								},
+								"sink": {
+									"path": "$['Percentage of persons aged 65 and older estimate MOE2']"
 								}
 							},
 							{
 								"source": {
-									"name": "EP_AGE17",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EP_AGE17']"
+								},
+								"sink": {
+									"path": "$['Percentage of persons aged 17 and younger estimate2']"
 								}
 							},
 							{
 								"source": {
-									"name": "MP_AGE17",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['MP_AGE17']"
+								},
+								"sink": {
+									"path": "$['Percentage of persons aged 17 and younger estimate MOE2']"
 								}
 							},
 							{
 								"source": {
-									"name": "EP_DISABL",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EP_DISABL']"
+								},
+								"sink": {
+									"path": "$['Percentage of civilian noninstitutiona lized population with a disability estimate2']"
 								}
 							},
 							{
 								"source": {
-									"name": "MP_DISABL",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['MP_DISABL']"
+								},
+								"sink": {
+									"path": "$['Percentage of civilian noninstitutiona lized population with a disability estimate MOE2']"
 								}
 							},
 							{
 								"source": {
-									"name": "EP_SNGPNT",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EP_SNGPNT']"
+								},
+								"sink": {
+									"path": "$['Percentage of single parent households with children under 18 estimate2']"
 								}
 							},
 							{
 								"source": {
-									"name": "MP_SNGPNT",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['MP_SNGPNT']"
+								},
+								"sink": {
+									"path": "$['Percentage of single parent households with children under 18 estimate MOE2']"
 								}
 							},
 							{
 								"source": {
-									"name": "EP_MINRTY",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EP_MINRTY']"
+								},
+								"sink": {
+									"path": "$['Percentage minority (all persons except white, nonHispanic) estimate2']"
 								}
 							},
 							{
 								"source": {
-									"name": "MP_MINRTY",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['MP_MINRTY']"
+								},
+								"sink": {
+									"path": "$['Percentage minority (all persons except white, nonHispanic) estimate MOE2']"
 								}
 							},
 							{
 								"source": {
-									"name": "EP_LIMENG",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EP_LIMENG']"
+								},
+								"sink": {
+									"path": "$['Percentage of persons (age 5+) who speak English less than well estimate2']"
 								}
 							},
 							{
 								"source": {
-									"name": "MP_LIMENG",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['MP_LIMENG']"
+								},
+								"sink": {
+									"path": "$['Percentage of persons (age 5+) who speak English less than well estimate MOE2']"
 								}
 							},
 							{
 								"source": {
-									"name": "EP_MUNIT",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EP_MUNIT']"
+								},
+								"sink": {
+									"path": "$['Percentage of housing in structures with 10 or more units estimate2']"
 								}
 							},
 							{
 								"source": {
-									"name": "MP_MUNIT",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['MP_MUNIT']"
+								},
+								"sink": {
+									"path": "$['Percentage of housing in structures with 10 or more units estimate MOE2']"
 								}
 							},
 							{
 								"source": {
-									"name": "EP_MOBILE",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EP_MOBILE']"
+								},
+								"sink": {
+									"path": "$['Percentage of mobile homes estimate2']"
 								}
 							},
 							{
 								"source": {
-									"name": "MP_MOBILE",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['MP_MOBILE']"
+								},
+								"sink": {
+									"path": "$['Percentage of mobile homes estimate MOE2']"
 								}
 							},
 							{
 								"source": {
-									"name": "EP_CROWD",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EP_CROWD']"
+								},
+								"sink": {
+									"path": "$['Percentage of occupied housing units with more people than rooms estimate2']"
 								}
 							},
 							{
 								"source": {
-									"name": "MP_CROWD",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['MP_CROWD']"
+								},
+								"sink": {
+									"path": "$['Percentage of occupied housing units with more people than rooms estimate MOE2']"
 								}
 							},
 							{
 								"source": {
-									"name": "EP_NOVEH",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EP_NOVEH']"
+								},
+								"sink": {
+									"path": "$['Percentage of households with no vehicle available estimate2']"
 								}
 							},
 							{
 								"source": {
-									"name": "MP_NOVEH",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['MP_NOVEH']"
+								},
+								"sink": {
+									"path": "$['Percentage of households with no vehicle available estimate MOE2']"
 								}
 							},
 							{
 								"source": {
-									"name": "EP_GROUPQ",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EP_GROUPQ']"
+								},
+								"sink": {
+									"path": "$['Percentage of persons in group quarters estimate2']"
 								}
 							},
 							{
 								"source": {
-									"name": "MP_GROUPQ",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['MP_GROUPQ']"
+								},
+								"sink": {
+									"path": "$['Percentage of persons in group quarters estimate MOE2']"
 								}
 							},
 							{
 								"source": {
-									"name": "EPL_POV",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EPL_POV']"
+								},
+								"sink": {
+									"path": "$['Percentile Percentage of persons below poverty estimate3']"
 								}
 							},
 							{
 								"source": {
-									"name": "EPL_UNEMP",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EPL_UNEMP']"
+								},
+								"sink": {
+									"path": "$['Percentile Percentage of civilian unemployed estimate3']"
 								}
 							},
 							{
 								"source": {
-									"name": "EPL_PCI",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EPL_PCI']"
+								},
+								"sink": {
+									"path": "$['Percentile per capita income estimate3']"
 								}
 							},
 							{
 								"source": {
-									"name": "EPL_NOHSDP",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EPL_NOHSDP']"
+								},
+								"sink": {
+									"path": "$['Percentile Percentage of persons with no high school diploma estimate3']"
 								}
 							},
 							{
 								"source": {
-									"name": "SPL_THEME1",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['SPL_THEME1']"
+								},
+								"sink": {
+									"path": "$['Sum of series for Socioeconomic theme3']"
 								}
 							},
 							{
 								"source": {
-									"name": "RPL_THEME1",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['RPL_THEME1']"
+								},
+								"sink": {
+									"path": "$['Percentile ranking for Socioeconomic theme summary3']"
 								}
 							},
 							{
 								"source": {
-									"name": "EPL_AGE65",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EPL_AGE65']"
+								},
+								"sink": {
+									"path": "$['Percentile percentage of persons aged 65 and older estimate3']"
 								}
 							},
 							{
 								"source": {
-									"name": "EPL_AGE17",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EPL_AGE17']"
+								},
+								"sink": {
+									"path": "$['Percentile percentage of persons aged 17 and younger estimate3']"
 								}
 							},
 							{
 								"source": {
-									"name": "EPL_DISABL",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EPL_DISABL']"
+								},
+								"sink": {
+									"path": "$['Percentile percentage of civilian noninstitutionalized population with a disability3']"
 								}
 							},
 							{
 								"source": {
-									"name": "EPL_SNGPNT",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EPL_SNGPNT']"
+								},
+								"sink": {
+									"path": "$['Percentile percentage of single parent households with children under 18 estimate3']"
 								}
 							},
 							{
 								"source": {
-									"name": "SPL_THEME2",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['SPL_THEME2']"
+								},
+								"sink": {
+									"path": "$['Sum of series for Household Composition theme3']"
 								}
 							},
 							{
 								"source": {
-									"name": "RPL_THEME2",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['RPL_THEME2']"
+								},
+								"sink": {
+									"path": "$['Percentile ranking for Household Composition theme summary3']"
 								}
 							},
 							{
 								"source": {
-									"name": "EPL_MINRTY",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EPL_MINRTY']"
+								},
+								"sink": {
+									"path": "$['Percentile percentage minority (all persons except white, non - Hispanic) estimate3']"
 								}
 							},
 							{
 								"source": {
-									"name": "EPL_LIMENG",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EPL_LIMENG']"
+								},
+								"sink": {
+									"path": "$['Percentile percentage of persons (age 5+) who speak English less than well estimate3']"
 								}
 							},
 							{
 								"source": {
-									"name": "SPL_THEME3",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['SPL_THEME3']"
+								},
+								"sink": {
+									"path": "$['Sum of series for Minority Status Language theme3']"
 								}
 							},
 							{
 								"source": {
-									"name": "RPL_THEME3",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['RPL_THEME3']"
+								},
+								"sink": {
+									"path": "$['Percentile ranking for Minority Status Languag e theme3']"
 								}
 							},
 							{
 								"source": {
-									"name": "EPL_MUNIT",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EPL_MUNIT']"
+								},
+								"sink": {
+									"path": "$['Percentile percentage housing in structures with 10 or more units estimate3']"
 								}
 							},
 							{
 								"source": {
-									"name": "EPL_MOBILE",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EPL_MOBILE']"
+								},
+								"sink": {
+									"path": "$['Percentile percentage mobile homes estimate3']"
 								}
 							},
 							{
 								"source": {
-									"name": "EPL_CROWD",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EPL_CROWD']"
+								},
+								"sink": {
+									"path": "$['Percentile percentage households with more people than rooms estimate3']"
 								}
 							},
 							{
 								"source": {
-									"name": "EPL_NOVEH",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EPL_NOVEH']"
+								},
+								"sink": {
+									"path": "$['Percentile percentage households with no vehicle available estimate3']"
 								}
 							},
 							{
 								"source": {
-									"name": "EPL_GROUPQ",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EPL_GROUPQ']"
+								},
+								"sink": {
+									"path": "$['Percentile percentage of persons in group quarters estimate3']"
 								}
 							},
 							{
 								"source": {
-									"name": "SPL_THEME4",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['SPL_THEME4']"
+								},
+								"sink": {
+									"path": "$['Sum of series for Housing Type Transportation theme3']"
 								}
 							},
 							{
 								"source": {
-									"name": "RPL_THEME4",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['RPL_THEME4']"
+								},
+								"sink": {
+									"path": "$['Percentile ranking for Housing Type Transportation theme3']"
 								}
 							},
 							{
 								"source": {
-									"name": "SPL_THEMES",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['SPL_THEMES']"
+								},
+								"sink": {
+									"path": "$['Sum of series themes3']"
 								}
 							},
 							{
 								"source": {
-									"name": "RPL_THEMES",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['RPL_THEMES']"
+								},
+								"sink": {
+									"path": "$['Overall percentile ranking3']"
 								}
 							},
 							{
 								"source": {
-									"name": "F_POV",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['F_POV']"
+								},
+								"sink": {
+									"path": "$['Flag - the percentage of persons in poverty is in the 90th percentile']"
 								}
 							},
 							{
 								"source": {
-									"name": "F_UNEMP",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['F_UNEMP']"
+								},
+								"sink": {
+									"path": "$['Flag - the percentage of civilian unemployed is in the 90th percentile']"
 								}
 							},
 							{
 								"source": {
-									"name": "F_PCI",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['F_PCI']"
+								},
+								"sink": {
+									"path": "$['Flag - per capita income is in the 90th percentile']"
 								}
 							},
 							{
 								"source": {
-									"name": "F_NOHSDP",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['F_NOHSDP']"
+								},
+								"sink": {
+									"path": "$['Flag - the percentage of persons with no high school diploma is in the 90th percentile']"
 								}
 							},
 							{
 								"source": {
-									"name": "F_THEME1",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['F_THEME1']"
+								},
+								"sink": {
+									"path": "$['Sum of flags for Socioeconomic Status theme']"
 								}
 							},
 							{
 								"source": {
-									"name": "F_AGE65",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['F_AGE65']"
+								},
+								"sink": {
+									"path": "$['Flag - the percentage of persons aged 65 and older is in the 90th percentile']"
 								}
 							},
 							{
 								"source": {
-									"name": "F_AGE17",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['F_AGE17']"
+								},
+								"sink": {
+									"path": "$['Flag - the percentage of persons aged 17 and younger is in the 90th percentile']"
 								}
 							},
 							{
 								"source": {
-									"name": "F_DISABL",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['F_DISABL']"
+								},
+								"sink": {
+									"path": "$['Flag - the percentage of persons with a disability is in the 90th percentile']"
 								}
 							},
 							{
 								"source": {
-									"name": "F_SNGPNT",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['F_SNGPNT']"
+								},
+								"sink": {
+									"path": "$['Flag - the percentage of single parent households is in the 90th percentile']"
 								}
 							},
 							{
 								"source": {
-									"name": "F_THEME2",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['F_THEME2']"
+								},
+								"sink": {
+									"path": "$['Sum of flags for Household Composition theme']"
 								}
 							},
 							{
 								"source": {
-									"name": "F_MINRTY",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['F_MINRTY']"
+								},
+								"sink": {
+									"path": "$['Flag - the percentage of minority is in the 90th percentile']"
 								}
 							},
 							{
 								"source": {
-									"name": "F_LIMENG",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['F_LIMENG']"
+								},
+								"sink": {
+									"path": "$['Flag - the percentage those with limited English is in the 90th percentile']"
 								}
 							},
 							{
 								"source": {
-									"name": "F_THEME3",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['F_THEME3']"
+								},
+								"sink": {
+									"path": "$['Sum of flags for Minority Status Language theme']"
 								}
 							},
 							{
 								"source": {
-									"name": "F_MUNIT",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['F_MUNIT']"
+								},
+								"sink": {
+									"path": "$['Flag - the percentage of households in multi -unit housing is in the 90th percentile']"
 								}
 							},
 							{
 								"source": {
-									"name": "F_MOBILE",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['F_MOBILE']"
+								},
+								"sink": {
+									"path": "$['Flag - the percentage of mobile homes is in the 90th percentile']"
 								}
 							},
 							{
 								"source": {
-									"name": "F_CROWD",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['F_CROWD']"
+								},
+								"sink": {
+									"path": "$['Flag - the percentage of crowded households is in the 90th percentile']"
 								}
 							},
 							{
 								"source": {
-									"name": "F_NOVEH",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['F_NOVEH']"
+								},
+								"sink": {
+									"path": "$['Flag - the percentage of households with no vehicles is in the 90th percentile']"
 								}
 							},
 							{
 								"source": {
-									"name": "F_GROUPQ",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['F_GROUPQ']"
+								},
+								"sink": {
+									"path": "$['Flag - the percentage of persons in institutionalize d group quarters is in the 90th percentile']"
 								}
 							},
 							{
 								"source": {
-									"name": "F_THEME4",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['F_THEME4']"
+								},
+								"sink": {
+									"path": "$['Sum of flags for Housing Type Transportation theme']"
 								}
 							},
 							{
 								"source": {
-									"name": "F_TOTAL",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['F_TOTAL']"
+								},
+								"sink": {
+									"path": "$['Sum of flags for the four themes']"
 								}
 							},
 							{
 								"source": {
-									"name": "E_UNINSUR",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['E_UNINSUR']"
+								},
+								"sink": {
+									"path": "$['Adjunct variable - Uninsured in the total civilian noninstitutiona lized population estimate']"
 								}
 							},
 							{
 								"source": {
-									"name": "M_UNINSUR",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['M_UNINSUR']"
+								},
+								"sink": {
+									"path": "$['Adjunct variable - Uninsured in the total civilian noninstitutiona lized population estimate MOE']"
 								}
 							},
 							{
 								"source": {
-									"name": "EP_UNINSUR",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['EP_UNINSUR']"
+								},
+								"sink": {
+									"path": "$['Adjunct variable - Percentage uninsured in the total civilian noninstitutiona lized population estimate']"
 								}
 							},
 							{
 								"source": {
-									"name": "MP_UNINSUR",
-									"type": "String"
-								},
-								"sink": {
 									"path": "$['MP_UNINSUR']"
+								},
+								"sink": {
+									"path": "$['Adjunct variable - Percentage uninsured in the total civilian noninstitutiona lized population estimate MOE']"
 								}
 							},
 							{
 								"source": {
-									"name": "E_DAYPOP",
-									"type": "String"
+									"path": "$['E_DAYPOP']"
 								},
 								"sink": {
-									"path": "$['E_DAYPOP']"
+									"path": "$['Adjunct variable - Estimated daytime population']"
 								}
 							}
 						]

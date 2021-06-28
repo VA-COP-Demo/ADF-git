@@ -1,5 +1,5 @@
 {
-	"name": "ATC_COVID19-Data_Integration_Loop",
+	"name": "ATC_COVID19-Data_Integration_Loop_Staging",
 	"properties": {
 		"activities": [
 			{
@@ -116,6 +116,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -185,7 +186,10 @@
 									"parameters": {
 										"Filesystem": "@pipeline().parameters.DestinationFilesystem",
 										"Directory": "@pipeline().parameters.DestinationDirectory",
-										"Filename": "@concat(split(item().name,'.')[0],'_',pipeline().TriggerTime),'_',pipeline().TriggerTime)",
+										"Filename": {
+											"value": "@concat(split(item().name,'.')[0],'_',pipeline().TriggerTime)",
+											"type": "Expression"
+										},
 										"FileExtension": "@pipeline().parameters.DestinationFileExtension"
 									}
 								}
