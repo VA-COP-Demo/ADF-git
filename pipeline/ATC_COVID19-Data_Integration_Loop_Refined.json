@@ -95,83 +95,18 @@
 												}
 											}
 										]
-									}
-								]
-							}
-						}
-					]
-				}
-			},
-			{
-				"name": "Get Metadata1",
-				"type": "GetMetadata",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"dataset": {
-						"referenceName": "COPS_ADLS_json",
-						"type": "DatasetReference",
-						"parameters": {
-							"Filesystem": "@pipeline().parameters.SourceFilesystem",
-							"Directory": "@pipeline().parameters.SourceDirectory",
-							"Filename": "@pipeline().parameters.SourceFilename",
-							"FileExtension": "@pipeline().parameters.SourceFileExtension"
-						}
-					},
-					"fieldList": [
-						"childItems"
-					],
-					"storeSettings": {
-						"type": "AzureBlobFSReadSettings",
-						"recursive": true,
-						"enablePartitionDiscovery": false
-					},
-					"formatSettings": {
-						"type": "JsonReadSettings"
-					}
-				}
-			},
-			{
-				"name": "ForEach1_copy1",
-				"type": "ForEach",
-				"dependsOn": [
-					{
-						"activity": "Get Metadata1_copy1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@activity('Get Metadata1').output.childItems",
-						"type": "Expression"
-					},
-					"isSequential": false,
-					"activities": [
-						{
-							"name": "If Condition2",
-							"type": "IfCondition",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"expression": {
-									"value": "@equals(concat(split(split(item().name,'.')[0],'_')[0],'_',pipeline().TriggerTime),split(item().name,'.')[0])",
-									"type": "Expression"
-								},
-								"ifTrueActivities": [
+									},
 									{
 										"name": "Copy data1_copy1_copy1",
 										"type": "Copy",
-										"dependsOn": [],
+										"dependsOn": [
+											{
+												"activity": "Set variable1",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
 										"policy": {
 											"timeout": "7.00:00:00",
 											"retry": 0,
@@ -212,7 +147,7 @@
 													"Filesystem": "@pipeline().parameters.DestinationFilesystem",
 													"Directory": "@pipeline().parameters.DestinationDirectory",
 													"Filename": {
-														"value": "@concat(split(item().name,'.')[0],'_',pipeline().TriggerTime)",
+														"value": "@variables('filenames')",
 														"type": "Expression"
 													},
 													"FileExtension": "@pipeline().parameters.DestinationFileExtension"
@@ -227,13 +162,33 @@
 													"Filesystem": "@pipeline().parameters.DestinationFilesystem",
 													"Directory": "@pipeline().parameters.DestinationDirectory",
 													"Filename": {
-														"value": "@{split(item().name,'.')[0]}",
+														"value": "@split(split(variables('filenames'),'.')[0],'_')[0]",
 														"type": "Expression"
 													},
 													"FileExtension": "@pipeline().parameters.DestinationFileExtension"
 												}
 											}
 										]
+									},
+									{
+										"name": "Set variable1",
+										"type": "SetVariable",
+										"dependsOn": [
+											{
+												"activity": "Copy data1",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "filenames",
+											"value": {
+												"value": "@concat(split(item().name,'.')[0],'_',pipeline().TriggerTime)",
+												"type": "Expression"
+											}
+										}
 									}
 								]
 							}
@@ -242,16 +197,9 @@
 				}
 			},
 			{
-				"name": "Get Metadata1_copy1",
+				"name": "Get Metadata1",
 				"type": "GetMetadata",
-				"dependsOn": [
-					{
-						"activity": "ForEach1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -265,10 +213,10 @@
 						"referenceName": "COPS_ADLS_json",
 						"type": "DatasetReference",
 						"parameters": {
-							"Filesystem": "@pipeline().parameters.DestinationFilesystem",
-							"Directory": "@pipeline().parameters.DestinationDirectory",
-							"Filename": "@pipeline().parameters.DestinationFilename",
-							"FileExtension": "@pipeline().parameters.DestinationFileExtension"
+							"Filesystem": "@pipeline().parameters.SourceFilesystem",
+							"Directory": "@pipeline().parameters.SourceDirectory",
+							"Filename": "@pipeline().parameters.SourceFilename",
+							"FileExtension": "@pipeline().parameters.SourceFileExtension"
 						}
 					},
 					"fieldList": [
@@ -317,6 +265,11 @@
 			"SourceFileExtension": {
 				"type": "string",
 				"defaultValue": "*json"
+			}
+		},
+		"variables": {
+			"filenames": {
+				"type": "String"
 			}
 		},
 		"annotations": []
