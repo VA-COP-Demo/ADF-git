@@ -9,6 +9,12 @@
 					"referenceName": "Health_Data_Api_Pipeline_CSV",
 					"type": "PipelineReference"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "Health_Data_Api_Pipeline_JSON",
+					"type": "PipelineReference"
+				}
 			}
 		],
 		"type": "ScheduleTrigger",
@@ -16,14 +22,14 @@
 			"recurrence": {
 				"frequency": "Day",
 				"interval": 1,
-				"startTime": "2021-04-29T15:44:00Z",
-				"timeZone": "UTC",
+				"startTime": "2021-07-07T07:00:00",
+				"timeZone": "Eastern Standard Time",
 				"schedule": {
 					"minutes": [
 						0
 					],
 					"hours": [
-						23
+						7
 					]
 				}
 			}
