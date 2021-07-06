@@ -1,0 +1,32 @@
+{
+	"name": "DailyHealthDataStagining",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Health_Data_Api_Pipeline_JSON_Staging",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2021-07-07T07:45:00",
+				"timeZone": "Eastern Standard Time",
+				"schedule": {
+					"minutes": [
+						45
+					],
+					"hours": [
+						7
+					]
+				}
+			}
+		}
+	}
+}
