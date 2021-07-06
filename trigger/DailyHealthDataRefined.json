@@ -1,18 +1,12 @@
 {
-	"name": "daily tirgger",
+	"name": "DailyHealthDataRefined",
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
-					"referenceName": "Health_Data_Api_Pipeline_CSV",
-					"type": "PipelineReference"
-				}
-			},
-			{
-				"pipelineReference": {
-					"referenceName": "Health_Data_Api_Pipeline_JSON",
+					"referenceName": "Health_Data_Api_Pipeline_JSON_Refined",
 					"type": "PipelineReference"
 				}
 			}
@@ -22,14 +16,14 @@
 			"recurrence": {
 				"frequency": "Day",
 				"interval": 1,
-				"startTime": "2021-07-07T07:00:00",
+				"startTime": "2021-07-07T07:45:00",
 				"timeZone": "Eastern Standard Time",
 				"schedule": {
 					"minutes": [
 						0
 					],
 					"hours": [
-						7
+						8
 					]
 				}
 			}

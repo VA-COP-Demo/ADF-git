@@ -1,0 +1,17 @@
+{
+	"name": "AzureMLService",
+	"properties": {
+		"annotations": [],
+		"type": "AzureMLService",
+		"typeProperties": {
+			"subscriptionId": "74c259e4-9067-4391-a28a-32c2d748fa4c",
+			"resourceGroupName": "rg-cogiot-comm-01",
+			"mlWorkspaceName": "mlwrkp-copdemo-comm-01",
+			"authentication": "MSI"
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

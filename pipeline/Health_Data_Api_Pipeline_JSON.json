@@ -846,6 +846,75 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Copy data1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "HeathDataAPI",
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"source1": {
+								"Filesystem": {
+									"value": "@pipeline().parameters.Filesystem",
+									"type": "Expression"
+								},
+								"Directory": {
+									"value": "@pipeline().parameters.Directory",
+									"type": "Expression"
+								},
+								"Filename": {
+									"value": "@pipeline().parameters.Filename",
+									"type": "Expression"
+								},
+								"FileExtension": {
+									"value": "@pipeline().parameters.FileExtension",
+									"type": "Expression"
+								}
+							},
+							"sink1": {
+								"Filesystem": {
+									"value": "@pipeline().parameters.Filesystem",
+									"type": "Expression"
+								},
+								"Directory": {
+									"value": "@pipeline().parameters.Directory",
+									"type": "Expression"
+								},
+								"Filename": {
+									"value": "@pipeline().parameters.Filename",
+									"type": "Expression"
+								},
+								"FileExtension": {
+									"value": "@pipeline().parameters.FileExtension",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
 			}
 		],
 		"parameters": {
