@@ -8,6 +8,16 @@
 				"pipelineReference": {
 					"referenceName": "Health_Data_Api_Pipeline_JSON_Refined",
 					"type": "PipelineReference"
+				},
+				"parameters": {
+					"Filesystem": "health-data-api-covid19",
+					"Directory": "Stagining",
+					"Filename": "*",
+					"FileExtension": "json",
+					"DestinationFilesystem": "health-data-api-covid19",
+					"DestinationDirectory": "Refined",
+					"DestinationFilename": "HealthDataCovid19API",
+					"DestinationFileExtension": "json"
 				}
 			}
 		],
