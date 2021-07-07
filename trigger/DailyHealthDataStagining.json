@@ -8,6 +8,16 @@
 				"pipelineReference": {
 					"referenceName": "Health_Data_Api_Pipeline_JSON_Staging",
 					"type": "PipelineReference"
+				},
+				"parameters": {
+					"Filesystem": "health-data-api-covid19",
+					"Directory": "Raw",
+					"Filename": "part-*",
+					"FileExtension": "json",
+					"DestinationFilesystem": "health-data-api-covid19",
+					"DestinationDirectory": "Staging",
+					"DestinationFilename": "HealthDataCovid19API",
+					"DestinationFileExtension": "json"
 				}
 			}
 		],
