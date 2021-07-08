@@ -1,0 +1,39 @@
+{
+	"name": "Heathapi-Raw",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Health_Data_Api_Pipeline_JSON",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"HTTPRequests": "https://healthdata.gov/resource/6xf2-c3ie.json",
+					"Filesystem": "health-data-api-covid19",
+					"Directory": "Raw",
+					"Filename": "HealthDataCovid19API",
+					"FileExtension": "json"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2021-07-08T15:10:00",
+				"timeZone": "Eastern Standard Time",
+				"schedule": {
+					"minutes": [
+						0
+					],
+					"hours": [
+						6
+					]
+				}
+			}
+		}
+	}
+}
