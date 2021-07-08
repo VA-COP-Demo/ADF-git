@@ -11,7 +11,7 @@
 				},
 				"parameters": {
 					"Filesystem": "health-data-api-covid19",
-					"Directory": "Stagining",
+					"Directory": "Staging",
 					"Filename": "*",
 					"FileExtension": "json",
 					"DestinationFilesystem": "health-data-api-covid19",
