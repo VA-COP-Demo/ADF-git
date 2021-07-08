@@ -167,7 +167,7 @@
 			},
 			"Directory": {
 				"type": "string",
-				"defaultValue": "raw-files"
+				"defaultValue": "Raw"
 			},
 			"FileExtension": {
 				"type": "string",
