@@ -33,7 +33,7 @@
 			}
 		},
 		"connectVia": {
-			"referenceName": "AutoResolveIntegrationRuntime",
+			"referenceName": "IntegrationRuntime3",
 			"type": "IntegrationRuntimeReference"
 		}
 	}
