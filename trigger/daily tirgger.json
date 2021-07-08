@@ -9,19 +9,6 @@
 					"referenceName": "Health_Data_Api_Pipeline_CSV",
 					"type": "PipelineReference"
 				}
-			},
-			{
-				"pipelineReference": {
-					"referenceName": "Health_Data_Api_Pipeline_JSON",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"HTTPRequests": "https://healthdata.gov/resource/6xf2-c3ie.json",
-					"Filesystem": "health-data-api-covid19",
-					"Directory": "Raw",
-					"Filename": "HealthDataCovid19API",
-					"FileExtension": "json"
-				}
 			}
 		],
 		"type": "ScheduleTrigger",
