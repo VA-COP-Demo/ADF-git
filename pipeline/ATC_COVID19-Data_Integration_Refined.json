@@ -1113,6 +1113,9 @@
 				"defaultValue": "json"
 			}
 		},
+		"folder": {
+			"name": "ATC Data Pipelines"
+		},
 		"annotations": []
 	}
 }

@@ -190,6 +190,9 @@
 				"defaultValue": "azureadmin"
 			}
 		},
+		"folder": {
+			"name": "On-Prem Data Pipelines/PMN"
+		},
 		"annotations": []
 	}
 }
