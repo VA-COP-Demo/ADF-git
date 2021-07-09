@@ -272,6 +272,9 @@
 				"type": "String"
 			}
 		},
+		"folder": {
+			"name": "ATC Data Pipelines"
+		},
 		"annotations": []
 	}
 }

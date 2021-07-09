@@ -316,6 +316,9 @@
 				"defaultValue": "csv"
 			}
 		},
+		"folder": {
+			"name": "ATC Data Pipelines"
+		},
 		"annotations": []
 	}
 }

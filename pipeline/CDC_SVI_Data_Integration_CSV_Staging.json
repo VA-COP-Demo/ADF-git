@@ -2456,6 +2456,9 @@
 				"defaultValue": "csv"
 			}
 		},
+		"folder": {
+			"name": "CDC Data Pipelines"
+		},
 		"annotations": [],
 		"lastPublishTime": "2021-06-10T14:47:39Z"
 	},

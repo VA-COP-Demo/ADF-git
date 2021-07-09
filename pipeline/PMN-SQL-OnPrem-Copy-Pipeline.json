@@ -167,7 +167,7 @@
 			},
 			"Directory": {
 				"type": "string",
-				"defaultValue": "raw-files"
+				"defaultValue": "Raw"
 			},
 			"FileExtension": {
 				"type": "string",
@@ -189,6 +189,9 @@
 				"type": "string",
 				"defaultValue": "azureadmin"
 			}
+		},
+		"folder": {
+			"name": "On-Prem Data Pipelines/PMN"
 		},
 		"annotations": []
 	}
