@@ -199,7 +199,7 @@
 			},
 			"SourceFileExtension": {
 				"type": "string",
-				"defaultValue": "csv"
+				"defaultValue": "*csv"
 			}
 		},
 		"folder": {
