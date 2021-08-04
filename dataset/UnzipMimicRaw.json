@@ -1,5 +1,5 @@
 {
-	"name": "UnzipMimic",
+	"name": "UnzipMimicRaw",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
