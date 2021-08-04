@@ -1,0 +1,167 @@
+{
+	"name": "Mimic data Pipeline Refined",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.SourceFilename",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Unzip Data from Source",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings",
+										"copyBehavior": "FlattenHierarchy"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "COPS_ADLS_CSV",
+									"type": "DatasetReference",
+									"parameters": {
+										"Filesystem": {
+											"value": "@pipeline().parameters.SourceFilesystem",
+											"type": "Expression"
+										},
+										"Directory": {
+											"value": "@pipeline().parameters.SourceDirectory",
+											"type": "Expression"
+										},
+										"Filename": {
+											"value": "@item()",
+											"type": "Expression"
+										},
+										"FileExtension": {
+											"value": "@pipeline().parameters.SourceFileExtension",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "COPS_ADLS_CSV",
+									"type": "DatasetReference",
+									"parameters": {
+										"Filesystem": {
+											"value": "@pipeline().parameters.DestinationFilesystem",
+											"type": "Expression"
+										},
+										"Directory": {
+											"value": "@pipeline().parameters.DestinationDirectory",
+											"type": "Expression"
+										},
+										"Filename": {
+											"value": "@concat(split(item(),'.')[0],'_',pipeline().TriggerTime)",
+											"type": "Expression"
+										},
+										"FileExtension": {
+											"value": "@pipeline().parameters.DestinationFileExtension",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"DestinationFilesystem": {
+				"type": "string",
+				"defaultValue": "mimic"
+			},
+			"DestinationDirectory": {
+				"type": "string",
+				"defaultValue": "Refined"
+			},
+			"DestinationFilename": {
+				"type": "array",
+				"defaultValue": [
+					"DATETIMEEVENTS",
+					"DIAGNOSES_ICD",
+					"ICUSTAYS",
+					"LABEVENTS",
+					"MICROBIOLOGYEVENTS"
+				]
+			},
+			"DestinationFileExtension": {
+				"type": "string",
+				"defaultValue": "csv"
+			},
+			"SourceFilesystem": {
+				"type": "string",
+				"defaultValue": "mimic"
+			},
+			"SourceDirectory": {
+				"type": "string",
+				"defaultValue": "Staging"
+			},
+			"SourceFilename": {
+				"type": "array",
+				"defaultValue": [
+					"DATETIMEEVENTS.csv",
+					"DIAGNOSES_ICD.csv",
+					"ICUSTAYS.csv",
+					"LABEVENTS.csv",
+					"MICROBIOLOGYEVENTS.csv"
+				]
+			},
+			"SourceFileExtension": {
+				"type": "string",
+				"defaultValue": "gz"
+			}
+		},
+		"folder": {
+			"name": "Mimic Data Pipeline"
+		},
+		"annotations": []
+	}
+}
