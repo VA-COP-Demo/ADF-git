@@ -1,18 +1,41 @@
 {
-	"name": "UnzipMimicRaw",
+	"name": "COPS_ADLS_Gz",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
 			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Filesystem": {
+				"type": "string"
+			},
+			"Directory": {
+				"type": "string"
+			},
+			"Filename": {
+				"type": "string"
+			},
+			"FileExtension": {
+				"type": "string"
+			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "DATETIMEEVENTS.csv.gz",
-				"folderPath": "Raw",
-				"fileSystem": "mimic"
+				"fileName": {
+					"value": "@concat(dataset().Filename,'.',dataset().FileExtension)",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().Directory",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().Filesystem",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": ",",
 			"compressionCodec": "gzip",
