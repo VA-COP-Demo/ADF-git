@@ -62,7 +62,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "COPS_ADLS_CSV",
+									"referenceName": "COPS_ADLS_Gz",
 									"type": "DatasetReference",
 									"parameters": {
 										"Filesystem": {
