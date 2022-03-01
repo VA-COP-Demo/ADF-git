@@ -82,11 +82,11 @@
 			},
 			"Filesystem": {
 				"type": "string",
-				"defaultValue": "atc-api/fqd"
+				"defaultValue": "atc-api"
 			},
 			"Directory": {
 				"type": "string",
-				"defaultValue": "Raw"
+				"defaultValue": "Raw/fqd"
 			},
 			"Filename": {
 				"type": "string",
