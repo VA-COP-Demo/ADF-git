@@ -12,6 +12,10 @@
 			"url": "@{linkedService().HttpRequestcall}",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
+		},
+		"connectVia": {
+			"referenceName": "IntegrationRuntime3",
+			"type": "IntegrationRuntimeReference"
 		}
 	},
 	"type": "Microsoft.Synapse/workspaces/linkedservices"
