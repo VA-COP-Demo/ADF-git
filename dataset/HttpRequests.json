@@ -1,5 +1,5 @@
 {
-	"name": "COPS_HttpRequests",
+	"name": "HttpRequests",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "healthdatacovid19",

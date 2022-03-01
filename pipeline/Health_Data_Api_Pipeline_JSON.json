@@ -812,7 +812,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "COPS_HttpRequests",
+						"referenceName": "HttpRequests",
 						"type": "DatasetReference",
 						"parameters": {
 							"HttpRequestcall": {

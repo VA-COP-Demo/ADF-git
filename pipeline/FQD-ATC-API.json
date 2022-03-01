@@ -1,5 +1,5 @@
 {
-	"name": "Health_Data_Api_Pipeline_CSV_copy1",
+	"name": "FQD-ATC-API",
 	"properties": {
 		"activities": [
 			{
@@ -815,7 +815,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "COPS_HttpRequests",
+						"referenceName": "HttpRequests",
 						"type": "DatasetReference",
 						"parameters": {
 							"HttpRequestcall": {
@@ -874,7 +874,7 @@
 			}
 		},
 		"folder": {
-			"name": "Health API Data Pipelines"
+			"name": "ATC APIs"
 		},
 		"annotations": [],
 		"lastPublishTime": "2021-06-10T14:47:39Z"
