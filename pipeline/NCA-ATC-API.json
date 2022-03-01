@@ -82,11 +82,11 @@
 			},
 			"Filesystem": {
 				"type": "string",
-				"defaultValue": "atc-api/nca"
+				"defaultValue": "atc-api"
 			},
 			"Directory": {
 				"type": "string",
-				"defaultValue": "Raw"
+				"defaultValue": "Raw/nca"
 			},
 			"Filename": {
 				"type": "string",

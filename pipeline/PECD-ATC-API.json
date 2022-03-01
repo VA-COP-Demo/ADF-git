@@ -82,11 +82,11 @@
 			},
 			"Filesystem": {
 				"type": "string",
-				"defaultValue": "atc-api/pecd"
+				"defaultValue": "atc-api"
 			},
 			"Directory": {
 				"type": "string",
-				"defaultValue": "Raw"
+				"defaultValue": "Raw/pecd"
 			},
 			"Filename": {
 				"type": "string",
