@@ -1,5 +1,5 @@
 {
-	"name": "FQD-ATC-API",
+	"name": "PECD-ATC-API",
 	"properties": {
 		"activities": [
 			{
@@ -78,11 +78,11 @@
 		"parameters": {
 			"HTTPRequests": {
 				"type": "string",
-				"defaultValue": "https://va-atc-dev-api.azurewebsites.us/v1.0/api/FQD/all"
+				"defaultValue": "https://va-atc-dev-api.azurewebsites.us/v1.0/api/PECD/all"
 			},
 			"Filesystem": {
 				"type": "string",
-				"defaultValue": "atc-api/fqd"
+				"defaultValue": "atc-api/pecd"
 			},
 			"Directory": {
 				"type": "string",
@@ -90,7 +90,7 @@
 			},
 			"Filename": {
 				"type": "string",
-				"defaultValue": "fqd-atc-api"
+				"defaultValue": "pecd-atc-api"
 			},
 			"FileExtension": {
 				"type": "string",

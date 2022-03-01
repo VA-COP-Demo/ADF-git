@@ -1,5 +1,5 @@
 {
-	"name": "FQD-ATC-API",
+	"name": "OCD-ATC-API",
 	"properties": {
 		"activities": [
 			{
@@ -78,11 +78,11 @@
 		"parameters": {
 			"HTTPRequests": {
 				"type": "string",
-				"defaultValue": "https://va-atc-dev-api.azurewebsites.us/v1.0/api/FQD/all"
+				"defaultValue": "https://va-atc-dev-api.azurewebsites.us/v1.0/api/OCD/all"
 			},
 			"Filesystem": {
 				"type": "string",
-				"defaultValue": "atc-api/fqd"
+				"defaultValue": "atc-api/ocd"
 			},
 			"Directory": {
 				"type": "string",
@@ -90,7 +90,7 @@
 			},
 			"Filename": {
 				"type": "string",
-				"defaultValue": "fqd-atc-api"
+				"defaultValue": "ocd-atc-api"
 			},
 			"FileExtension": {
 				"type": "string",
